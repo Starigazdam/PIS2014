@@ -25,10 +25,10 @@ public class Card {
 	private Date	regDate;
 	private boolean	regState;
 	@Id
-	private int		birthNumber;
-	private int		healthInsuranceNumber;
-	private int		phoneNumber;
-	private String	email;
+	private int	birthNumber;
+	private int	healthInsuranceNumber;
+	private int	phoneNumber;
+	private String email;
 	@OneToOne(mappedBy = "patient")
 	private PatientAccount	account;
 	@OneToMany(cascade = { ALL }, fetch = EAGER, mappedBy = "patient", orphanRemoval = true)
