@@ -46,15 +46,15 @@
 						<f:convertDateTime pattern="dd.MM.yyyy"/>
 					</h:outputText>
 				</h:column>
-			<!--	<h:column>
-					<h:commandLink action="#{personBean.actionEdit}">
-						<h:outputText value="Edit"></h:outputText>
+				<h:column>
+					<h:commandLink action="#{cardBean.actionView}">
+						<h:outputText value="Zobrazit"></h:outputText>
 					</h:commandLink>
-					&nbsp;
+					<!-- &nbsp;
 					<h:commandLink action="#{personBean.actionDelete}">
 						<h:outputText value="Delete"></h:outputText>
-					</h:commandLink>
-				</h:column> -->
+					</h:commandLink> -->
+				</h:column>
 			</h:dataTable>
 			<h:commandLink action="newcard" value="Vložit novou kartu"></h:commandLink>
 		</h:form>

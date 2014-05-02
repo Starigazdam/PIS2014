@@ -47,10 +47,15 @@ public class CardBean {
 		this.listTable = listTable;
 	}
 	
+    public String actionView()
+    {
+    	setCard((Card) listTable.getRowData());
+    	return "view";
+    }
+	
 	public String actionInsertNew()
     {
 		card.setRegDate(new Date());
-		System.out.print("jsem tady");
         cardMgr.save(card);
         return "insert";
     }
