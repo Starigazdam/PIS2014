@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <pageflow:Pageflow xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:pageflow="http://www.sybase.com/suade/pageflow" id="pf13974059334470" configfile="/ZubniOrdinace/WebContent/WEB-INF/faces-config.xml">
-  <nodes xsi:type="pageflow:PFPage" name="admlogin.xhtml" x="180" y="96" id="pf13990318455330" referenceLink="//@navigationRule.4/@navigationCase.0/@toViewId|" outlinks="pf13990323129195 pf13990323129196" inlinks="pf13990323129196 pf13990323129197 pf13990415872288 pf139904434744411" path="/admlogin.xhtml"/>
-  <nodes xsi:type="pageflow:PFPage" name="admin/admin.xhtml" x="384" y="96" id="pf13990318455334" referenceLink="//@navigationRule.3/@fromViewId|" outlinks="pf13990323129197 pf13990415872289 pf139904434744412" inlinks="pf13990323129195" path="/admin/admin.xhtml"/>
-  <nodes xsi:type="pageflow:PFPage" name="admin/cardlist.xhtml" x="480" y="312" id="pf139904158722810" referenceLink="//@navigationRule.4/@fromViewId|" outlinks="pf13990415872288 pf139904764352315 pf139904986592217" inlinks="pf13990415872289 pf139904764352316 pf139904986592218" path="/admin/cardlist.xhtml"/>
-  <nodes xsi:type="pageflow:PFPage" name="admin/addCard.xhtml" x="132" y="312" id="pf139904434744413" outlinks="pf139904434744411 pf139904764352316" inlinks="pf139904434744412 pf139904764352315" path="/admin/addCard.xhtml"/>
-  <nodes xsi:type="pageflow:PFPage" name="admin/cardView.xhtml" x="720" y="180" id="pf139904986592219" outlinks="pf139904986592218" inlinks="pf139904986592217" path="/admin/cardView.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="admlogin.xhtml" x="180" y="96" id="pf13990318455330" referenceLink="//@navigationRule.6/@navigationCase.0/@toViewId|" outlinks="pf13990323129195 pf13990323129196" inlinks="pf13990323129196 pf13990323129197 pf13990415872288 pf139904434744411" path="/admlogin.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="admin/admin.xhtml" x="384" y="96" id="pf13990318455334" referenceLink="//@navigationRule.5/@fromViewId|" outlinks="pf13990323129197 pf13990415872289 pf139904434744412" inlinks="pf13990323129195" path="/admin/admin.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="admin/cardlist.xhtml" x="480" y="312" id="pf139904158722810" referenceLink="//@navigationRule.11/@navigationCase.0/@toViewId|" outlinks="pf13990415872288 pf139904764352315 pf139904986592217" inlinks="pf13990415872289 pf139904764352316 pf139904986592218 pf13990527393140" path="/admin/cardlist.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="admin/addCard.xhtml" x="132" y="312" id="pf139904434744413" referenceLink="//@navigationRule.8/@fromViewId|" outlinks="pf139904434744411 pf139904764352316" inlinks="pf139904434744412 pf139904764352315" path="/admin/addCard.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="admin/cardView.xhtml" x="720" y="180" id="pf139904986592219" referenceLink="//@navigationRule.11/@fromViewId|" outlinks="pf139904986592218 pf13990527393140 pf13990570190171" inlinks="pf139904986592217 pf13990570190172 pf13990570190173" path="/admin/cardView.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="admin/addIllness.xhtml" x="552" y="108" id="pf13990570190174" outlinks="pf13990570190172 pf13990570190173" inlinks="pf13990570190171" path="/admin/addIllness.xhtml"/>
   <links id="pf13990323129195" target="pf13990318455334" source="pf13990318455330" outcome="login" redirect="true"/>
   <links id="pf13990323129196" target="pf13990318455330" source="pf13990318455330" outcome="failed">
     <bendPoints d1Height="-36" d2Height="-36"/>
@@ -19,5 +20,9 @@
   <links id="pf139904764352315" target="pf139904434744413" source="pf139904158722810" outcome="newcard"/>
   <links id="pf139904764352316" target="pf139904158722810" source="pf139904434744413" outcome="insert"/>
   <links id="pf139904986592217" target="pf139904986592219" source="pf139904158722810" outcome="view" redirect="true"/>
-  <links id="pf139904986592218" target="pf139904158722810" source="pf139904986592219" outcome="done"/>
+  <links id="pf139904986592218" target="pf139904158722810" source="pf139904986592219" outcome="update" redirect="true"/>
+  <links id="pf13990527393140" target="pf139904158722810" source="pf139904986592219" outcome="cancel" redirect="true"/>
+  <links id="pf13990570190172" target="pf139904986592219" source="pf13990570190174" outcome="cancel" redirect="true"/>
+  <links id="pf13990570190173" target="pf139904986592219" source="pf13990570190174" outcome="addillness" redirect="true"/>
+  <links id="pf13990570190171" target="pf13990570190174" source="pf139904986592219" outcome="newillness" redirect="true"/>
 </pageflow:Pageflow>
