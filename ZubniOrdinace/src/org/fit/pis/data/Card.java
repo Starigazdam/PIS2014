@@ -20,14 +20,16 @@ import javax.persistence.OneToOne;
 @Table(name = "card")
 public class Card {
 	@Id
-	private long birthNumber;
+	private long id;	// id;
+	
+	@Temporal(TemporalType.DATE)
+	private Date birthDate;
 
 	@Temporal(TemporalType.DATE)
 	private Date regDate;
 	
 	private boolean	regState;
-	private long	healthInsuranceNumber;
-	private int	phoneNumber;
+	private long phoneNumber;
 	private String email;
 	private String name;
 	private String surname;
@@ -49,11 +51,12 @@ public class Card {
 	private Collection<Dosage> meds;
 	@OneToMany(cascade = { ALL }, fetch = EAGER, mappedBy = "patient", orphanRemoval = true)
 	private Collection<Treatment> treatmentHistory;
-	public long getBirthNumber() {
-		return birthNumber;
+	
+	public Date getbirthDate() {
+		return birthDate;
 	}
-	public void setBirthNumber(long birthNumber) {
-		this.birthNumber = birthNumber;
+	public void setbirthDate(Date birthDate) {
+		this.birthDate = birthDate;
 	}
 	public Date getRegDate() {
 		return regDate;
@@ -67,16 +70,16 @@ public class Card {
 	public void setRegState(boolean regState) {
 		this.regState = regState;
 	}
-	public long getHealthInsuranceNumber() {
-		return healthInsuranceNumber;
+	public long getid() {
+		return id;
 	}
-	public void setHealthInsuranceNumber(long healthInsuranceNumber) {
-		this.healthInsuranceNumber = healthInsuranceNumber;
+	public void setid(long id) {
+		this.id = id;
 	}
-	public int getPhoneNumber() {
+	public long getPhoneNumber() {
 		return phoneNumber;
 	}
-	public void setPhoneNumber(int phoneNumber) {
+	public void setPhoneNumber(long phoneNumber) {
 		this.phoneNumber = phoneNumber;
 	}
 	public String getEmail() {

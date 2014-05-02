@@ -1,5 +1,6 @@
 package org.fit.pis.back;
 
+import java.util.Date;
 import java.util.List;
 
 import javax.ejb.EJB;
@@ -18,7 +19,9 @@ public class CardBean {
 	private Card card;
     private HtmlDataTable listTable;
 	
-	public CardBean() {	}
+	public CardBean() {
+		card = new Card();
+	}
 
 	public Card getCard() {
 		return card;
@@ -43,4 +46,12 @@ public class CardBean {
 	{
 		this.listTable = listTable;
 	}
+	
+	public String actionInsertNew()
+    {
+		card.setRegDate(new Date());
+		System.out.print("jsem tady");
+        cardMgr.save(card);
+        return "insert";
+    }
 }

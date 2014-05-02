@@ -14,9 +14,9 @@
 			<h:dataTable value="#{cardBean.cards}" var="card" binding="#{cardBean.listTable}">
 				<h:column>
 					<f:facet name="header">
-	                    <h:outputText value="ID"/>
+	                    <h:outputText value="RČ"/>
 	                </f:facet>
-					<h:outputText value="#{card.birthNumber}"></h:outputText>
+					<h:outputText value="#{card.id}"></h:outputText>
 				</h:column>
 				<h:column>
 					<f:facet name="header">
@@ -30,7 +30,23 @@
 	                </f:facet>
 					<h:outputText value="#{card.surname}"></h:outputText>
 				</h:column>
-				<!-- <h:column>
+				<h:column>
+					<f:facet name="header">
+	                    <h:outputText value="Datum narození"/>
+	                </f:facet>
+					<h:outputText value="#{card.birthDate}">
+						<f:convertDateTime pattern="dd.MM.yyyy"/> <!-- TODO: date not correct -->
+					</h:outputText>
+				</h:column>
+				<h:column>
+					<f:facet name="header">
+	                    <h:outputText value="Registrován"/>
+	                </f:facet>
+					<h:outputText value="#{card.regDate}">
+						<f:convertDateTime pattern="dd.MM.yyyy"/>
+					</h:outputText>
+				</h:column>
+			<!--	<h:column>
 					<h:commandLink action="#{personBean.actionEdit}">
 						<h:outputText value="Edit"></h:outputText>
 					</h:commandLink>
@@ -40,10 +56,7 @@
 					</h:commandLink>
 				</h:column> -->
 			</h:dataTable>
-			<!-- <h:commandLink action="#{personBean.actionNew}">
-				<h:outputText value="Insert new"></h:outputText>
-			</h:commandLink> -->
-			</h:form>
+		</h:form>
 	</ui:define>
 </ui:composition>
 </html>
