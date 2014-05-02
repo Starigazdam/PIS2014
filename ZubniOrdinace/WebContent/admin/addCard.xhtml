@@ -1,0 +1,45 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core">
+
+<ui:composition template="../template.xhtml">
+	<ui:define name="content">
+		<h:form>
+			<h:messages layout="table"></h:messages>
+			<h:panelGrid columns="2">
+				<h:outputLabel rendered="true" value="Jméno"></h:outputLabel>
+				<h:inputText value="#{cardBean.card.name}" required="true"
+					requiredMessage="Name is required"
+					validatorMessage="Invalid name">
+					<f:validateLength minimum="2" maximum="80" />
+				</h:inputText>
+				<h:outputLabel rendered="true" value="Příjmení"></h:outputLabel>
+				<h:inputText value="#{cardBean.card.surname}" required="true">
+					<f:validateLength minimum="2" maximum="80"/>
+				</h:inputText>
+				<h:outputLabel rendered="true" value="RČ"></h:outputLabel>
+				<h:inputText value="#{cardBean.card.id}" required="true">
+					<f:converter converterId="idConverter"/>
+				</h:inputText>
+				<h:outputLabel rendered="true" value="Datum narození(dd.mm.yyyy)"></h:outputLabel>
+				<h:inputText value="#{cardBean.card.birthDate}" required="true">
+					<f:validateLength minimum="8" />
+					<f:convertDateTime pattern="dd.MM.yyyy"/>
+				</h:inputText>
+				<h:outputLabel rendered="true" value="Telefon"></h:outputLabel>
+				<h:inputText value="#{cardBean.card.phoneNumber}" required="false">
+				</h:inputText>
+				<h:outputLabel rendered="true" value="Email"></h:outputLabel>
+				<h:inputText value="#{cardBean.card.email}" required="false">
+				</h:inputText>
+				<h:commandButton action="#{cardBean.actionInsertNew}" value="Vložit">
+				</h:commandButton>
+			</h:panelGrid>
+		</h:form>
+	</ui:define>
+</ui:composition>
+</html>
