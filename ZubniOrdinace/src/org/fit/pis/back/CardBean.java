@@ -52,6 +52,12 @@ public class CardBean {
     	setCard((Card) listTable.getRowData());
     	return "view";
     }
+    
+	public String actionNew()
+	{
+		card = new Card();
+		return "newcard";
+	}
 	
 	public String actionInsertNew()
     {
