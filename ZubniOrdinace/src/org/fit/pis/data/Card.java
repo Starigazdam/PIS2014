@@ -20,13 +20,13 @@ import javax.persistence.OneToOne;
 @Table(name = "card")
 public class Card {
 	@Id
-	private int birthNumber;
+	private long birthNumber;
 
 	@Temporal(TemporalType.DATE)
 	private Date regDate;
 	
 	private boolean	regState;
-	private int	healthInsuranceNumber;
+	private long	healthInsuranceNumber;
 	private int	phoneNumber;
 	private String email;
 	private String name;

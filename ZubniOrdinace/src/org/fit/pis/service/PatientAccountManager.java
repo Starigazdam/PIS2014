@@ -9,7 +9,8 @@ import javax.persistence.PersistenceContext;
 import org.fit.pis.data.PatientAccount;
 
 @Stateless
-public class PatientAccountManager {
+public class PatientAccountManager 
+{
     @PersistenceContext
     private EntityManager em;
     
