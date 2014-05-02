@@ -1,0 +1,39 @@
+@CHARSET "UTF-8";
+
+body {
+	margin: 0;
+	padding: 0;
+	background-color: #d3d3d3;
+	font-family: Tahoma, Verdana, Arial, sans-serif;
+	font-size: 11pt;
+}
+
+a {
+	text-decoration: none;
+}
+
+#main {
+	margin: auto;
+	width: 80%;
+	background-color: #FFF;
+	position: relative;
+	margin-top: 0.5em;
+}
+#header {
+	background-color: #39AECF;
+	height: 8em;
+	width: 100%;
+	margin-bottom: 3pt;
+}
+
+#content {
+	padding: 0.4em;
+}
+#footer {
+	position: absolute;
+	bottom: -2em;
+	height: 1.5em;
+	width: 100%;
+	text-align: center;
+	font-size: 8pt;
+}
