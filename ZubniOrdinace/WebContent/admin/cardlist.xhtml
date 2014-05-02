@@ -1,0 +1,49 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core">
+
+<ui:composition template="../template.xhtml">
+	<ui:define name="content">
+		<h2>Karty pacientů</h2>
+		
+		<h:form>
+			<h:dataTable value="#{cardBean.cards}" var="card" binding="#{cardBean.listTable}">
+				<h:column>
+					<f:facet name="header">
+	                    <h:outputText value="ID"/>
+	                </f:facet>
+					<h:outputText value="#{card.birthNumber}"></h:outputText>
+				</h:column>
+				<h:column>
+					<f:facet name="header">
+	                    <h:outputText value="Jméno"/>
+	                </f:facet>
+					<h:outputText value="#{card.name}"></h:outputText>
+				</h:column>
+				<h:column>
+					<f:facet name="header">
+	                    <h:outputText value="Příjmení"/>
+	                </f:facet>
+					<h:outputText value="#{card.surname}"></h:outputText>
+				</h:column>
+				<!-- <h:column>
+					<h:commandLink action="#{personBean.actionEdit}">
+						<h:outputText value="Edit"></h:outputText>
+					</h:commandLink>
+					&nbsp;
+					<h:commandLink action="#{personBean.actionDelete}">
+						<h:outputText value="Delete"></h:outputText>
+					</h:commandLink>
+				</h:column> -->
+			</h:dataTable>
+			<!-- <h:commandLink action="#{personBean.actionNew}">
+				<h:outputText value="Insert new"></h:outputText>
+			</h:commandLink> -->
+			</h:form>
+	</ui:define>
+</ui:composition>
+</html>
