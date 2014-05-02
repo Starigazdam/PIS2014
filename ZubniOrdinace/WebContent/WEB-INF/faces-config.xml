@@ -36,5 +36,23 @@
 			<redirect />
 		</navigation-case>
 	</navigation-rule>
+	<navigation-rule>
+		<display-name>admin/admin.xhtml</display-name>
+		<from-view-id>/admin/admin.xhtml</from-view-id>
+		<navigation-case>
+			<from-outcome>cards</from-outcome>
+			<to-view-id>/admin/cardlist.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+	</navigation-rule>
+	<navigation-rule>
+		<display-name>admin/cardlist.xhtml</display-name>
+		<from-view-id>/admin/cardlist.xhtml</from-view-id>
+		<navigation-case>
+			<from-outcome>logout</from-outcome>
+			<to-view-id>/admlogin.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+	</navigation-rule>
 
 </faces-config>

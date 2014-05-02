@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <pageflow:Pageflow xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:pageflow="http://www.sybase.com/suade/pageflow" id="pf13974059334470" configfile="/ZubniOrdinace/WebContent/WEB-INF/faces-config.xml">
-  <nodes xsi:type="pageflow:PFPage" name="admlogin.xhtml" x="180" y="96" id="pf13990318455330" referenceLink="//@navigationRule.2/@navigationCase.0/@toViewId|" outlinks="pf13990323129195 pf13990323129196" inlinks="pf13990323129196 pf13990323129197" path="/admlogin.xhtml"/>
-  <nodes xsi:type="pageflow:PFPage" name="admin/admin.xhtml" x="456" y="96" id="pf13990318455334" referenceLink="//@navigationRule.2/@fromViewId|" outlinks="pf13990323129197" inlinks="pf13990323129195" path="/admin/admin.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="admlogin.xhtml" x="180" y="96" id="pf13990318455330" referenceLink="//@navigationRule.2/@navigationCase.0/@toViewId|" outlinks="pf13990323129195 pf13990323129196" inlinks="pf13990323129196 pf13990323129197 pf13990415872288" path="/admlogin.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="admin/admin.xhtml" x="384" y="96" id="pf13990318455334" referenceLink="//@navigationRule.2/@fromViewId|" outlinks="pf13990323129197 pf13990415872289" inlinks="pf13990323129195" path="/admin/admin.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="admin/cardlist.xhtml" x="276" y="276" id="pf139904158722810" outlinks="pf13990415872288" inlinks="pf13990415872289" path="/admin/cardlist.xhtml"/>
   <links id="pf13990323129195" target="pf13990318455334" source="pf13990318455330" outcome="login" redirect="true"/>
   <links id="pf13990323129196" target="pf13990318455330" source="pf13990318455330" outcome="failed">
     <bendPoints d1Height="-36" d2Height="-36"/>
@@ -9,4 +10,6 @@
     <bendPoints d1Width="-64" d2Width="-64"/>
   </links>
   <links id="pf13990323129197" target="pf13990318455330" source="pf13990318455334" outcome="logout" redirect="true"/>
+  <links id="pf13990415872289" target="pf139904158722810" source="pf13990318455334" outcome="cards" redirect="true"/>
+  <links id="pf13990415872288" target="pf13990318455330" source="pf139904158722810" outcome="logout" redirect="true"/>
 </pageflow:Pageflow>
