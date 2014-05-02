@@ -13,7 +13,7 @@
 			<h:panelGrid columns="2">
 				<h:outputLabel rendered="true" value="Uživatel"></h:outputLabel>
 				<h:inputText value="#{adminAuthBean.login}" tabindex="0"></h:inputText>
-				<h:outputLabel rendered="true" value="#Heslo"></h:outputLabel>
+				<h:outputLabel rendered="true" value="Heslo"></h:outputLabel>
 				<h:inputSecret value="#{adminAuthBean.password}">
 				</h:inputSecret>
 				<h:commandButton action="#{adminAuthBean.actionLogin}" value="Přihlásit se"></h:commandButton>

@@ -25,7 +25,7 @@ public class AdminAuthFilter implements Filter {
 	         PrintWriter out = response.getWriter();
 	         out.println("<html><head><title>Bad login</title></head><body>");
 	         out.println("<h1>Access denied</h1>");
-	         out.println("Access denied. <a href=\"../login.xhtml\">Try again</a>.");
+	         out.println("Access denied. <a href=\"../admlogin.xhtml\">Try again</a>.");
 	         out.println("</body></html>");
 	     }
 	 }

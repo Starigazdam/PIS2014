@@ -62,9 +62,8 @@ public class AdminAuthBean {
     public String actionLogin()
     {
     	Employee temp;
-    	System.out.print(login);
     	temp = (Employee) mng.find(login);
-        /*if ((temp != null) && temp.getPassword().equals(password))
+        if ((temp != null) && temp.getPassword().equals(password))
         {
             authorized = true;
             return "login";
@@ -73,8 +72,7 @@ public class AdminAuthBean {
         {
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Invalid login"));
             return "failed";
-        }*/
-    	return "login";
+        }
     }
 
 
