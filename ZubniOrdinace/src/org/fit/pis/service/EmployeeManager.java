@@ -20,6 +20,7 @@ public class EmployeeManager
     	return em.find(Employee.class, id);
     }
     
+    // DEPRECATED: no use for this method so far...
     public List<Employee> findBegining(String id)
     {
         String pref = id + "%";
