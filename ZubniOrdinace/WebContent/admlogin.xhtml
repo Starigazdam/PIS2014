@@ -10,7 +10,7 @@
 	<ui:define name="content">
 		<h:form>
 			<h:messages layout="table"></h:messages>
-			<h:panelGrid columns="2">
+			<h:panelGrid columns="2" class="login">
 				<h:outputLabel rendered="true" value="Uživatel"></h:outputLabel>
 				<h:inputText value="#{adminAuthBean.login}" tabindex="0"></h:inputText>
 				<h:outputLabel rendered="true" value="Heslo"></h:outputLabel>

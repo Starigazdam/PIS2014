@@ -1,4 +1,5 @@
 @CHARSET "UTF-8";
+/* http://colorschemedesigner.com/#3v11T9hGrk.Ba */
 
 body {
 	margin: 0;
@@ -20,7 +21,7 @@ a {
 	margin-top: 0.5em;
 }
 #header {
-	background-color: #39AECF;
+	background-color: #8FAFC4;
 	height: 8em;
 	width: 100%;
 	margin-bottom: 3pt;
@@ -36,4 +37,33 @@ a {
 	width: 100%;
 	text-align: center;
 	font-size: 8pt;
+}
+
+table:not(.login) {
+	border-collapse: collapse;
+}
+
+table:not(.login) th {
+	border-top: 2pt solid #3E97D1;
+	border-bottom: 1px solid #FFF;
+	padding: 0.4em 1em 0.4em 1em;
+	background-color: #BBD6E7;
+	color: #1B1D31;
+	font-weight: normal;
+	border-left: none;
+	border-right: none;
+	margin: 0;
+}
+
+table:not(.login) tr:hover td {
+	background-color: #CADCE7;
+	color: #000;
+}
+
+table:not(.login) td {
+	padding: 0.2em 1em 0.2em 1em;
+	border-botom: 1px solid #FFF;
+	border-top: 1px solid rgba(0,0,0,0);
+	background-color: #E5F5FF;
+	color: #1B1E42;
 }
