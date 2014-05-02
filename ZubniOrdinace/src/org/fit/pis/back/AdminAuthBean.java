@@ -1,10 +1,10 @@
 package org.fit.pis.back;
 
+import javax.ejb.EJB;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
-import javax.ejb.EJB;
-import javax.enterprise.context.SessionScoped;
 
 import org.fit.pis.service.EmployeeManager;
 import org.fit.pis.data.Employee;
@@ -62,8 +62,9 @@ public class AdminAuthBean {
     public String actionLogin()
     {
     	Employee temp;
-    	temp = mng.find(login);
-        if ((temp != null) && temp.getPassword().equals(password))
+    	System.out.print(login);
+    	temp = (Employee) mng.find(login);
+        /*if ((temp != null) && temp.getPassword().equals(password))
         {
             authorized = true;
             return "login";
@@ -72,7 +73,8 @@ public class AdminAuthBean {
         {
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Invalid login"));
             return "failed";
-        }
+        }*/
+    	return "login";
     }
 
 
