@@ -19,30 +19,34 @@ import javax.persistence.OneToOne;
 @Entity
 @Table(name = "card")
 public class Card {
-	private String	name;
-	private String	surname;
-	@Temporal(TemporalType.DATE)
-	private Date	regDate;
-	private boolean	regState;
 	@Id
-	private int	birthNumber;
+	private int birthNumber;
+
+	@Temporal(TemporalType.DATE)
+	private Date regDate;
+	
+	private boolean	regState;
 	private int	healthInsuranceNumber;
 	private int	phoneNumber;
 	private String email;
+	private String name;
+	private String surname;
+	
 	@OneToOne(mappedBy = "patient")
-	private PatientAccount	account;
+	private PatientAccount account;
+	
 	@OneToMany(cascade = { ALL }, fetch = EAGER, mappedBy = "patient", orphanRemoval = true)
-	private Collection<Illness> 	illnesses;
+	private Collection<Illness> illnesses;
 	@OneToMany(cascade = { ALL }, fetch = EAGER, mappedBy = "patient", orphanRemoval = true)
 	private Collection<Appointment> appoints;
 	@OneToMany(cascade = { ALL }, fetch = EAGER, mappedBy = "patient", orphanRemoval = true)
-	private Collection<Tooth> 		toothChart;
+	private Collection<Tooth> toothChart;
 	@OneToMany(cascade = { ALL }, fetch = EAGER, mappedBy = "patient", orphanRemoval = true)
 	private Collection<Examination> extExams;
 	@OneToMany(cascade = { ALL }, fetch = EAGER, mappedBy = "patient", orphanRemoval = true)
-	private Collection<Hazard> 		hazards;
+	private Collection<Hazard> hazards;
 	@OneToMany(cascade = { ALL }, fetch = EAGER, mappedBy = "patient", orphanRemoval = true)
-	private Collection<Dosage> 		meds;
+	private Collection<Dosage> meds;
 	@OneToMany(cascade = { ALL }, fetch = EAGER, mappedBy = "patient", orphanRemoval = true)
-	private Collection<Treatment> 	treatmentHistory;
+	private Collection<Treatment> treatmentHistory;
 }

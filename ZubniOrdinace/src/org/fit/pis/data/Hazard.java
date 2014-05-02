@@ -12,11 +12,12 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "hazard")
 public class Hazard {
-	@Id
-	@GeneratedValue(strategy = IDENTITY)
+	@Id @GeneratedValue(strategy = IDENTITY)
 	private long id;
+	
 	private String name;
 	private String description;
+	
 	@ManyToOne(fetch=EAGER)
 	private Card patient;
 }

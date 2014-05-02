@@ -12,12 +12,13 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "_procedure")
 public class Procedure {
-	@Id
-	@GeneratedValue(strategy = IDENTITY)
+	@Id @GeneratedValue(strategy = IDENTITY)
 	private long id;
-	//private ProcedureCode code;
+	
+	private ProcedureCode code;
 	private String name; // TODO: nelze toto ziskat priamo z enumu cez nejaky konstruktor?
-	//private int cost;
+	private int cost;
+	
 	@ManyToOne(fetch=EAGER)
 	private Treatment treatment;
 }

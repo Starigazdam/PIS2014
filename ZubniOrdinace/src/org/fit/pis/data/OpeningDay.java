@@ -14,6 +14,7 @@ import javax.persistence.TemporalType;
 public class OpeningDay {
 	@Id @Temporal(TemporalType.DATE)
 	private Date date;
+	
 	@OneToOne(mappedBy = "day")
 	private PublicOpeningHours pubOpenHour;
 	// TODO: OneToMany ??? to appointments?

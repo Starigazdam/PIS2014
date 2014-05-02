@@ -19,15 +19,18 @@ import javax.persistence.TemporalType;
 @Entity
 @Table(name = "treatment")
 public class Treatment {
-	@Id
-	@GeneratedValue(strategy = IDENTITY)
+	@Id @GeneratedValue(strategy = IDENTITY)
 	private long id;
-	private String diagnosis;
-	private String type;
+	
 	@Temporal(TemporalType.DATE)
 	private Date date;
+	
+	private String diagnosis;
+	private String type;
+	
 	@ManyToOne(fetch=EAGER)
 	private Card patient;
+	
 	@OneToMany(cascade = { ALL }, fetch = EAGER, mappedBy = "treatment", orphanRemoval = true)
 	private Collection<Procedure> procedures;
 

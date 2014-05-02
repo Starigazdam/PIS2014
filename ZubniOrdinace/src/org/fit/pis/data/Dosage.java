@@ -16,16 +16,18 @@ import javax.persistence.TemporalType;
 @Entity
 @Table(name = "dosage")
 public class Dosage {
-	@Id
-	@GeneratedValue(strategy = IDENTITY)
+	@Id @GeneratedValue(strategy = IDENTITY)
 	private long id;
-	private int dosage;
-	@ManyToOne(fetch=EAGER)
-	private Medicine med;
+	
 	@Temporal(TemporalType.DATE)
 	private Date startDate;
 	@Temporal(TemporalType.DATE)
 	private Date endDate;
+	
+	private int dosage;
+	
+	@ManyToOne(fetch=EAGER)
+	private Medicine med;
 	@ManyToOne(fetch=EAGER)
 	private Card patient;
 }

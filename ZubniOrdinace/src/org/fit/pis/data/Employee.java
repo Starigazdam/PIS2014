@@ -10,5 +10,4 @@ public class Employee {
 	@Id
 	private String user;
 	private String password;
-
 }

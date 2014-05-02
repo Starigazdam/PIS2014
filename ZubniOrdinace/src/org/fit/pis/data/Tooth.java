@@ -17,15 +17,17 @@ import static javax.persistence.GenerationType.IDENTITY;
 @Entity
 @Table(name = "tooth")
 public class Tooth {
-	@Id
-	@GeneratedValue(strategy = IDENTITY)
+	@Id @GeneratedValue(strategy = IDENTITY)
 	private long id;
-	private int state;
-	private int position;
+	
 	@Temporal(TemporalType.DATE)
 	private Date startDate;
 	@Temporal(TemporalType.DATE)
 	private Date endDate;
+	
+	private int state;
+	private int position;
+	
 	@ManyToOne(fetch=EAGER)
 	private Card patient;
 

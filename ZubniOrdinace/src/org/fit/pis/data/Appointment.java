@@ -16,12 +16,14 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "appointment")
 public class Appointment {
-	@Id
-	@GeneratedValue(strategy = IDENTITY)
+	@Id @GeneratedValue(strategy = IDENTITY)
 	private long id;
-	private String note;
+	
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date date;
+	
+	private String note;
+	
 	@ManyToOne(fetch=EAGER)
 	private Card patient;
 	@ManyToOne(fetch=EAGER)

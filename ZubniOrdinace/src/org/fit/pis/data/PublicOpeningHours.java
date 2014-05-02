@@ -16,13 +16,14 @@ import javax.persistence.TemporalType;
 @Entity
 @Table(name = "public_opening_hours")
 public class PublicOpeningHours {
-	@Id
-	@GeneratedValue(strategy = IDENTITY)
+	@Id @GeneratedValue(strategy = IDENTITY)
 	private long id;
+	
 	@Temporal(TemporalType.TIME)
 	private Date startTime;
 	@Temporal(TemporalType.TIME)
 	private Date endTime;
+	
 	@OneToOne(fetch=EAGER)
 	private OpeningDay day;
 }
