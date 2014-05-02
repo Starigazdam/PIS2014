@@ -33,6 +33,11 @@ public class AppointmentManager
     public List<Appointment> findAll()
     {
     	return em.createQuery("SELECT ap FROM Appointment ap").getResultList();
-    }	
+    }
+
+    @SuppressWarnings("unchecked")
+    public List<Appointment> findAllByStatus(boolean status) {
+    	return em.createQuery("SELECT ap From Appointment ap WHERE ap.accepted = :val").setParameter("val", status).getResultList();
+    }
 
 }

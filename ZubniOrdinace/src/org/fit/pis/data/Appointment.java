@@ -23,9 +23,26 @@ public class Appointment {
 	private Date date;
 	
 	private String note;
+	private boolean accepted;
 	
 	@ManyToOne(fetch=EAGER)
 	private Card patient;
 	@ManyToOne(fetch=EAGER)
 	private OpeningDay openday;
+	
+	public boolean isAccepted() {
+		return accepted;
+	}
+	
+	public void setAccepted(boolean b) {
+		accepted = b;
+	}
+	
+	public Date getDate() {
+		return date;
+	}
+	
+	public void setDate(Date d) {
+		date = d;
+	}
 }

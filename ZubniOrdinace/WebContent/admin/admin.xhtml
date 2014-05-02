@@ -8,8 +8,25 @@
 
 <ui:composition template="../admin_template.xhtml">
 	<ui:define name="content">
-	    Welcome, dear admin!
 	    <h:link outcome='cards' value="Přejít na seznam karet" />
+	    Welcome, dear admin!
+	    <h:form>
+	    	<h:dataTable value="#{appointmentBean.rejectedAppointments}" var="appointment" binding="#{appointmentBean.listTable}">
+	    		<h:column>
+					<f:facet name="header">
+	                    <h:outputText value="Termín"/>
+	                </f:facet>
+					<h:outputText value="#{appointment.date}">
+						<f:convertDateTime pattern="dd.MM.yyyy"/>
+					</h:outputText>
+				</h:column>
+				<h:column>
+					<h:commandLink action="#{appointmentBean.actionAccept}">
+						<h:outputText value="Potvrdit"></h:outputText>
+					</h:commandLink>
+				</h:column>
+	    	</h:dataTable>
+	    </h:form>
 	</ui:define>
 </ui:composition>
 </html>
