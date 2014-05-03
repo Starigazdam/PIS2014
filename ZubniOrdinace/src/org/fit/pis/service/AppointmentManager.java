@@ -1,6 +1,7 @@
 package org.fit.pis.service;
 
 import java.util.List;
+import java.util.Date;
 
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
@@ -34,6 +35,12 @@ public class AppointmentManager
     {
     	return em.createQuery("SELECT ap FROM Appointment ap").getResultList();
     }
+    
+    public Object findByDate(Date date)
+    {
+    	return em.createQuery("SELECT ap FROM Appointment ap WHERE ap.date = :val").setParameter("val", date).getSingleResult();
+    }
+
 
     @SuppressWarnings("unchecked")
     public List<Appointment> findAllByStatus(boolean status) {

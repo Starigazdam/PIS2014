@@ -1,12 +1,18 @@
 package org.fit.pis.back;
 
 import java.util.List;
+import java.util.Date;
+import java.util.ArrayList;
 
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
-import org.richfaces.component.UIDataTable;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
+import org.richfaces.component.UIDataTable;
+import org.fit.pis.service.PublicOpeningHoursManager;
+import org.fit.pis.data.PublicOpeningHours;
 import org.fit.pis.service.AppointmentManager;
 import org.fit.pis.data.Appointment;
 
@@ -15,11 +21,32 @@ import org.fit.pis.data.Appointment;
 public class AppointmentBean {
 	@EJB
 	AppointmentManager appMgr;
+	@EJB
+	PublicOpeningHoursManager pohMgr;
 	Appointment appoint;
-    private UIDataTable listTable;
-    
-    public AppointmentBean() {
+	Date date;
+	private UIDataTable listTable;
+    private UIDataTable freeTable;
+	
+	public Date getDate() {
+		return date;
+	}
+
+	public void setDate(Date date) {
+		this.date = date;
+	}
+
+    public UIDataTable getFreeTable() {
+		return freeTable;
+	}
+
+	public void setFreeTable(UIDataTable freeTable) {
+		this.freeTable = freeTable;
+	}
+
+	public AppointmentBean() {
     	this.appoint = new Appointment();
+    	this.date = new Date();
     }
     
     public Appointment getAppoint() {
@@ -36,6 +63,17 @@ public class AppointmentBean {
     
     public List<Appointment> getRejectedAppointments() {
     	return appMgr.findAllByStatus(false);
+    }
+    public List<PublicOpeningHours> getFreeAppointments() {
+    	List<PublicOpeningHours> lol = new ArrayList<PublicOpeningHours>();
+    	PublicOpeningHours temp = (PublicOpeningHours) pohMgr.findByDate(date);
+    		for (int i=0, j=temp.getStartTime().getHours(); j<temp.getEndTime().getHours(); i++, j++) {
+    			PublicOpeningHours temp2 = new PublicOpeningHours();
+    			Date tdate = temp.getStartTime();
+    			temp2.setStartTime(tdate);
+    			lol.add(i, temp2);
+    		}
+    	return lol;
     }
     //=============================
 	public UIDataTable getListTable() 

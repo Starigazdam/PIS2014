@@ -23,7 +23,23 @@ public class PublicOpeningHours {
 	private Date startTime;
 	@Temporal(TemporalType.TIME)
 	private Date endTime;
-	
+
 	@OneToOne(fetch=EAGER)
 	private OpeningDay day;
+	
+	public Date getStartTime() {
+		return startTime;
+	}
+
+	public void setStartTime(Date startTime) {
+		this.startTime = startTime;
+	}
+	
+	public Date getEndTime() {
+		return endTime;
+	}
+
+	public void setEndTime(Date endTime) {
+		this.endTime = endTime;
+	}
 }
