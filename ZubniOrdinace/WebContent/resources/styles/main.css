@@ -26,6 +26,8 @@ a {
 	height: 8em;
 	width: 100%;
 	margin-bottom: 3pt;
+	position: relative;
+	margin-bottom: 25pt; /*same as menu height+5*/
 }
 
 #content {
@@ -38,6 +40,36 @@ a {
 	width: 100%;
 	text-align: center;
 	font-size: 8pt;
+}
+
+table {	
+	margin: 1em 1.7em;
+}
+
+#menu {
+	position: absolute;
+	top: 100%;
+	width: auto;
+	font-size: 1.3em;
+	height: 20pt;
+	background-color: #CADCE7;
+}
+
+#menu a {
+	font-weight: bold;
+	color: #4B7A98;
+	display: block;
+	padding: 0.3em 1em;
+}
+
+#menu a:hover {
+	background-color: #2C485A;
+	color:#CADCE7;
+}
+
+.right {
+	position: absolute;
+	right: 0%;
 }
 /*
 table:not(.login) {

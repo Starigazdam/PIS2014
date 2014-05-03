@@ -14,7 +14,12 @@
 <div id="main">
 <div id="header">
     <ui:insert name="header">
-    	<a href="#{facesContext.externalContext.requestContextPath}/faces/admin/admin.xhtml">Administrace - Home</a>
+    	<div id="menu" class="left">
+    		<h:outputLink value="#{facesContext.externalContext.requestContextPath}/faces/admin/admin.xhtml">Administrace - Home</h:outputLink>
+    	</div>
+    	<div id="menu" class="right">
+    		<h:form><h:commandLink action="#{adminAuthBean.actionLogout}" value="Odhlásit se" /></h:form>
+    	</div>
     </ui:insert>
 </div>
 
