@@ -17,6 +17,7 @@ public class AppointmentBean {
 	AppointmentManager appMgr;
 	Appointment appoint;
     private HtmlDataTable listTable;
+    private HtmlDataTable listTable2;
     
     public AppointmentBean() {
     	appoint = new Appointment();
@@ -48,6 +49,16 @@ public class AppointmentBean {
 		this.listTable = listTable;
 	}
 	
+	public HtmlDataTable getListTable2() 
+	{
+		return listTable2;
+	}
+	
+	public void setListTable2(HtmlDataTable listTable) 
+	{
+		this.listTable2 = listTable;
+	}
+	
 	public void actionAccept() {
 		appoint = ((Appointment) listTable.getRowData());
 		appoint.setAccepted(true);
@@ -58,4 +69,5 @@ public class AppointmentBean {
 		appoint = new Appointment();
 		return "newappoint";
 	}
+	
 }

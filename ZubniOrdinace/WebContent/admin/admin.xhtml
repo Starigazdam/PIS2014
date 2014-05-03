@@ -4,30 +4,52 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:h="http://java.sun.com/jsf/html"
-	xmlns:f="http://java.sun.com/jsf/core">
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:fn="http://java.sun.com/jsp/jstl/functions"
+	>
 
 <ui:composition template="../admin_template.xhtml">
 	<ui:define name="content">
 	    <h:link outcome='cards' value="Přejít na seznam karet" />
 	    Welcome, dear admin!
-	    <h:form>
-			<h:messages layout="table"></h:messages>
-	    	<h:dataTable value="#{appointmentBean.rejectedAppointments}" var="appointment" binding="#{appointmentBean.listTable}">
-	    		<h:column>
-					<f:facet name="header">
-	                    <h:outputText value="Termín"/>
-	                </f:facet>
-					<h:outputText value="#{appointment.date}">
-						<f:convertDateTime pattern="dd.MM.yyyy"/>
-					</h:outputText>
-				</h:column>
-				<h:column>
-					<h:commandLink action="#{appointmentBean.actionAccept}">
-						<h:outputText value="Potvrdit"></h:outputText>
-					</h:commandLink>
-				</h:column>
-	    	</h:dataTable>
-	    </h:form>
+	    <h:form id="form">
+        <rich:messages />
+        <rich:dataTable value="#{appointmentBean.appointments}" var="appointment" id="table">
+            <f:facet name="noData">
+                Nothing found
+            </f:facet>
+            <rich:column filterValue="#{appointmentsFiltergBean.acceptFilter}">
+                <f:facet name="header">
+                    <h:panelGroup>
+                        <h:outputText value="Potvrzeno " />
+ 						<h:inputText value="#{appointmentFilterBean.acceptFilter}">
+ 							<f:converter converterId="booleanConverter"></f:converter>
+                            <a4j:ajax render="table" execute="@this" event="blur" />
+                        </h:inputText>
+                    </h:panelGroup>
+                </f:facet>
+                <h:outputText value="#{appointment.accepted}">
+                	<f:converter converterId="booleanConverter"></f:converter>
+                </h:outputText>
+            </rich:column>
+            <rich:column> <!-- filter="#{appointmentFilterBean.dateFilter}"> -->
+                <f:facet name="header">
+                    <h:panelGroup>
+                        <h:outputText value="Datum " />
+                        <h:inputText value="#{appointmentFilterBean.dateFilter}">
+ 							<f:convertDateTime pattern="dd.MM.yyyy"></f:convertDateTime>
+                            <a4j:ajax event="blur" render="table" execute="@this" />
+                        </h:inputText>
+                    </h:panelGroup>
+                </f:facet>
+                <h:outputText value="#{appointment.date}">
+                	<f:convertDateTime pattern="dd.MM.yyyy"></f:convertDateTime>
+                </h:outputText>
+            </rich:column>
+        </rich:dataTable>
+    </h:form>
 	</ui:define>
 </ui:composition>
 </html>
