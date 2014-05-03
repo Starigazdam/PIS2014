@@ -64,14 +64,11 @@ public class AppointmentBean {
     public List<Appointment> getRejectedAppointments() {
     	return appMgr.findAllByStatus(false);
     }
-    public List<PublicOpeningHours> getFreeAppointments() {
-    	List<PublicOpeningHours> lol = new ArrayList<PublicOpeningHours>();
+    public List<Integer> getFreeAppointments() {
+    	List<Integer> lol = new ArrayList<Integer>();
     	PublicOpeningHours temp = (PublicOpeningHours) pohMgr.findByDate(date);
     		for (int i=0, j=temp.getStartTime().getHours(); j<temp.getEndTime().getHours(); i++, j++) {
-    			PublicOpeningHours temp2 = new PublicOpeningHours();
-    			Date tdate = temp.getStartTime();
-    			temp2.setStartTime(tdate);
-    			lol.add(i, temp2);
+    			lol.add(i, j);
     		}
     	return lol;
     }
