@@ -5,7 +5,7 @@ import java.util.List;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
-import javax.faces.component.html.HtmlDataTable;
+import org.richfaces.component.UIDataTable;
 
 import org.fit.pis.service.AppointmentManager;
 import org.fit.pis.data.Appointment;
@@ -16,10 +16,10 @@ public class AppointmentBean {
 	@EJB
 	AppointmentManager appMgr;
 	Appointment appoint;
-    private HtmlDataTable listTable;
+    private UIDataTable listTable;
     
     public AppointmentBean() {
-    	appoint = new Appointment();
+    	this.appoint = new Appointment();
     }
     
     public Appointment getAppoint() {
@@ -27,7 +27,7 @@ public class AppointmentBean {
     }
     
     public void setAppoint(Appointment a) {
-    	appoint = a;
+    	this.appoint = a;
     }
     
     public List<Appointment> getAppointments() {
@@ -38,20 +38,26 @@ public class AppointmentBean {
     	return appMgr.findAllByStatus(false);
     }
     //=============================
-	public HtmlDataTable getListTable() 
+	public UIDataTable getListTable() 
 	{
 		return listTable;
 	}
 	
-	public void setListTable(HtmlDataTable listTable) 
+	public void setListTable(UIDataTable lt) 
 	{
-		this.listTable = listTable;
+		this.listTable = lt;
 	}
 	
-	public void actionAccept() {
-		appoint = ((Appointment) listTable.getRowData());
-		appoint.setAccepted(true);
-		appMgr.save(appoint);
+	public void actionAccept() {		
+		this.appoint = ((Appointment) listTable.getRowData());
+		this.appoint.setAccepted(true);
+		appMgr.save(this.appoint);
+	}
+
+	public void actionReject() {
+		this.appoint = ((Appointment) listTable.getRowData());
+		this.appoint.setAccepted(false);
+		appMgr.save(this.appoint);
 	}
 	
 	public String actionNew() {

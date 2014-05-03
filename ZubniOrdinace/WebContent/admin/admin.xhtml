@@ -16,24 +16,10 @@
 	    Welcome, dear admin!
 	    <h:form id="form">
         <rich:messages />
-        <rich:dataTable value="#{appointmentBean.appointments}" var="appointment" id="table">
+        <rich:dataTable value="#{appointmentBean.appointments}" var="appointment" id="table" binding="#{appointmentBean.listTable}">
             <f:facet name="noData">
                 Nothing found
             </f:facet>
-            <rich:column filter="#{appointmentFilterBean.acceptFilterImpl}">
-                <f:facet name="header">
-                    <h:panelGroup>
-                        <h:outputText value="Potvrzeno " />
- 						<h:inputText value="#{appointmentFilterBean.acceptFilter}">
- 							<f:converter converterId="booleanConverter"></f:converter>
-                            <a4j:ajax render="table" execute="@this" event="blur" />
-                        </h:inputText>
-                    </h:panelGroup>
-                </f:facet>
-                <h:outputText value="#{appointment.accepted}">
-                	<f:converter converterId="booleanConverter"></f:converter>
-                </h:outputText>
-            </rich:column>
             <rich:column filter="#{appointmentFilterBean.filterDate}">
                 <f:facet name="header">
                     <h:panelGroup>
@@ -63,6 +49,23 @@
                     </h:panelGroup>
                 </f:facet>
                 <h:outputText value="#{appointment.patient.surname}"></h:outputText>
+            </rich:column>
+            <rich:column filter="#{appointmentFilterBean.acceptFilterImpl}">
+                <f:facet name="header">
+                    <h:panelGroup>
+                        <h:outputText value="Potvrzeno " />
+ 						<h:inputText value="#{appointmentFilterBean.acceptFilter}">
+ 							<f:converter converterId="booleanConverter"></f:converter>
+                            <a4j:ajax render="table" execute="@this" event="blur" />
+                        </h:inputText>
+                    </h:panelGroup>
+                </f:facet>
+                <h:outputText value="Potvrzeno" rendered="#{appointment.accepted}"></h:outputText>
+                <h:outputText value="Nepotvrzeno" rendered="#{appointment.accepted eq false}"></h:outputText>
+            </rich:column>
+            <rich:column>
+                <h:commandLink action="#{appointmentBean.actionAccept}" value="Přijmout" rendered="#{appointment.accepted eq false}"></h:commandLink>
+                <h:commandLink action="#{appointmentBean.actionReject}" value="Odmítnout" rendered="#{appointment.accepted}"></h:commandLink>
             </rich:column>
         </rich:dataTable>
     </h:form>
