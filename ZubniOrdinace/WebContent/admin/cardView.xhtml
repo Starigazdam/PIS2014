@@ -2,67 +2,102 @@
     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
 <html xmlns="http://www.w3.org/1999/xhtml"
-	xmlns:ui="http://java.sun.com/jsf/facelets"
-	xmlns:h="http://java.sun.com/jsf/html"
-	xmlns:f="http://java.sun.com/jsf/core">
+ xmlns:h="http://java.sun.com/jsf/html"
+ xmlns:f="http://java.sun.com/jsf/core"
+ xmlns:ui="http://java.sun.com/jsf/facelets"
+ xmlns:a4j="http://richfaces.org/a4j"
+ xmlns:rich="http://richfaces.org/rich">
 
 <ui:composition template="../admin_template.xhtml">
-	<ui:define name="content">			
-		<h:form>
-			<h:messages layout="table"></h:messages>
-			<h:panelGrid columns="2">
-				<h:outputLabel rendered="true" value="Jméno"></h:outputLabel>
-				<h:inputText value="#{cardBean.card.name}" required="true"
-					requiredMessage="Name is required"
-					validatorMessage="Invalid name">
-					<f:validateLength minimum="2" maximum="80" />
-				</h:inputText>
-				<h:outputLabel rendered="true" value="Příjmení"></h:outputLabel>
-				<h:inputText value="#{cardBean.card.surname}" required="true">
-					<f:validateLength minimum="2" maximum="80"/>
-				</h:inputText>
-				<h:outputLabel rendered="true" value="RČ"></h:outputLabel>
-				<h:inputText value="#{cardBean.card.id}" required="true">
-					<f:converter converterId="idConverter"/>
-				</h:inputText>
-				<h:outputLabel rendered="true" value="Datum narození(dd.mm.yyyy)"></h:outputLabel>
-				<h:inputText value="#{cardBean.card.birthDate}" required="true">
-					<f:validateLength minimum="8" />
-					<f:convertDateTime pattern="dd.MM.yyyy"/>
-				</h:inputText>
-				<h:outputLabel rendered="true" value="Telefon"></h:outputLabel>
-				<h:inputText value="#{cardBean.card.phoneNumber}" required="false">
-				</h:inputText>
-				<h:outputLabel rendered="true" value="Email"></h:outputLabel>
-				<h:inputText value="#{cardBean.card.email}" required="false">
-				</h:inputText>
-			</h:panelGrid>
-			
-			<h:commandButton action="#{cardBean.actionUpdate}" value="Update">
-			</h:commandButton>
-			<h:commandButton action="cancel" value="Cancel">
-			</h:commandButton>
-			
+<ui:define name="content">	
+	<f:view>
+	<h:body>	
+			<rich:panel>	
+			<h:form>
+				<h:messages layout="table"></h:messages>
+				<h:panelGrid columns="2">
+					<h:outputLabel rendered="true" value="RČ"></h:outputLabel>
+					<h:outputText value="#{cardBean.card.id}" required="true">
+					</h:outputText>
+					<h:outputLabel rendered="true" value="Jméno"></h:outputLabel>
+					<h:inputText value="#{cardBean.card.name}" required="true"
+						requiredMessage="Name is required"
+						validatorMessage="Invalid name">
+						<f:validateLength minimum="2" maximum="80" />
+					</h:inputText>
+					<h:outputLabel rendered="true" value="Příjmení"></h:outputLabel>
+					<h:inputText value="#{cardBean.card.surname}" required="true">
+						<f:validateLength minimum="2" maximum="80"/>
+					</h:inputText>
+					<h:outputLabel rendered="true" value="Datum narození(dd.mm.yyyy)"></h:outputLabel>
+					<h:inputText value="#{cardBean.card.birthDate}" required="true">
+						<f:validateLength minimum="8" />
+						<f:convertDateTime pattern="dd.MM.yyyy"/>
+					</h:inputText>
+					<h:outputLabel rendered="true" value="Telefon"></h:outputLabel>
+					<h:inputText value="#{cardBean.card.phoneNumber}" required="false">
+					</h:inputText>
+					<h:outputLabel rendered="true" value="Email"></h:outputLabel>
+					<h:inputText value="#{cardBean.card.email}" required="false">
+					</h:inputText>
+				</h:panelGrid>
+				
+				<h:commandButton action="#{cardBean.actionUpdate}" value="Update">
+				</h:commandButton>
+				<h:commandButton action="cancel" value="Cancel">
+				</h:commandButton>
+			</h:form>
+				
 			<hr></hr>
 			<!-- Zoznam chorob -->
 			<h2>Choroby</h2>
-			<h:dataTable value="#{cardBean.card.illnesses}" 
-			             binding="#{cardBean.illnesslistTable}"
-			             var="illness">
-				<h:column>
-					<h:outputText value="#{illness.foundDate}">
-						<f:convertDateTime pattern="dd.MM.yyyy"/> <!-- TODO: date not correct -->
-					</h:outputText>
-				</h:column>
-				<h:column>
-					<h:outputText value="#{illness.description}"></h:outputText>
-				</h:column>
-			</h:dataTable>
+		
+			<h:form>
+				<rich:dataTable value="#{cardBean.card.illnesses}" var="illness" id="illTable">
+					<rich:column>
+						<h:outputText value="#{illness.foundDate}">
+							<f:convertDateTime pattern="dd.MM.yyyy"/> <!-- TODO: date not correct -->
+						</h:outputText>
+					</rich:column>
+					<rich:column>
+						<h:outputText value="#{illness.description}"></h:outputText>
+					</rich:column>
+				</rich:dataTable>
 			
-			<h:commandButton action="#{cardBean.actionIllnessNew}" value="Přidat nemoc">
-			</h:commandButton>
 			
-		</h:form>
-	</ui:define>
+			<a4j:commandButton action="#{cardBean.actionIllnessNew}" value="Přidat nemoc"
+				render="newilldesc"
+				oncomplete="#{rich:component('popupill')}.show()">
+			</a4j:commandButton>
+			</h:form>
+		    <rich:popupPanel id="popupill" modal="true" resizeable="true">
+		        <f:facet name="header">
+		            <h:outputText value="Přidat nemoc" />
+		        </f:facet>
+		        <f:facet name="controls">
+		            <h:outputLink value="#" onclick="#{rich:component('popupill')}.hide(); return false;">
+		                X
+		            </h:outputLink>
+		        </f:facet>
+		        
+				<h:form id="newillform">
+					<h:inputTextarea id="newilldesc" value="#{cardBean.illness.description}" required="true">
+					</h:inputTextarea>
+					<a4j:commandButton 	value="Hotovo" execute="@form"  
+                    				   	render="illTable"  
+                    					action="#{cardBean.actionIllnessAdd}"
+                    					onclick="#{rich:component('popupill')}.hide(); return false;}">  
+                	</a4j:commandButton>
+                	<a4j:commandButton 	value="Cancel" 
+                						onclick="#{rich:component('popupill')}.hide(); return false;}">
+                    </a4j:commandButton>
+				</h:form>
+
+		    </rich:popupPanel>
+		    
+		</rich:panel>
+	</h:body>
+	</f:view>			
+</ui:define>
 </ui:composition>
 </html>

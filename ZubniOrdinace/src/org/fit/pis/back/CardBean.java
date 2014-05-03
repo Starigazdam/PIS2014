@@ -88,19 +88,22 @@ public class CardBean {
 	
 	public String actionUpdate()
     {
-	   cardMgr.save(card);
+		System.out.print("update");
+		cardMgr.save(card);
         return "update";
     }
 	
 	public String actionIllnessNew() {
+		System.out.print("new");
 		illness = new Illness();
-		return "newillness";
+		return "ok";
 	}
 	
 	public String actionIllnessAdd() {
+		System.out.print("add");
 		illness.setFoundDate(new Date());
 		illness.setPatient(card);
         card.getIllnesses().add(illness);
-        return "addillness";
+        return "ok";
 	}
 }
