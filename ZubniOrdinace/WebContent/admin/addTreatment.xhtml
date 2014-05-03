@@ -1,0 +1,85 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:rich="http://richfaces.org/rich">
+
+<ui:composition template="../admin_template.xhtml">
+	<ui:define name="content">
+		<h:form>
+			<h:messages layout="table"></h:messages>
+			<h:panelGrid columns="2">
+				<h:outputLabel rendered="true" value="Typ"></h:outputLabel>
+				<h:inputText value="#{cardBean.treat.type}" required="true"
+					requiredMessage="type is required"
+					validatorMessage="Invalid type">
+					<f:validateLength minimum="2" maximum="10"/>
+				</h:inputText>
+				<h:outputLabel rendered="true" value="Diagonoza"></h:outputLabel>
+				<h:inputTextarea value="#{cardBean.treat.diagnosis}" required="true">
+					<f:validateLength minimum="2" maximum="30"/>
+				</h:inputTextarea>
+				<h:outputLabel rendered="true" value="Zakroky"></h:outputLabel>
+				
+				<rich:dataTable value="#{cardBean.treat.procedures}" var="proc" id="procTable">
+					<rich:column>
+						<f:facet name="header">
+		                    <h:outputText value="Kod"/>
+		                </f:facet>
+						<h:outputText value="#{proc.code}">
+						</h:outputText>
+					</rich:column>
+					<rich:column>
+						<f:facet name="header">
+		                    <h:outputText value="Cena"/>
+		                </f:facet>
+						<h:outputText value="#{proc.cost}"></h:outputText>
+					</rich:column>
+				</rich:dataTable>
+					
+				<h:commandButton action="#{cardBean.actionTreatAdd}" value="Vložit">
+				</h:commandButton>
+				<h:commandButton action="cancel" value="Storno" immediate="true">
+				</h:commandButton>
+				
+				<a4j:commandButton action="#{cardBean.actionProcNew}" value="Přidat zakrok"
+					render="newproccode"
+					oncomplete="#{rich:component('popupnewproc')}.show()">
+				</a4j:commandButton>
+
+			</h:panelGrid>
+		</h:form>
+		
+		<rich:popupPanel id="popupnewproc" modal="true" resizeable="true">
+	        <f:facet name="header">
+	            <h:outputText value="Novy zakrok" />
+	        </f:facet>
+	        <f:facet name="controls">
+	            <h:outputLink value="#" onclick="#{rich:component('popupnewproc')}.hide(); return false;">
+	                X
+	            </h:outputLink>
+	        </f:facet>
+	        <h:form id="newprocform">
+				<h:inputText id="newproccode" value="#{cardBean.proc.code}" required="true">
+				</h:inputText>
+				<h:inputText value="#{cardBean.proc.cost}" required="true">
+				</h:inputText>
+				<a4j:commandButton 	value="Hotovo" execute="@form"  
+                   				   	render="procTable"  
+                   					action="#{cardBean.actionProcAdd}"
+                   					onclick="#{rich:component('popupnewproc')}.hide(); return false;}">  
+               	</a4j:commandButton>
+               	<a4j:commandButton 	value="Cancel" 
+               						immediate="true"
+               						onclick="#{rich:component('popupnewproc')}.hide(); return false;}">
+                </a4j:commandButton>
+			</h:form>
+	    </rich:popupPanel>	
+	    
+	</ui:define>
+</ui:composition>
+</html>

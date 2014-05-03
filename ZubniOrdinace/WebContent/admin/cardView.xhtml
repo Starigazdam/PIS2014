@@ -87,12 +87,18 @@
 		                </f:facet>
 						<h:outputText value="#{treat.diagnosis}"></h:outputText>
 					</rich:column>
+					<rich:column>
+						<f:facet name="header">
+		                    <h:outputText value="Zákroky"/>
+		                </f:facet>
+						<h:commandLink value="Zobrazit">
+							<rich:componentControl target="popupproc" operation="show" />
+						</h:commandLink>
+					</rich:column>
 				</rich:dataTable>
 				
-				<a4j:commandButton action="#{cardBean.actionIllnessNew}" value="Přidat"
-					render="newtreat"
-					oncomplete="#{rich:component('popuptreat')}.show()">
-				</a4j:commandButton>
+				<h:commandButton action="#{cardBean.actionTreatNew}" value="Přidat">
+				</h:commandButton>
 				
 				</rich:collapsiblePanel>
 			
@@ -100,7 +106,7 @@
 			
 			<h:commandButton action="#{cardBean.actionUpdate}" value="Update">
 			</h:commandButton>
-			<h:commandButton action="cancel" value="Cancel">
+			<h:commandButton action="cancel" value="Cancel" immediate="true">
 			</h:commandButton>
 				
 		</h:form>
@@ -126,33 +132,24 @@
                     					onclick="#{rich:component('popupill')}.hide(); return false;}">  
                 	</a4j:commandButton>
                 	<a4j:commandButton 	value="Cancel" 
+                						immediate="true"
                 						onclick="#{rich:component('popupill')}.hide(); return false;}">
                     </a4j:commandButton>
 				</h:form>
 		    </rich:popupPanel>
-7
-			<rich:popupPanel id="popuptreat" modal="true" resizeable="true">
+
+			<rich:popupPanel id="popupproc" modal="true" resizeable="true">
 		        <f:facet name="header">
-		            <h:outputText value="Přidat vyšet%rení" />
+		            <h:outputText value="Zákroky" />
 		        </f:facet>
 		        <f:facet name="controls">
-		            <h:outputLink value="#" onclick="#{rich:component('popupill')}.hide(); return false;">
+		            <h:outputLink value="#" onclick="#{rich:component('popupproc')}.hide(); return false;">
 		                X
 		            </h:outputLink>
 		        </f:facet>
 		        
-				<h:form id="newtreatform">
-					<h:inputTextarea id="newilldesc" value="#{cardBean.illness.description}" required="true">
-					</h:inputTextarea>
-					<a4j:commandButton 	value="Hotovo" execute="@form"  
-                    				   	render="illTable"  
-                    					action="#{cardBean.actionIllnessAdd}"
-                    					onclick="#{rich:component('popupill')}.hide(); return false;}">  
-                	</a4j:commandButton>
-                	<a4j:commandButton 	value="Cancel" 
-                						onclick="#{rich:component('popupill')}.hide(); return false;}">
-                    </a4j:commandButton>
-				</h:form>
+				Zoznam procedur
+				
 		    </rich:popupPanel>		
 	</h:body>
 	</f:view>			

@@ -116,33 +116,6 @@
 		</navigation-case>
 	</navigation-rule>
 	<navigation-rule>
-		<display-name>admin/addIllness.xhtml</display-name>
-		<from-view-id>/admin/addIllness.xhtml</from-view-id>
-		<navigation-case>
-			<from-outcome>cancel</from-outcome>
-			<to-view-id>/admin/cardView.xhtml</to-view-id>
-			<redirect />
-		</navigation-case>
-	</navigation-rule>
-	<navigation-rule>
-		<display-name>admin/addIllness.xhtml</display-name>
-		<from-view-id>/admin/addIllness.xhtml</from-view-id>
-		<navigation-case>
-			<from-outcome>addillness</from-outcome>
-			<to-view-id>/admin/cardView.xhtml</to-view-id>
-			<redirect />
-		</navigation-case>
-	</navigation-rule>
-	<navigation-rule>
-		<display-name>admin/cardView.xhtml</display-name>
-		<from-view-id>/admin/cardView.xhtml</from-view-id>
-		<navigation-case>
-			<from-outcome>newillness</from-outcome>
-			<to-view-id>/admin/addIllness.xhtml</to-view-id>
-			<redirect />
-		</navigation-case>
-	</navigation-rule>
-	<navigation-rule>
 		<display-name>userlogin.xhtml</display-name>
 		<from-view-id>/userlogin.xhtml</from-view-id>
 		<navigation-case>
@@ -157,6 +130,33 @@
 		<navigation-case>
 			<from-outcome>failed</from-outcome>
 			<to-view-id>/userlogin.xhtml</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+	<navigation-rule>
+		<display-name>admin/cardView.xhtml</display-name>
+		<from-view-id>/admin/cardView.xhtml</from-view-id>
+		<navigation-case>
+			<from-outcome>newtreat</from-outcome>
+			<to-view-id>/admin/addTreatment.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+	</navigation-rule>
+	<navigation-rule>
+		<display-name>admin/addTreatment.xhtml</display-name>
+		<from-view-id>/admin/addTreatment.xhtml</from-view-id>
+		<navigation-case>
+			<from-outcome>treatadd</from-outcome>
+			<to-view-id>/admin/cardView.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+	</navigation-rule>
+	<navigation-rule>
+		<display-name>admin/addTreatment.xhtml</display-name>
+		<from-view-id>/admin/addTreatment.xhtml</from-view-id>
+		<navigation-case>
+			<from-outcome>cancel</from-outcome>
+			<to-view-id>/admin/cardView.xhtml</to-view-id>
+			<redirect />
 		</navigation-case>
 	</navigation-rule>
 </faces-config>
