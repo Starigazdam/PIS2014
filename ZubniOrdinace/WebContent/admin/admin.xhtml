@@ -20,7 +20,7 @@
             <f:facet name="noData">
                 Nothing found
             </f:facet>
-            <rich:column filterValue="#{appointmentsFiltergBean.acceptFilter}">
+            <rich:column filter="#{appointmentFilterBean.acceptFilterImpl}">
                 <f:facet name="header">
                     <h:panelGroup>
                         <h:outputText value="Potvrzeno " />
@@ -34,7 +34,7 @@
                 	<f:converter converterId="booleanConverter"></f:converter>
                 </h:outputText>
             </rich:column>
-            <rich:column> <!-- filter="#{appointmentFilterBean.dateFilter}"> -->
+            <rich:column filter="#{appointmentFilterBean.filterDate}">
                 <f:facet name="header">
                     <h:panelGroup>
                         <h:outputText value="Datum " />
@@ -47,6 +47,22 @@
                 <h:outputText value="#{appointment.date}">
                 	<f:convertDateTime pattern="dd.MM.yyyy"></f:convertDateTime>
                 </h:outputText>
+            </rich:column>
+            <rich:column>
+                <f:facet name="header">
+                    <h:panelGroup>
+                        <h:outputText value="Jméno pacienta" />
+                    </h:panelGroup>
+                </f:facet>
+                <h:outputText value="#{appointment.patient.name}"></h:outputText>
+            </rich:column>
+            <rich:column>
+                <f:facet name="header">
+                    <h:panelGroup>
+                        <h:outputText value="Příjmení" />
+                    </h:panelGroup>
+                </f:facet>
+                <h:outputText value="#{appointment.patient.surname}"></h:outputText>
             </rich:column>
         </rich:dataTable>
     </h:form>

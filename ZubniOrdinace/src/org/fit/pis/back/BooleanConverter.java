@@ -12,6 +12,7 @@ public class BooleanConverter implements Converter {
 	@Override
 	public Object getAsObject(FacesContext arg0, UIComponent component, String value)
 	{
+		if (value.length() == 0) return null;
 		if (value.length() == 4 && value.equalsIgnoreCase("true"))
 		{
 			return true;
@@ -27,6 +28,7 @@ public class BooleanConverter implements Converter {
 	public String getAsString(FacesContext arg0, UIComponent component, Object value)
 	{
 		try {
+			if(value == null) return null;
 			if(value.equals(true)) return "true";
 			else return "false";
 		} catch (ClassCastException e) {
