@@ -4,49 +4,50 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:h="http://java.sun.com/jsf/html"
-	xmlns:f="http://java.sun.com/jsf/core">
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:rich="http://richfaces.org/rich">
 
 <ui:composition template="../admin_template.xhtml">
 	<ui:define name="content">
 		<h2>Karty pacientů</h2>
-		
-		<h:form>
-			<h:dataTable value="#{cardBean.cards}" var="card" binding="#{cardBean.listTable}">
-				<h:column>
+	<h:form>
+			<rich:dataTable value="#{cardBean.cards}" var="card" binding="#{cardBean.listTable}">
+				<rich:column>
 					<f:facet name="header">
 	                    <h:outputText value="RČ"/>
 	                </f:facet>
 					<h:outputText value="#{card.id}"></h:outputText>
-				</h:column>
-				<h:column>
+				</rich:column>
+				<rich:column>
 					<f:facet name="header">
 	                    <h:outputText value="Jméno"/>
 	                </f:facet>
 					<h:outputText value="#{card.name}"></h:outputText>
-				</h:column>
-				<h:column>
+				</rich:column>
+				<rich:column>
 					<f:facet name="header">
 	                    <h:outputText value="Příjmení"/>
 	                </f:facet>
 					<h:outputText value="#{card.surname}"></h:outputText>
-				</h:column>
-				<h:column>
+				</rich:column>
+				<rich:column>
 					<f:facet name="header">
 	                    <h:outputText value="Datum narození"/>
 	                </f:facet>
 					<h:outputText value="#{card.birthDate}">
 						<f:convertDateTime pattern="dd.MM.yyyy"/> <!-- TODO: date not correct -->
 					</h:outputText>
-				</h:column>
-				<h:column>
+				</rich:column>
+				<rich:column>
 					<f:facet name="header">
 	                    <h:outputText value="Registrován"/>
 	                </f:facet>
 					<h:outputText value="#{card.regDate}">
 						<f:convertDateTime pattern="dd.MM.yyyy"/>
 					</h:outputText>
-				</h:column>
-				<h:column>
+				</rich:column>
+				<rich:column>
 					<h:commandLink action="#{cardBean.actionView}">
 						<h:outputText value="Zobrazit"></h:outputText>
 					</h:commandLink>
@@ -54,8 +55,8 @@
 					<h:commandLink action="#{personBean.actionDelete}">
 						<h:outputText value="Delete"></h:outputText>
 					</h:commandLink> -->
-				</h:column>
-			</h:dataTable>
+				</rich:column>
+			</rich:dataTable>
 			<h:commandLink action="#{cardBean.actionNew}" value="Vložit novou kartu"></h:commandLink>
 		</h:form>
 	</ui:define>

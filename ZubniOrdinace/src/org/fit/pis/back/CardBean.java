@@ -6,11 +6,11 @@ import java.util.List;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
-import javax.faces.component.html.HtmlDataTable;
 
 import org.fit.pis.data.Card;
 import org.fit.pis.data.Illness;
 import org.fit.pis.service.CardManager;
+import org.richfaces.component.UIDataTable;
 
 @ManagedBean
 @SessionScoped
@@ -19,8 +19,7 @@ public class CardBean {
 	private CardManager cardMgr;
 	private Card card;
 	private Illness illness; 
-    private HtmlDataTable listTable;
-    private HtmlDataTable illnesslistTable;
+    private UIDataTable listTable;
 	
 	public CardBean() {
 		card = new Card();
@@ -47,26 +46,16 @@ public class CardBean {
 		return cardMgr.findAll();
 	}
 	
-	public HtmlDataTable getListTable() 
-	{
+	public UIDataTable getListTable() {
 		return listTable;
 	}
-	
-	public void setListTable(HtmlDataTable listTable) 
-	{
-		this.listTable = listTable;
-	}
-	
-	public HtmlDataTable getIllnesslistTable() {
-		return illnesslistTable;
-	}
 
-	public void setIllnesslistTable(HtmlDataTable illnesslistTable) {
-		this.illnesslistTable = illnesslistTable;
+	public void setListTable(UIDataTable listTable) {
+		this.listTable = listTable;
 	}
 
 	// ====================================
-	
+
 	public String actionView()
     {
     	setCard((Card) listTable.getRowData());

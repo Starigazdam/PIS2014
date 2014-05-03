@@ -1,19 +1,17 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-
-<html xmlns="http://www.w3.org/1999/xhtml"
- xmlns:h="http://java.sun.com/jsf/html"
- xmlns:f="http://java.sun.com/jsf/core"
- xmlns:ui="http://java.sun.com/jsf/facelets"
- xmlns:a4j="http://richfaces.org/a4j"
- xmlns:rich="http://richfaces.org/rich">
-
-<ui:composition template="../admin_template.xhtml">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+			 xmlns:h="http://java.sun.com/jsf/html"
+			 xmlns:f="http://java.sun.com/jsf/core"
+			 xmlns:ui="http://java.sun.com/jsf/facelets"
+			 xmlns:a4j="http://richfaces.org/a4j"
+			 xmlns:rich="http://richfaces.org/rich"
+			 template="../admin_template.xhtml">
 <ui:define name="content">	
 	<f:view>
 	<h:body>	
-			<rich:panel>	
-			<h:form>
+		<h:form>
+			<rich:panel>
 				<h:messages layout="table"></h:messages>
 				<h:panelGrid columns="2">
 					<h:outputLabel rendered="true" value="RČ"></h:outputLabel>
@@ -42,17 +40,11 @@
 					</h:inputText>
 				</h:panelGrid>
 				
-				<h:commandButton action="#{cardBean.actionUpdate}" value="Update">
-				</h:commandButton>
-				<h:commandButton action="cancel" value="Cancel">
-				</h:commandButton>
-			</h:form>
-				
-			<hr></hr>
-			<!-- Zoznam chorob -->
-			<h2>Choroby</h2>
-		
-			<h:form>
+				<!-- ++++++++++++++ Collapsible panels ++++++++++++++ -->
+					
+				<rich:collapsiblePanel header="Choroby" switchType="client">
+	            <h:graphicImage value="/images/icons/common/rf.png" style="float:right" alt="rf" />
+	            
 				<rich:dataTable value="#{cardBean.card.illnesses}" var="illness" id="illTable">
 					<rich:column>
 						<h:outputText value="#{illness.foundDate}">
@@ -63,13 +55,58 @@
 						<h:outputText value="#{illness.description}"></h:outputText>
 					</rich:column>
 				</rich:dataTable>
+				
+				<a4j:commandButton action="#{cardBean.actionIllnessNew}" value="Přidat nemoc"
+					render="newilldesc"
+					oncomplete="#{rich:component('popupill')}.show()">
+				</a4j:commandButton>
+				
+				</rich:collapsiblePanel>
+				
+				<rich:collapsiblePanel header="Výkony" switchType="client">
+	            <h:graphicImage value="/images/icons/common/rf.png" style="float:right" alt="rf" />
+	            
+				<rich:dataTable value="#{cardBean.card.treatmentHistory}" var="treat" id="treatTable">
+					<rich:column>
+						<f:facet name="header">
+		                    <h:outputText value="Datum"/>
+		                </f:facet>
+						<h:outputText value="#{treat.date}">
+							<f:convertDateTime pattern="dd.MM.yyyy"/> <!-- TODO: date not correct -->
+						</h:outputText>
+					</rich:column>
+					<rich:column>
+						<f:facet name="header">
+		                    <h:outputText value="Typ"/>
+		                </f:facet>
+						<h:outputText value="#{treat.type}"></h:outputText>
+					</rich:column>
+					<rich:column>
+						<f:facet name="header">
+		                    <h:outputText value="Diagnóza"/>
+		                </f:facet>
+						<h:outputText value="#{treat.diagnosis}"></h:outputText>
+					</rich:column>
+				</rich:dataTable>
+				
+				<a4j:commandButton action="#{cardBean.actionIllnessNew}" value="Přidat"
+					render="newtreat"
+					oncomplete="#{rich:component('popuptreat')}.show()">
+				</a4j:commandButton>
+				
+				</rich:collapsiblePanel>
 			
+			</rich:panel>
 			
-			<a4j:commandButton action="#{cardBean.actionIllnessNew}" value="Přidat nemoc"
-				render="newilldesc"
-				oncomplete="#{rich:component('popupill')}.show()">
-			</a4j:commandButton>
-			</h:form>
+			<h:commandButton action="#{cardBean.actionUpdate}" value="Update">
+			</h:commandButton>
+			<h:commandButton action="cancel" value="Cancel">
+			</h:commandButton>
+				
+		</h:form>
+			
+			<!--+++++++++++++++++++++++++ POPUPS ++++++++++++++++++++++++++++ -->
+			
 		    <rich:popupPanel id="popupill" modal="true" resizeable="true">
 		        <f:facet name="header">
 		            <h:outputText value="Přidat nemoc" />
@@ -92,12 +129,32 @@
                 						onclick="#{rich:component('popupill')}.hide(); return false;}">
                     </a4j:commandButton>
 				</h:form>
-
 		    </rich:popupPanel>
-		    
-		</rich:panel>
+7
+			<rich:popupPanel id="popuptreat" modal="true" resizeable="true">
+		        <f:facet name="header">
+		            <h:outputText value="Přidat vyšet%rení" />
+		        </f:facet>
+		        <f:facet name="controls">
+		            <h:outputLink value="#" onclick="#{rich:component('popupill')}.hide(); return false;">
+		                X
+		            </h:outputLink>
+		        </f:facet>
+		        
+				<h:form id="newtreatform">
+					<h:inputTextarea id="newilldesc" value="#{cardBean.illness.description}" required="true">
+					</h:inputTextarea>
+					<a4j:commandButton 	value="Hotovo" execute="@form"  
+                    				   	render="illTable"  
+                    					action="#{cardBean.actionIllnessAdd}"
+                    					onclick="#{rich:component('popupill')}.hide(); return false;}">  
+                	</a4j:commandButton>
+                	<a4j:commandButton 	value="Cancel" 
+                						onclick="#{rich:component('popupill')}.hide(); return false;}">
+                    </a4j:commandButton>
+				</h:form>
+		    </rich:popupPanel>		
 	</h:body>
 	</f:view>			
 </ui:define>
 </ui:composition>
-</html>

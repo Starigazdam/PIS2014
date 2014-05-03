@@ -34,4 +34,53 @@ public class Treatment {
 	@OneToMany(cascade = { ALL }, fetch = EAGER, mappedBy = "treatment", orphanRemoval = true)
 	private Collection<Procedure> procedures;
 
+	public long getId() {
+		return id;
+	}
+
+	public void setId(long id) {
+		this.id = id;
+	}
+
+	public Date getDate() {
+		return date;
+	}
+
+	public void setDate(Date date) {
+		this.date = date;
+	}
+
+	public String getDiagnosis() {
+		return diagnosis;
+	}
+
+	public void setDiagnosis(String diagnosis) {
+		this.diagnosis = diagnosis;
+	}
+
+	public String getType() {
+		return type;
+	}
+
+	public void setType(String type) {
+		this.type = type;
+	}
+
+	public Card getPatient() {
+		return patient;
+	}
+
+	public void setPatient(Card patient) {
+		this.patient = patient;
+	}
+
+	public Collection<Procedure> getProcedures() {
+		return procedures;
+	}
+
+	public void setProcedures(Collection<Procedure> procedures) {
+		this.procedures = procedures;
+	}
+
+	
 }
