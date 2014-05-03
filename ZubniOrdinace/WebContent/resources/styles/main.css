@@ -41,6 +41,7 @@ a {
 
 table:not(.login) {
 	border-collapse: collapse;
+	margin: 1em 1.7em;
 }
 
 table:not(.login) th {

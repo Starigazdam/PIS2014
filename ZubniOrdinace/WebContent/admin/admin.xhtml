@@ -11,6 +11,7 @@
 	    <h:link outcome='cards' value="Přejít na seznam karet" />
 	    Welcome, dear admin!
 	    <h:form>
+			<h:messages layout="table"></h:messages>
 	    	<h:dataTable value="#{appointmentBean.rejectedAppointments}" var="appointment" binding="#{appointmentBean.listTable}">
 	    		<h:column>
 					<f:facet name="header">
