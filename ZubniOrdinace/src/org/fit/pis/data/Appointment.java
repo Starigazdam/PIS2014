@@ -45,4 +45,12 @@ public class Appointment {
 	public void setDate(Date d) {
 		date = d;
 	}
+	
+	public Card getPatient() {
+		return patient;
+	}
+	
+	public void setPatient(Card c) {
+		this.patient = c;
+	}
 }

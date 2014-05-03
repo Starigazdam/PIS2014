@@ -1,0 +1,62 @@
+package org.fit.pis.back;
+
+import java.io.Serializable;
+import java.util.Date;
+
+import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ViewScoped;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+
+import org.richfaces.model.Filter;
+
+import org.fit.pis.data.Appointment;
+
+@ManagedBean
+@ViewScoped
+public class AppointmentFilterBean implements Serializable {
+	private static final long serialVersionUID = -5680001353441022183L;
+    private Boolean acceptFilter;
+	@Temporal(TemporalType.TIMESTAMP)
+	private Date dateFilter;
+ 
+    public Filter<?> getAcceptFilterImpl() {
+        return new Filter<Appointment>() {
+            public boolean accept(Appointment item) {
+                Boolean mAcc = getAcceptFilter();
+                if (mAcc == null || mAcc.equals(item.isAccepted())) {
+                    return true;
+                }
+                return false;
+            }
+        };
+    }
+ 
+    public Filter<?> getFilterDate() {
+        return new Filter<Appointment>() {
+            public boolean accept(Appointment t) {
+                Date date = getDateFilter();
+                if (date == null  || date.equals(t.getDate())) {
+                    return true;
+                }
+                return false;
+            }
+        };
+    }
+ 
+    public Boolean getAcceptFilter() {
+    	return acceptFilter;
+    }
+    
+    public void setAcceptFilter(Boolean b) {
+    	this.acceptFilter = b;
+    }
+    
+    public Date getDateFilter() {
+    	return dateFilter;
+    }
+    
+    public void setDateFilter(Date d) {
+    	this.dateFilter = d;
+    }
+}
