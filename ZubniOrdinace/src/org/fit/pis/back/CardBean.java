@@ -106,6 +106,12 @@ public class CardBean {
         return "update";
     }
 	
+	public String actionDelete() {
+		Card selected = ((Card) listTable.getRowData());
+		cardMgr.remove(selected);
+		return "delete";
+	}
+	
 	public String actionIllnessNew() {
 		System.out.print("new");
 		illness = new Illness();

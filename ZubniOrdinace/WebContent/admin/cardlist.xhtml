@@ -51,10 +51,11 @@
 					<h:commandLink action="#{cardBean.actionView}">
 						<h:outputText value="Zobrazit"></h:outputText>
 					</h:commandLink>
-					<!-- &nbsp;
-					<h:commandLink action="#{personBean.actionDelete}">
-						<h:outputText value="Delete"></h:outputText>
-					</h:commandLink> -->
+				</rich:column>
+				<rich:column>
+					<h:commandLink action="#{cardBean.actionDelete}">
+						<h:outputText value="Odstranit"></h:outputText>
+					</h:commandLink>
 				</rich:column>
 			</rich:dataTable>
 			<h:commandLink action="#{cardBean.actionNew}" value="Vložit novou kartu"></h:commandLink>

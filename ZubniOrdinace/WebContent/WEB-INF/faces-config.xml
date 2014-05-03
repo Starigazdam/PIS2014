@@ -177,4 +177,13 @@
 			<redirect />
 		</navigation-case>
 	</navigation-rule>
+	<navigation-rule>
+		<display-name>admin/cardlist.xhtml</display-name>
+		<from-view-id>/admin/cardlist.xhtml</from-view-id>
+		<navigation-case>
+			<from-outcome>delete</from-outcome>
+			<to-view-id>/admin/cardlist.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+	</navigation-rule>
 </faces-config>
