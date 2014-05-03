@@ -1,0 +1,24 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core">
+
+<ui:composition template="template.xhtml">
+	<ui:define name="content">
+		<h:form>
+			<h:messages layout="table"></h:messages>
+			<h:panelGrid columns="2" class="login">
+				<h:outputLabel rendered="true" value="Uživatel"></h:outputLabel>
+				<h:inputText value="#{userAuthBean.login}" tabindex="0"></h:inputText>
+				<h:outputLabel rendered="true" value="Heslo"></h:outputLabel>
+				<h:inputSecret value="#{userAuthBean.password}">
+				</h:inputSecret>
+				<h:commandButton action="#{userAuthBean.actionLogin}" value="Přihlásit se"></h:commandButton>
+			</h:panelGrid>
+		</h:form>
+	</ui:define>
+</ui:composition>
+</html>

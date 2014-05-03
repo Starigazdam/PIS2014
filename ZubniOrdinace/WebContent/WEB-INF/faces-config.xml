@@ -142,5 +142,21 @@
 			<redirect />
 		</navigation-case>
 	</navigation-rule>
-
+	<navigation-rule>
+		<display-name>userlogin.xhtml</display-name>
+		<from-view-id>/userlogin.xhtml</from-view-id>
+		<navigation-case>
+			<from-outcome>login</from-outcome>
+			<to-view-id>/user/user.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+	</navigation-rule>
+	<navigation-rule>
+		<display-name>userlogin.xhtml</display-name>
+		<from-view-id>/userlogin.xhtml</from-view-id>
+		<navigation-case>
+			<from-outcome>failed</from-outcome>
+			<to-view-id>/userlogin.xhtml</to-view-id>
+		</navigation-case>
+	</navigation-rule>
 </faces-config>

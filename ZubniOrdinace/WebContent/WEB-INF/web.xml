@@ -21,6 +21,18 @@
     <dispatcher>FORWARD</dispatcher>
     <dispatcher>INCLUDE</dispatcher>
   </filter-mapping>
+  <filter>
+    <filter-name>UserAuthFilter</filter-name>
+    <filter-class>org.fit.pis.back.UserAuthFilter</filter-class>
+  </filter>
+  <filter-mapping>
+    <filter-name>UserAuthFilter</filter-name>
+    <url-pattern>/faces/user/*</url-pattern>
+    <url-pattern>/user/*</url-pattern>
+    <dispatcher>REQUEST</dispatcher>
+    <dispatcher>FORWARD</dispatcher>
+    <dispatcher>INCLUDE</dispatcher>
+  </filter-mapping>
   <servlet>
     <servlet-name>Faces Servlet</servlet-name>
     <servlet-class>javax.faces.webapp.FacesServlet</servlet-class>
