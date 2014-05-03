@@ -21,10 +21,41 @@ public class Illness {
 	
 	@Temporal(TemporalType.DATE)
 	private Date foundDate;
-	
+
 	private String description;
 	
 	@ManyToOne(fetch=EAGER)
 	private Card patient;
 
+	public long getId() {
+		return id;
+	}
+
+	public void setId(long id) {
+		this.id = id;
+	}
+
+	public Date getFoundDate() {
+		return foundDate;
+	}
+
+	public void setFoundDate(Date foundDate) {
+		this.foundDate = foundDate;
+	}
+
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
+
+	public Card getPatient() {
+		return patient;
+	}
+
+	public void setPatient(Card patient) {
+		this.patient = patient;
+	}
 }

@@ -7,8 +7,62 @@
 	xmlns:f="http://java.sun.com/jsf/core">
 
 <ui:composition template="../admin_template.xhtml">
-	<ui:define name="content">
-	    Add your content here or delete to use the default
+	<ui:define name="content">			
+		<h:form>
+			<h:messages layout="table"></h:messages>
+			<h:panelGrid columns="2">
+				<h:outputLabel rendered="true" value="Jméno"></h:outputLabel>
+				<h:inputText value="#{cardBean.card.name}" required="true"
+					requiredMessage="Name is required"
+					validatorMessage="Invalid name">
+					<f:validateLength minimum="2" maximum="80" />
+				</h:inputText>
+				<h:outputLabel rendered="true" value="Příjmení"></h:outputLabel>
+				<h:inputText value="#{cardBean.card.surname}" required="true">
+					<f:validateLength minimum="2" maximum="80"/>
+				</h:inputText>
+				<h:outputLabel rendered="true" value="RČ"></h:outputLabel>
+				<h:inputText value="#{cardBean.card.id}" required="true">
+					<f:converter converterId="idConverter"/>
+				</h:inputText>
+				<h:outputLabel rendered="true" value="Datum narození(dd.mm.yyyy)"></h:outputLabel>
+				<h:inputText value="#{cardBean.card.birthDate}" required="true">
+					<f:validateLength minimum="8" />
+					<f:convertDateTime pattern="dd.MM.yyyy"/>
+				</h:inputText>
+				<h:outputLabel rendered="true" value="Telefon"></h:outputLabel>
+				<h:inputText value="#{cardBean.card.phoneNumber}" required="false">
+				</h:inputText>
+				<h:outputLabel rendered="true" value="Email"></h:outputLabel>
+				<h:inputText value="#{cardBean.card.email}" required="false">
+				</h:inputText>
+			</h:panelGrid>
+			
+			<h:commandButton action="#{cardBean.actionUpdate}" value="Update">
+			</h:commandButton>
+			<h:commandButton action="cancel" value="Cancel">
+			</h:commandButton>
+			
+			<hr></hr>
+			<!-- Zoznam chorob -->
+			<h2>Choroby</h2>
+			<h:dataTable value="#{cardBean.card.illnesses}" 
+			             binding="#{cardBean.illnesslistTable}"
+			             var="illness">
+				<h:column>
+					<h:outputText value="#{illness.foundDate}">
+						<f:convertDateTime pattern="dd.MM.yyyy"/> <!-- TODO: date not correct -->
+					</h:outputText>
+				</h:column>
+				<h:column>
+					<h:outputText value="#{illness.description}"></h:outputText>
+				</h:column>
+			</h:dataTable>
+			
+			<h:commandButton action="#{cardBean.actionIllnessNew}" value="Přidat nemoc">
+			</h:commandButton>
+			
+		</h:form>
 	</ui:define>
 </ui:composition>
 </html>

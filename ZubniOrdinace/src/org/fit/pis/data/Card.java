@@ -5,6 +5,7 @@ import static javax.persistence.FetchType.EAGER;
 
 import java.util.Date;
 import java.util.Collection;
+import java.util.Vector;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -51,6 +52,10 @@ public class Card {
 	private Collection<Dosage> meds;
 	@OneToMany(cascade = { ALL }, fetch = EAGER, mappedBy = "patient", orphanRemoval = true)
 	private Collection<Treatment> treatmentHistory;
+	
+	public Card() {
+		illnesses = new Vector<Illness>();
+	}
 	
 	public Date getbirthDate() {
 		return birthDate;
