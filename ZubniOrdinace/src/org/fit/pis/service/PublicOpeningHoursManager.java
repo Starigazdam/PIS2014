@@ -40,6 +40,11 @@ public class PublicOpeningHoursManager
     @SuppressWarnings("unchecked")
     public Object findByDate(Date date)
     {
-    	return em.createQuery("SELECT oh FROM PublicOpeningHours oh INNER JOIN OpeningDay od WHERE od.date = :val").setParameter("val", date).getSingleResult();
+    	try {
+    		return em.createQuery("SELECT oh FROM PublicOpeningHours oh INNER JOIN OpeningDay od WHERE od.date = :val").setParameter("val", date).getSingleResult();
+    	}
+    	catch (javax.persistence.NoResultException e) {
+    		return null;	
+    	}
     }
 }
