@@ -12,7 +12,7 @@
 
 <ui:composition template="../admin_template.xhtml">
 	<ui:define name="content">
-	    Welcome, dear admin!
+	    <h2>Přehled termínů</h2>
 	    <h:form id="form">
         <rich:messages />
         <rich:dataTable value="#{appointmentBean.appointments}" var="appointment" id="table" binding="#{appointmentBean.listTable}">
@@ -65,6 +65,9 @@
             <rich:column>
                 <h:commandLink action="#{appointmentBean.actionAccept}" value="Přijmout" rendered="#{appointment.accepted eq false}"></h:commandLink>
                 <h:commandLink action="#{appointmentBean.actionReject}" value="Odmítnout" rendered="#{appointment.accepted}"></h:commandLink>
+            </rich:column>
+            <rich:column>
+                <h:commandLink action="#{appointmentBean.actionRemove}" value="Zrušit"></h:commandLink>
             </rich:column>
         </rich:dataTable>
     </h:form>

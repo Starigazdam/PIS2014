@@ -24,17 +24,18 @@ import org.fit.pis.data.Card;
 @SessionScoped
 public class AppointmentBean {
 	@EJB
-	AppointmentManager appMgr;
+	private AppointmentManager appMgr;
 	@EJB
-	PublicOpeningHoursManager pohMgr;
+	private PublicOpeningHoursManager pohMgr;
 	@EJB
-	PatientAccountManager paMgr;
+	private PatientAccountManager paMgr;
 	@EJB
-	CardManager cMgr;
+	private CardManager cMgr;
 	@EJB
-	OpeningDayManager odMgr;
-	Appointment appoint;
-	Date date;
+	private OpeningDayManager odMgr;
+	private Appointment appoint;
+	@Temporal(TemporalType.TIMESTAMP)
+	private Date date;
 
 	private UIDataTable listTable;
     private UIDataTable freeTable;
@@ -134,4 +135,10 @@ public class AppointmentBean {
 		System.out.println(user);
 		return "submit";
 	}
+	
+   public void actionRemove() {
+               Appointment app = ((Appointment) listTable.getRowData());
+               appMgr.remove(app);
+    }
+
 }

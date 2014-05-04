@@ -23,11 +23,15 @@ a {
 }
 #header {
 	background-color: #8FAFC4;
-	height: 8em;
 	width: 100%;
 	margin-bottom: 3pt;
 	position: relative;
 	margin-bottom: 25pt; /*same as menu height+5*/
+}
+
+#header img {
+	height: 133px;
+	margin-bottom: 10px;
 }
 
 #content {

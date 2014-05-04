@@ -17,7 +17,7 @@ import org.fit.pis.data.Appointment;
 public class AppointmentFilterBean implements Serializable {
 	private static final long serialVersionUID = -5680001353441022183L;
     private Boolean acceptFilter;
-	@Temporal(TemporalType.TIMESTAMP)
+	@Temporal(TemporalType.DATE)
 	private Date dateFilter;
  
     public Filter<?> getAcceptFilterImpl() {

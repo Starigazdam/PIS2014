@@ -8,7 +8,7 @@ import java.util.Date;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.OneToOne;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -24,7 +24,7 @@ public class PublicOpeningHours {
 	@Temporal(TemporalType.TIME)
 	private Date endTime;
 
-	@OneToOne(fetch=EAGER)
+	@ManyToOne(fetch=EAGER)
 	private OpeningDay day;
 	
 	public Date getStartTime() {
@@ -41,5 +41,13 @@ public class PublicOpeningHours {
 
 	public void setEndTime(Date endTime) {
 		this.endTime = endTime;
+	}
+	
+	public OpeningDay getOpeningDay() {
+		return this.day;
+	}
+	
+	public void setOpeningDay(OpeningDay d) {
+		this.day = d;
 	}
 }
