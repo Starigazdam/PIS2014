@@ -133,6 +133,14 @@
 		</navigation-case>
 	</navigation-rule>
 	<navigation-rule>
+		<display-name>user/user.xhtml</display-name>
+		<from-view-id>/user/user.xhtml</from-view-id>
+		<navigation-case>
+			<from-outcome>logout</from-outcome>
+			<to-view-id>/userlogin.xhtml</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+	<navigation-rule>
 		<display-name>admin/cardView.xhtml</display-name>
 		<from-view-id>/admin/cardView.xhtml</from-view-id>
 		<navigation-case>

@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<pageflow:Pageflow xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:pageflow="http://www.sybase.com/suade/pageflow" id="pf13974059334470" configfile="/ZubniOrdinace/WebContent/WEB-INF/faces-config.xml">
-  <nodes xsi:type="pageflow:PFPage" name="admlogin.xhtml" x="770" y="178" id="pf13990318455330" referenceLink="//@navigationRule.6/@navigationCase.0/@toViewId|" outlinks="pf13990323129195 pf13990323129196" inlinks="pf13990323129196 pf13990323129197 pf13990415872288 pf139904434744411 pf13991394282430 pf13991394282431" path="/admlogin.xhtml"/>
+<pageflow:Pageflow xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:pageflow="http://www.sybase.com/suade/pageflow" id="pf13974059334470" configfile="/IS-ZubniOrdinace/WebContent/WEB-INF/faces-config.xml">
+  <nodes xsi:type="pageflow:PFPage" name="admlogin.xhtml" x="770" y="178" id="pf13990318455330" referenceLink="//@navigationRule.18/@navigationCase.0/@toViewId|" outlinks="pf13990323129195 pf13990323129196" inlinks="pf13990323129196 pf13990323129197 pf13990415872288 pf139904434744411 pf13991394282430 pf13991394282431" path="/admlogin.xhtml"/>
   <nodes xsi:type="pageflow:PFPage" name="admin/admin.xhtml" x="192" y="168" id="pf13990318455334" referenceLink="//@navigationRule.5/@fromViewId|" outlinks="pf13990323129197 pf13990415872289 pf139904434744412" inlinks="pf13990323129195" path="/admin/admin.xhtml"/>
-  <nodes xsi:type="pageflow:PFPage" name="admin/cardlist.xhtml" x="504" y="472" id="pf139904158722810" referenceLink="//@navigationRule.11/@navigationCase.0/@toViewId|" outlinks="pf13990415872288 pf139904764352315 pf139904986592217 pf13991400540842" inlinks="pf13990415872289 pf139904764352316 pf139904986592218 pf13990527393140 pf13991400540842" path="/admin/cardlist.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="admin/cardlist.xhtml" x="504" y="472" id="pf139904158722810" referenceLink="//@navigationRule.19/@navigationCase.0/@toViewId|" outlinks="pf13990415872288 pf139904764352315 pf139904986592217 pf13991400540842" inlinks="pf13990415872289 pf139904764352316 pf139904986592218 pf13990527393140 pf13991400540842" path="/admin/cardlist.xhtml"/>
   <nodes xsi:type="pageflow:PFPage" name="admin/addCard.xhtml" x="187" y="408" id="pf139904434744413" referenceLink="//@navigationRule.8/@fromViewId|" outlinks="pf139904434744411 pf139904764352316" inlinks="pf139904434744412 pf139904764352315" path="/admin/addCard.xhtml"/>
-  <nodes xsi:type="pageflow:PFPage" name="admin/cardView.xhtml" x="720" y="544" id="pf139904986592219" referenceLink="//@navigationRule.16/@navigationCase.0/@toViewId|" outlinks="pf139904986592218 pf13990527393140 pf13991315266300 pf13991394282431" inlinks="pf139904986592217 pf13991315266301 pf13991315266302" path="/admin/cardView.xhtml"/>
-  <nodes xsi:type="pageflow:PFPage" name="userlogin.xhtml" x="264" y="48" id="pf13991159698264" referenceLink="//@navigationRule.13/@navigationCase.0/@toViewId|" outlinks="pf13991164744118 pf13991164744119" inlinks="pf13991164744118" path="/userlogin.xhtml"/>
-  <nodes xsi:type="pageflow:PFPage" name="user/user.xhtml" id="pf139911647441110" referenceLink="//@navigationRule.12/@navigationCase.0/@toViewId|" inlinks="pf13991164744119" path="/user/user.xhtml"/>
-  <nodes xsi:type="pageflow:PFPage" name="admin/addTreatment.xhtml" x="912" y="339" id="pf13991315266313" referenceLink="//@navigationRule.16/@fromViewId|" outlinks="pf13991315266301 pf13991315266302 pf13991394282430" inlinks="pf13991315266300" path="/admin/addTreatment.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="admin/cardView.xhtml" x="720" y="544" id="pf139904986592219" referenceLink="//@navigationRule.18/@fromViewId|" outlinks="pf139904986592218 pf13990527393140 pf13991315266300 pf13991394282431" inlinks="pf139904986592217 pf13991315266301 pf13991315266302" path="/admin/cardView.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="userlogin.xhtml" x="264" y="48" id="pf13991159698264" referenceLink="//@navigationRule.14/@navigationCase.0/@toViewId|" outlinks="pf13991164744118 pf13991164744119" inlinks="pf13991164744118 pf13992057649792" path="/userlogin.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="user/user.xhtml" id="pf139911647441110" referenceLink="//@navigationRule.14/@fromViewId|" outlinks="pf13992057649792" inlinks="pf13991164744119" path="/user/user.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="admin/addTreatment.xhtml" x="912" y="339" id="pf13991315266313" referenceLink="//@navigationRule.17/@fromViewId|" outlinks="pf13991315266301 pf13991315266302 pf13991394282430" inlinks="pf13991315266300" path="/admin/addTreatment.xhtml"/>
   <links id="pf13990323129195" target="pf13990318455334" source="pf13990318455330" outcome="login" redirect="true"/>
   <links id="pf13990323129197" target="pf13990318455330" source="pf13990318455334" outcome="logout" redirect="true"/>
   <links id="pf13990415872289" target="pf139904158722810" source="pf13990318455334" outcome="cards" redirect="true"/>
@@ -36,4 +36,5 @@
     <bendPoints d1Width="-64" d1Height="-36" d2Width="-64" d2Height="-36"/>
     <bendPoints d1Width="-64" d2Width="-64"/>
   </links>
+  <links id="pf13992057649792" target="pf13991159698264" source="pf139911647441110" outcome="logout"/>
 </pageflow:Pageflow>
