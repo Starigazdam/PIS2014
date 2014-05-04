@@ -12,32 +12,60 @@
 	<h:body>	
 		<h:form>
 			<rich:panel>
+				<f:facet name="header">
+	                <h:panelGroup>
+	                    <h:outputText value="Karta Pacienta" />
+	                    <a4j:status>
+	                        <f:facet name="start">
+	                            <h:graphicImage value="/images/ai.gif" style="height:12px;width:12px;" alt="ai" />
+	                        </f:facet>
+	                    </a4j:status>
+	                </h:panelGroup>
+	            </f:facet>
+	            
 				<h:messages layout="table"></h:messages>
-				<h:panelGrid columns="2">
+				<h:panelGrid columns="3">
 					<h:outputLabel rendered="true" value="RČ"></h:outputLabel>
-					<h:outputText value="#{cardBean.card.id}" required="true">
-					</h:outputText>
-					<h:outputLabel rendered="true" value="Jméno"></h:outputLabel>
-					<h:inputText value="#{cardBean.card.name}" required="true"
-						requiredMessage="Name is required"
-						validatorMessage="Invalid name">
+					<h:outputText value="#{cardBean.card.id}" required="true"></h:outputText>
+					<h:outputText/>
+					
+					<h:outputLabel rendered="true" value="Jméno*"></h:outputLabel>
+					<h:inputText id="name" value="#{cardBean.card.name}">
 						<f:validateLength minimum="2" maximum="80" />
+						 <f:validateRequired />
+						<rich:validator />
 					</h:inputText>
-					<h:outputLabel rendered="true" value="Příjmení"></h:outputLabel>
-					<h:inputText value="#{cardBean.card.surname}" required="true">
-						<f:validateLength minimum="2" maximum="80"/>
+					<rich:message for="name"/>
+					
+					<h:outputLabel rendered="true" value="Příjmení*"></h:outputLabel>
+					<h:inputText value="#{cardBean.card.surname}" id="surname">
+						<f:validateLength minimum="2" maximum="80" />
+						 <f:validateRequired />
+						<rich:validator />
 					</h:inputText>
-					<h:outputLabel rendered="true" value="Datum narození(dd.mm.yyyy)"></h:outputLabel>
-					<h:inputText value="#{cardBean.card.birthDate}" required="true">
+					<rich:message for="surname"/>
+					
+					<h:outputLabel rendered="true" value="Datum narození(dd.mm.yyyy)*"></h:outputLabel>
+					<h:inputText id="birth" value="#{cardBean.card.birthDate}">
 						<f:validateLength minimum="8" />
 						<f:convertDateTime pattern="dd.MM.yyyy"/>
+					<f:validateRequired />
+						<rich:validator />
 					</h:inputText>
+					<rich:message for="birth"/>
+					
 					<h:outputLabel rendered="true" value="Telefon"></h:outputLabel>
-					<h:inputText value="#{cardBean.card.phoneNumber}" required="false">
+					<h:inputText value="#{cardBean.card.phoneNumber != 0 ? cardBean.card.phoneNumber : '' }" required="false">
 					</h:inputText>
+					<h:outputText/>
+					
 					<h:outputLabel rendered="true" value="Email"></h:outputLabel>
-					<h:inputText value="#{cardBean.card.email}" required="false">
+					<h:inputText value="#{cardBean.card.email}" required="false" id ="email" validatorMessage="Validation Error: Invalid email address">
+						<f:validateRegex
+                        	pattern="^(([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5}){1,25})+([;.](([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5}){1,25})+)*$"></f:validateRegex>
+                    	<rich:validator />
 					</h:inputText>
+					<rich:message for="email" />
 				</h:panelGrid>
 				
 				<!-- ++++++++++++++ Collapsible panels ++++++++++++++ -->
@@ -114,7 +142,7 @@
                 		<h:outputText value="Zobrazit" />
 						
 						<rich:collapsibleSubTable value="#{treat.procedures}" var="proc" id="sbtbl" expandMode="client">
-			                <rich:column colspan="3" rowspan="treat.procedures.size()"></rich:column>
+			                <rich:column colspan="3" ></rich:column>
 			                <rich:column>
 			                    <h:outputText value="#{proc.name}" />
 			                </rich:column>

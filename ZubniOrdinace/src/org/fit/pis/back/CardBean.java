@@ -2,7 +2,6 @@ package org.fit.pis.back;
 
 import java.util.Date;
 import java.util.List;
-import java.util.Vector;
 
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
@@ -11,6 +10,7 @@ import javax.faces.bean.SessionScoped;
 import org.fit.pis.data.Card;
 import org.fit.pis.data.Illness;
 import org.fit.pis.data.Procedure;
+import org.fit.pis.data.ProcedureCode;
 import org.fit.pis.data.Treatment;
 import org.fit.pis.service.CardManager;
 import org.richfaces.component.UIDataTable;
@@ -166,5 +166,10 @@ public class CardBean {
 		proc.setName(proc.getCode().name());
 		treat.getProcedures().add(proc);
 		return "addproc";
+	}
+	
+	public ProcedureCode[] getCodes(){
+		System.out.print("PROCBEAN");
+		return ProcedureCode.values();
 	}
 }

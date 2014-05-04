@@ -64,8 +64,10 @@
 	            </h:outputLink>
 	        </f:facet>
 	        <h:form id="newprocform">
-				<h:inputText id="newproccode" value="#{cardBean.proc.code}" required="true">
-				</h:inputText>
+				<rich:select  id="newproccode" value="#{cardBean.proc.code}" required="true" enableManualInput="true" defaultLabel="start typing for select">
+                	<f:selectItems value="#{procedureCodeBean.codes}" var="g" 
+    					itemValue="#{g}" itemLabel="#{g.label}"/>
+            	</rich:select>
 				<h:inputText id="newproccost" value="#{cardBean.proc.cost}" required="true">
 				</h:inputText>
 				<a4j:commandButton 	value="Hotovo" execute="@this"  
