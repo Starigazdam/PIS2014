@@ -20,7 +20,7 @@
             <f:facet name="noData">
                 Nothing found
             </f:facet>
-            <rich:column filter="#{appointmentFilterBean.filterDate}">
+            <rich:column filter="#{appointmentFilterBean.filterDate}" sortBy="#{appointment.date}" sortOrder="ascending">
                 <f:facet name="header">
                     <h:panelGroup>
                         <h:outputText value="Datum " />

@@ -36,7 +36,7 @@ public class AppointmentFilterBean implements Serializable {
         return new Filter<Appointment>() {
             public boolean accept(Appointment t) {
                 Date date = getDateFilter();
-                if (date == null  || date.equals(t.getDate())) {
+                if (date == null  || (date.compareTo(t.getDate()) <= 0)) {
                     return true;
                 }
                 return false;
