@@ -11,10 +11,14 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 import org.richfaces.component.UIDataTable;
+import org.fit.pis.service.PatientAccountManager;
 import org.fit.pis.service.PublicOpeningHoursManager;
+import org.fit.pis.service.OpeningDayManager;
 import org.fit.pis.data.PublicOpeningHours;
 import org.fit.pis.service.AppointmentManager;
 import org.fit.pis.data.Appointment;
+import org.fit.pis.service.CardManager;
+import org.fit.pis.data.Card;
 
 @ManagedBean
 @SessionScoped
@@ -23,6 +27,12 @@ public class AppointmentBean {
 	AppointmentManager appMgr;
 	@EJB
 	PublicOpeningHoursManager pohMgr;
+	@EJB
+	PatientAccountManager paMgr;
+	@EJB
+	CardManager cMgr;
+	@EJB
+	OpeningDayManager odMgr;
 	Appointment appoint;
 	Date date;
 
@@ -67,10 +77,20 @@ public class AppointmentBean {
     }
     public List<Integer> getFreeAppointments() {
     	List<Integer> lol = new ArrayList<Integer>();
+    	Appointment appointment;
+    	date.setMinutes(0);
+    	date.setSeconds(0);
     	PublicOpeningHours temp = (PublicOpeningHours) pohMgr.findByDate(date);
     	if (temp != null)
-    		for (int i=0, j=temp.getStartTime().getHours(); j<temp.getEndTime().getHours(); i++, j++) {
-    			lol.add(i, j);
+    		for (int j=temp.getStartTime().getHours(); j<temp.getEndTime().getHours(); j++) {
+    			Date newdate = (Date) date.clone();
+    			newdate.setHours(j);
+    			System.out.println(newdate);
+    			appointment = (Appointment)appMgr.findByDate(newdate);
+    			if (appointment == null)
+    				lol.add(j);
+    			else
+    				System.out.println("wtf");
     		}
     	return lol;
     }
@@ -102,4 +122,16 @@ public class AppointmentBean {
 		return "newappoint";
 	}
 	
+	public String actionSubmit(Integer i, String user) {
+		Card card = paMgr.find(user).getPatient();
+		Appointment newAppoint = new Appointment();
+		date.setHours(i);
+		newAppoint.setDate(this.date);
+		newAppoint.setPatient(card);
+		newAppoint.setAccepted(false);
+		newAppoint.setOpenday(odMgr.find(this.date));
+		appMgr.save(newAppoint);
+		System.out.println(user);
+		return "submit";
+	}
 }

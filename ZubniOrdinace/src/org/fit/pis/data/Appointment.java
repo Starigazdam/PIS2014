@@ -30,6 +30,14 @@ public class Appointment {
 	@ManyToOne(fetch=EAGER)
 	private OpeningDay openday;
 	
+	public OpeningDay getOpenday() {
+		return openday;
+	}
+
+	public void setOpenday(OpeningDay openday) {
+		this.openday = openday;
+	}
+
 	public boolean isAccepted() {
 		return accepted;
 	}

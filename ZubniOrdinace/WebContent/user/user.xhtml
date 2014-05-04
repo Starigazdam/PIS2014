@@ -13,16 +13,22 @@
 		<h:form>
 			<rich:calendar styleClass="rf-cal" datePattern="yyyy-MM-dd" cellWidth="24px" cellHeight="22px"
 				style="width:200px" value="#{appointmentBean.date}" >
-				<a4j:ajax event="change" ajaxSingle="true" render="usrbox"/>
+				<a4j:ajax event="change" ajaxSingle="true" render="box"/>
 			</rich:calendar>
 		</h:form>
-		<h:form id="usrbox">
+		<h:form id="box">
 				<rich:dataTable value="#{appointmentBean.freeAppointments}" var="appointement" binding="#{appointmentBean.freeTable}">
 					<rich:column>
 						<f:facet name="header">
-		                    <h:outputText value="RČ"/>
+		                    <h:outputText value="Termín"/>
 		                </f:facet>
 						<h:outputText value="#{appointement}"></h:outputText>
+					</rich:column>
+					<rich:column>
+						<f:facet name="header">
+		                    <h:outputText value="Zapsat"/>
+		                </f:facet>
+						<h:commandLink value="[X]" action="#{appointmentBean.actionSubmit(appointement, userAuthBean.login)}" />
 					</rich:column>
 				</rich:dataTable>
 		</h:form>

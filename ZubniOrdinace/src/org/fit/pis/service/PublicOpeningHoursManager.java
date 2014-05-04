@@ -7,7 +7,6 @@ import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
-import org.fit.pis.data.Appointment;
 import org.fit.pis.data.PublicOpeningHours;
 
 @Stateless
@@ -37,7 +36,6 @@ public class PublicOpeningHoursManager
     	return em.createQuery("SELECT ap FROM PublicOpeningHours ap").getResultList();
     }
     
-    @SuppressWarnings("unchecked")
     public Object findByDate(Date date)
     {
     	try {
