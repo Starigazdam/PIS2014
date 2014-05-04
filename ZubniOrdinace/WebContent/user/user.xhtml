@@ -10,19 +10,21 @@
 	xmlns:a4j="http://richfaces.org/a4j"
 	xmlns:rich="http://richfaces.org/rich">
 	<ui:define name="content">
-		<rich:calendar styleClass="rf-cal" datePattern="yyyy-MM-dd" popup="False" cellWidth="24px" cellHeight="22px"
-			style="width:200px" value="#{appointmentBean.date}">
-		</rich:calendar>
 		<h:form>
-			<rich:dataTable value="#{appointmentBean.freeAppointments}" var="appointement" binding="#{appointmentBean.freeTable}">
-				<rich:column>
-					<f:facet name="header">
-	                    <h:outputText value="RČ"/>
-	                </f:facet>
-					<h:outputText value="#{appointement}"></h:outputText>
-				</rich:column>
-			</rich:dataTable>
-			<h:commandLink action="#{cardBean.actionNew}" value="Vložit novou kartu"></h:commandLink>
+			<rich:calendar styleClass="rf-cal" datePattern="yyyy-MM-dd" cellWidth="24px" cellHeight="22px"
+				style="width:200px" value="#{appointmentBean.date}" >
+				<a4j:ajax event="change" ajaxSingle="true" render="usrbox"/>
+			</rich:calendar>
+		</h:form>
+		<h:form id="usrbox">
+				<rich:dataTable value="#{appointmentBean.freeAppointments}" var="appointement" binding="#{appointmentBean.freeTable}">
+					<rich:column>
+						<f:facet name="header">
+		                    <h:outputText value="RČ"/>
+		                </f:facet>
+						<h:outputText value="#{appointement}"></h:outputText>
+					</rich:column>
+				</rich:dataTable>
 		</h:form>
 	</ui:define>
 </ui:composition>
