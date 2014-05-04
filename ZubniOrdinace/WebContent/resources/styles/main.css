@@ -33,6 +33,12 @@ a {
 #content {
 	padding: 0.4em;
 }
+
+#contentInner {
+	padding: 0em 2em 0em 2em;
+	widht: 100%;
+}
+
 #footer {
 	position: absolute;
 	bottom: -2em;

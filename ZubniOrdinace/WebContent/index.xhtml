@@ -7,8 +7,13 @@
 	xmlns:f="http://java.sun.com/jsf/core">
 
 <ui:composition template="template.xhtml">
+	<ui:define name="header">
+		<div id="menu"><h:outputLink value="#{facesContext.externalContext.requestContextPath}/userlogin.xhtml">Přihlásit se</h:outputLink></div>
+	</ui:define>
 	<ui:define name="content">
-	    Add your content here or delete to use the default
+	    <div>
+	    	<h2>Vítejte v informačním systému Zubní ordinace Slunko</h2>
+	    </div>
 	</ui:define>
 </ui:composition>
 </html>

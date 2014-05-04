@@ -7,8 +7,14 @@
 	xmlns:f="http://java.sun.com/jsf/core">
 
 <ui:composition template="template.xhtml">
+	<ui:define name="header">
+	<div id="menu" class="left">
+    		<h:outputLink value="#{facesContext.externalContext.requestContextPath}/index.xhtml">Úvodní stránka</h:outputLink>
+    	</div>
+	</ui:define>
 	<ui:define name="content">
 		<h:form>
+			<h2>Přihlášení pacienta</h2>
 			<h:messages layout="table"></h:messages>
 			<h:panelGrid columns="2" class="login">
 				<h:outputLabel rendered="true" value="Uživatel"></h:outputLabel>
