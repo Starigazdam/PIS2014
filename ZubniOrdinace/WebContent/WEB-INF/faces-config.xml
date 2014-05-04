@@ -37,15 +37,6 @@
 		</navigation-case>
 	</navigation-rule>
 	<navigation-rule>
-		<display-name>admin/admin.xhtml</display-name>
-		<from-view-id>/admin/admin.xhtml</from-view-id>
-		<navigation-case>
-			<from-outcome>cards</from-outcome>
-			<to-view-id>/admin/cardlist.xhtml</to-view-id>
-			<redirect />
-		</navigation-case>
-	</navigation-rule>
-	<navigation-rule>
 		<display-name>admin/cardlist.xhtml</display-name>
 		<from-view-id>/admin/cardlist.xhtml</from-view-id>
 		<navigation-case>
@@ -192,6 +183,14 @@
 			<from-outcome>delete</from-outcome>
 			<to-view-id>/admin/cardlist.xhtml</to-view-id>
 			<redirect />
+		</navigation-case>
+	</navigation-rule>
+	<navigation-rule>
+		<display-name>admin/manage_accounts.xhtml</display-name>
+		<from-view-id>/admin/manage_accounts.xhtml</from-view-id>
+		<navigation-case>
+			<from-outcome>delete</from-outcome>
+			<to-view-id>/admin/manage_accounts.xhtml</to-view-id>
 		</navigation-case>
 	</navigation-rule>
 </faces-config>

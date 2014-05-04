@@ -35,7 +35,7 @@ public class Card {
 	private String name;
 	private String surname;
 	
-	@OneToOne(mappedBy = "patient")
+	@OneToOne(mappedBy = "patient", orphanRemoval = true)
 	private PatientAccount account;
 	
 	@OneToMany(cascade = { ALL }, fetch = EAGER, mappedBy = "patient", orphanRemoval = true)
