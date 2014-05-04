@@ -47,11 +47,17 @@
 	            
 				<rich:dataTable value="#{cardBean.card.illnesses}" var="illness" id="illTable">
 					<rich:column>
+						<f:facet name="header">
+		                    <h:outputText value="Datum"/>
+		                </f:facet>
 						<h:outputText value="#{illness.foundDate}">
 							<f:convertDateTime pattern="dd.MM.yyyy"/> <!-- TODO: date not correct -->
 						</h:outputText>
 					</rich:column>
 					<rich:column>
+						<f:facet name="header">
+		                    <h:outputText value="Popis"/>
+		                </f:facet>
 						<h:outputText value="#{illness.description}"></h:outputText>
 					</rich:column>
 				</rich:dataTable>
@@ -68,38 +74,57 @@
 	            
 				<rich:dataTable value="#{cardBean.card.treatmentHistory}" 
 								var="treat" 
-								id="treatTable"
-								binding="#{findTreatmentBean.treatlistTable}">
+								id="treatTable">
+					 <f:facet name="header">
+		                <rich:columnGroup>
+		                    <rich:column rowspan="2">
+		                        <h:outputText value="Datum" />
+		                    </rich:column>
+		                    <rich:column rowspan="2">
+		                        <h:outputText value="Diagnoza" />
+		                    </rich:column>
+		                    <rich:column rowspan="2">
+		                        <h:outputText value="Popis" />
+		                    </rich:column>
+		                    <rich:column colspan="2">
+		                        <h:outputText value="Zakroky" />
+		                    </rich:column>
+		                    <rich:column breakRowBefore="true">
+		                        <h:outputText value="Kod" />
+		                    </rich:column>
+		                    <rich:column>
+		                        <h:outputText value="cena" />
+		                    </rich:column>
+		            	</rich:columnGroup>
+		            </f:facet>
 					<rich:column>
-						<f:facet name="header">
-		                    <h:outputText value="Datum"/>
-		                </f:facet>
 						<h:outputText value="#{treat.date}">
 							<f:convertDateTime pattern="dd.MM.yyyy"/> <!-- TODO: date not correct -->
 						</h:outputText>
 					</rich:column>
 					<rich:column>
-						<f:facet name="header">
-		                    <h:outputText value="Typ"/>
-		                </f:facet>
 						<h:outputText value="#{treat.type}"></h:outputText>
 					</rich:column>
 					<rich:column>
-						<f:facet name="header">
-		                    <h:outputText value="Diagnóza"/>
-		                </f:facet>
 						<h:outputText value="#{treat.diagnosis}"></h:outputText>
 					</rich:column>
-					<rich:column>
-						<f:facet name="header">
-		                    <h:outputText value="Zákroky"/>
-		                </f:facet>
+					<rich:column colspan="2">
 		                
-						<a4j:commandLink action="#{findTreatmentBean.findTreat}" value="Zobrazit"
-										 oncomplete="#{rich:component('popupproc')}.show()">
-						</a4j:commandLink>
+						<rich:collapsibleSubTableToggler for="sbtbl" />
+                		<h:outputText value="Zobrazit" />
 						
+						<rich:collapsibleSubTable value="#{treat.procedures}" var="proc" id="sbtbl" expandMode="client">
+			                <rich:column colspan="3" rowspan="treat.procedures.size()"></rich:column>
+			                <rich:column>
+			                    <h:outputText value="#{proc.name}" />
+			                </rich:column>
+			                <rich:column>
+			                    <h:outputText value="#{proc.cost}" />
+			                </rich:column>
+					    </rich:collapsibleSubTable>
+					
 					</rich:column>
+					
 				</rich:dataTable>
 				
 				<h:commandButton action="#{cardBean.actionTreatNew}" value="Přidat">
@@ -141,39 +166,7 @@
                 						onclick="#{rich:component('popupill')}.hide(); return false;}">
                     </a4j:commandButton>
 				</h:form>
-		    </rich:popupPanel>
-
-			<rich:popupPanel id="popupproc" modal="true" resizeable="true">
-		        <f:facet name="header">
-		            <h:outputText value="Zákroky" />
-		        </f:facet>
-		        <f:facet name="controls">
-		            <h:outputLink value="#" onclick="#{rich:component('popupproc')}.hide(); return false;">
-		                X
-		            </h:outputLink>
-		        </f:facet>
-			    <h:form>
-					<rich:dataTable value="#{findTreatmentBean.treat.procedures}" 
-									var="proc">
-						<rich:column>
-							<f:facet name="header">
-			                    <h:outputText value="Kod"/>
-			                </f:facet>
-							<h:outputText value="#{proc.name}"/>
-						</rich:column>
-						<rich:column>
-							<f:facet name="header">
-			                    <h:outputText value="Cena"/>
-			                </f:facet>
-							<h:outputText value="#{proc.cost}"></h:outputText>
-						</rich:column>
-					</rich:dataTable>
-					<a4j:commandButton 	value="Cancel" 
-	                					immediate="true"
-	                					onclick="#{rich:component('popupproc')}.hide(); return false;}">
-	               	</a4j:commandButton>
-	        	</h:form>
-		    </rich:popupPanel>		
+		    </rich:popupPanel>	
 	</h:body>
 	</f:view>			
 </ui:define>

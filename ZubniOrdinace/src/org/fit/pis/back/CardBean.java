@@ -162,10 +162,8 @@ public class CardBean {
 	}
 	
 	public String actionProcAdd() {
-		//if (treat.getProcedures() == null) return "fail";
 		proc.setTreatment(treat);
 		proc.setName(proc.getCode().name());
-		treat.setProcedures(new Vector<Procedure>());
 		treat.getProcedures().add(proc);
 		return "addproc";
 	}

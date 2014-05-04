@@ -6,6 +6,7 @@ import static javax.persistence.GenerationType.IDENTITY;
 
 import java.util.Collection;
 import java.util.Date;
+import java.util.Vector;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -33,6 +34,10 @@ public class Treatment {
 	
 	@OneToMany(cascade = { ALL }, fetch = EAGER, mappedBy = "treatment", orphanRemoval = true)
 	private Collection<Procedure> procedures;
+	
+	public Treatment() {
+		procedures = new Vector<Procedure>();
+	}
 
 	public long getId() {
 		return id;

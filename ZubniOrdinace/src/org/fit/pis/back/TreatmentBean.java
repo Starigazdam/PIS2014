@@ -10,7 +10,7 @@ import org.richfaces.component.UIDataTable;
 
 @ManagedBean
 @SessionScoped
-public class FindTreatmentBean {
+public class TreatmentBean {
 	private Treatment treat;
 	@EJB
 	private TreatmentManager treatMgr;

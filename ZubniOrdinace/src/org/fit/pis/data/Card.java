@@ -54,7 +54,13 @@ public class Card {
 	private Collection<Treatment> treatmentHistory;
 	
 	public Card() {
-		illnesses = new Vector<Illness>();
+		illnesses 	= new Vector<Illness>();
+		appoints	= new Vector<Appointment>();
+		toothChart	= new Vector<Tooth>();
+		extExams	= new Vector<Examination>();
+		hazards		= new Vector<Hazard>();
+		meds		= new Vector<Dosage>();
+		treatmentHistory = new Vector<Treatment>();
 	}
 	
 	public Date getbirthDate() {

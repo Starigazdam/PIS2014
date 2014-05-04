@@ -47,7 +47,7 @@
 				</h:commandButton>
 				
 				<a4j:commandButton action="#{cardBean.actionProcNew}" value="Přidat zakrok"
-					render="newproccode"
+					render="newproccode newproccost"
 					oncomplete="#{rich:component('popupnewproc')}.show()">
 				</a4j:commandButton>
 
@@ -66,9 +66,9 @@
 	        <h:form id="newprocform">
 				<h:inputText id="newproccode" value="#{cardBean.proc.code}" required="true">
 				</h:inputText>
-				<h:inputText value="#{cardBean.proc.cost}" required="true">
+				<h:inputText id="newproccost" value="#{cardBean.proc.cost}" required="true">
 				</h:inputText>
-				<a4j:commandButton 	value="Hotovo" execute="@form"  
+				<a4j:commandButton 	value="Hotovo" execute="@this"  
                    				   	render="procTable"  
                    					action="#{cardBean.actionProcAdd}"
                    					onclick="#{rich:component('popupnewproc')}.hide(); return false;}">  
