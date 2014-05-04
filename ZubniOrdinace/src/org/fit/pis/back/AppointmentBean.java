@@ -25,6 +25,7 @@ public class AppointmentBean {
 	PublicOpeningHoursManager pohMgr;
 	Appointment appoint;
 	Date date;
+
 	private UIDataTable listTable;
     private UIDataTable freeTable;
 	

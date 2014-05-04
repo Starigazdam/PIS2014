@@ -38,9 +38,13 @@ public class AppointmentManager
     
     public Object findByDate(Date date)
     {
-    	return em.createQuery("SELECT ap FROM Appointment ap WHERE ap.date = :val").setParameter("val", date).getSingleResult();
+    	try {
+    		return em.createQuery("SELECT ap FROM Appointment ap WHERE ap.date = :val").setParameter("val", date).getSingleResult();
+    	}
+    	catch (javax.persistence.NoResultException e) {
+    		return null;	
+    	}
     }
-
 
     @SuppressWarnings("unchecked")
     public List<Appointment> findAllByStatus(boolean status) {
