@@ -66,7 +66,10 @@
 				<rich:collapsiblePanel header="Výkony" switchType="client">
 	            <h:graphicImage value="/images/icons/common/rf.png" style="float:right" alt="rf" />
 	            
-				<rich:dataTable value="#{cardBean.card.treatmentHistory}" var="treat" id="treatTable">
+				<rich:dataTable value="#{cardBean.card.treatmentHistory}" 
+								var="treat" 
+								id="treatTable"
+								binding="#{findTreatmentBean.treatlistTable}">
 					<rich:column>
 						<f:facet name="header">
 		                    <h:outputText value="Datum"/>
@@ -91,9 +94,11 @@
 						<f:facet name="header">
 		                    <h:outputText value="Zákroky"/>
 		                </f:facet>
-						<h:commandLink value="Zobrazit">
-							<rich:componentControl target="popupproc" operation="show" />
-						</h:commandLink>
+		                
+						<a4j:commandLink action="#{findTreatmentBean.findTreat}" value="Zobrazit"
+										 oncomplete="#{rich:component('popupproc')}.show()">
+						</a4j:commandLink>
+						
 					</rich:column>
 				</rich:dataTable>
 				
@@ -147,9 +152,27 @@
 		                X
 		            </h:outputLink>
 		        </f:facet>
-		        
-				Zoznam procedur
-				
+			    <h:form>
+					<rich:dataTable value="#{findTreatmentBean.treat.procedures}" 
+									var="proc">
+						<rich:column>
+							<f:facet name="header">
+			                    <h:outputText value="Kod"/>
+			                </f:facet>
+							<h:outputText value="#{proc.name}"/>
+						</rich:column>
+						<rich:column>
+							<f:facet name="header">
+			                    <h:outputText value="Cena"/>
+			                </f:facet>
+							<h:outputText value="#{proc.cost}"></h:outputText>
+						</rich:column>
+					</rich:dataTable>
+					<a4j:commandButton 	value="Cancel" 
+	                					immediate="true"
+	                					onclick="#{rich:component('popupproc')}.hide(); return false;}">
+	               	</a4j:commandButton>
+	        	</h:form>
 		    </rich:popupPanel>		
 	</h:body>
 	</f:view>			

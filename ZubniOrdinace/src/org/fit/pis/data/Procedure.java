@@ -16,7 +16,6 @@ public class Procedure {
 	private long id;
 	
 	private ProcedureCode code;
-	// DEPRECATED
 	private String name; // TODO: lze ziskat z enumu
 	private int cost;
 	

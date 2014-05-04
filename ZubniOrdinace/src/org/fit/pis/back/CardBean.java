@@ -26,7 +26,9 @@ public class CardBean {
 	private Procedure proc;
 
 	private UIDataTable listTable;
-	
+	private UIDataTable proclistTable;
+	private UIDataTable treatlistTable;
+
 	public CardBean() {
 		card = new Card();
 		illness = new Illness();
@@ -78,6 +80,22 @@ public class CardBean {
 		this.listTable = listTable;
 	}
 
+	public UIDataTable getProclistTable() {
+		return proclistTable;
+	}
+
+	public void setProclistTable(UIDataTable proclistTable) {
+		this.proclistTable = proclistTable;
+	}
+
+	public UIDataTable getTreatlistTable() {
+		return treatlistTable;
+	}
+
+	public void setTreatlistTable(UIDataTable treatlistTable) {
+		this.treatlistTable = treatlistTable;
+	}
+	
 	// ====================================
 
 	public String actionView()
