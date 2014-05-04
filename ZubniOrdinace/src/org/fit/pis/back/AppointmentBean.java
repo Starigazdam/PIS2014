@@ -67,6 +67,7 @@ public class AppointmentBean {
     public List<Integer> getFreeAppointments() {
     	List<Integer> lol = new ArrayList<Integer>();
     	PublicOpeningHours temp = (PublicOpeningHours) pohMgr.findByDate(date);
+    	if (temp != null)
     		for (int i=0, j=temp.getStartTime().getHours(); j<temp.getEndTime().getHours(); i++, j++) {
     			lol.add(i, j);
     		}
