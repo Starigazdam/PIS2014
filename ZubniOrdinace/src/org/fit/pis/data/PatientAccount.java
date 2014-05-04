@@ -30,5 +30,13 @@ public class PatientAccount {
 	public void setPassword(String password) {
 		this.password = password;
 	}
+	
+	public Card getPatient() {
+		return patient;
+	}
+	
+	public void setPatient(Card c) {
+		this.patient = c;
+	}
    
 }

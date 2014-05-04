@@ -37,7 +37,7 @@ public class AdminAuthFilter implements Filter {
 	         out.println("<html><head><meta http-equiv=\"refresh\" content=\"2; url=../admlogin.xhtml\" />");
 	         out.println("<title>Access denied.</title></head><body>");
 	         out.println("<h1>You are not logged in.</h1>");
-	         out.println("Redirecting you to <a href=\"../admlogin.xhtml\">Login.</a>.");
+	         out.println("Redirecting you to <a href=\"../admlogin.xhtml\">Login</a>.");
 	         out.println("</body></html>");
 	     }
 	 }

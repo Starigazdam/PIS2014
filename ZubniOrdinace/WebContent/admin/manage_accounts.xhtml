@@ -1,0 +1,67 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:rich="http://richfaces.org/rich">
+
+<ui:composition template="../admin_template.xhtml">
+	<ui:define name="content">
+			<h2>Správa uživatelských účtů</h2>
+			<h:form id="manager">
+	    	<rich:dataTable value="#{cardAccBean.cards}" var="card" binding="#{cardAccBean.listTable}">
+				<rich:column>
+					<f:facet name="header">
+	                    <h:outputText value="RČ"/>
+	                </f:facet>
+					<h:outputText value="#{card.id}"></h:outputText>
+				</rich:column>
+				<rich:column>
+					<f:facet name="header">
+	                    <h:outputText value="Jméno"/>
+	                </f:facet>
+					<h:outputText value="#{card.name}"></h:outputText>
+				</rich:column>
+				<rich:column>
+					<f:facet name="header">
+	                    <h:outputText value="Příjmení"/>
+	                </f:facet>
+					<h:outputText value="#{card.surname}"></h:outputText>
+				</rich:column>
+				<rich:column>
+					<f:facet name="header">
+	                    <h:outputText value="Datum narození"/>
+	                </f:facet>
+					<h:outputText value="#{card.birthDate}">
+						<f:convertDateTime pattern="dd.MM.yyyy"/> <!-- TODO: date not correct -->
+					</h:outputText>
+				</rich:column>
+				<rich:column>
+					<f:facet name="header">
+	                    <h:outputText value="Uživ. jméno"/>
+	                </f:facet>
+					<h:outputText value="#{card.account.user}"></h:outputText>
+				</rich:column>
+				<rich:column>
+					<f:facet name="header">
+	                    <h:outputText value="Heslo"/>
+	                </f:facet>
+					<h:outputText value="#{card.account.password}"></h:outputText>
+				</rich:column>
+				<rich:column>
+					<h:commandLink action="#{cardAccBean.actionNewAcc}"
+						rendered="#{card.account.user eq null}"
+						value="Vytvořit nový účet">
+					</h:commandLink>
+					<h:commandLink action="#{cardAccBean.actionRemAcc}"
+						rendered="#{card.account.user ne null}"
+						value="Smazat účet" >
+					</h:commandLink>
+				</rich:column>
+			</rich:dataTable>
+			</h:form>
+	</ui:define>
+</ui:composition>
+</html>

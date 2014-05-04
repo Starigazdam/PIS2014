@@ -55,10 +55,23 @@ table {
 #menu {
 	position: absolute;
 	top: 100%;
-	width: auto;
 	font-size: 1.3em;
 	height: 20pt;
 	background-color: #CADCE7;
+}
+
+#menu ul {
+	padding: 0;
+	margin: 0;
+}
+
+#menu ul li {
+	padding: 0;
+	margin: 0;
+	list-style-type: none;
+	text-align: center;
+	display: inline-block;
+	float: left;
 }
 
 #menu a {
