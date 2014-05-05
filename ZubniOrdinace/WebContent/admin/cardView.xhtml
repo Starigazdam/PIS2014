@@ -191,7 +191,7 @@
 		                    <rich:column rowspan="2">
 		                        <h:outputText value="Popis" />
 		                    </rich:column>		                    
-		                    <rich:column colspan="3">
+		                    <rich:column colspan="2">
 		                        <h:outputText value="Zakroky" />
 		                    </rich:column>
 		                    <rich:column rowspan="2">
@@ -200,10 +200,9 @@
 		                    <rich:column breakRowBefore="true">
 		                        <h:outputText value="Kod" />
 		                    </rich:column>
-		                    <rich:column colspan="2">
+		                    <rich:column >
 		                        <h:outputText value="cena" />
 		                    </rich:column>
-		                    <rich:column/>
 		            	</rich:columnGroup>
 		            </f:facet>
 					<rich:column>
@@ -217,7 +216,7 @@
 					<rich:column>
 						<h:outputText value="#{treat.diagnosis}"></h:outputText>
 					</rich:column>
-					<rich:column colspan="3">
+					<rich:column colspan="2">
 		                
 					<!-- 	<rich:collapsibleSubTableToggler for="sbtbl" />
                 		<h:outputText value="Zobrazit" /> -->
@@ -312,7 +311,94 @@
 				</h:panelGrid>
 				</a4j:region>
 				
-				</rich:collapsiblePanel>
+			</rich:collapsiblePanel>
+			
+			<rich:collapsiblePanel header="Terminy" switchType="client">
+	            <h:graphicImage value="/images/icons/common/rf.png" style="float:right" alt="rf" />
+	            
+	            <h:panelGrid columns="2">
+				<rich:dataTable value="#{cardBean.card.appoints}" 
+								binding="#{appointmentBean.listTable}"
+								var="appointment" id="appointTable">
+						<f:facet name="noData">
+			                Nothing found
+			            </f:facet>
+			            <rich:column filter="#{appointmentFilterBean.filterDate}" sortBy="#{appointment.date}" sortOrder="ascending">
+			                <f:facet name="header">
+			                    <h:panelGroup>
+			                        <h:outputText value="Datum " />
+			                        <h:inputText value="#{appointmentFilterBean.dateFilter}">
+			 							<f:convertDateTime pattern="dd.MM.yyyy"></f:convertDateTime>
+			                            <a4j:ajax event="blur" render="apointTable" execute="@this" />
+			                        </h:inputText>
+			                    </h:panelGroup>
+			                </f:facet>
+			                <h:outputText value="#{appointment.date}">
+			                	<f:convertDateTime pattern="dd.MM.yyyy"></f:convertDateTime>
+			                </h:outputText>
+			            </rich:column>
+			            <rich:column>
+			                <f:facet name="header">
+			                    <h:panelGroup>
+			                        <h:outputText value="Jméno pacienta" />
+			                    </h:panelGroup>
+			                </f:facet>
+			                <h:outputText value="#{appointment.patient.name}"></h:outputText>
+			            </rich:column>
+			            <rich:column>
+			                <f:facet name="header">
+			                    <h:panelGroup>
+			                        <h:outputText value="Příjmení" />
+			                    </h:panelGroup>
+			                </f:facet>
+			                <h:outputText value="#{appointment.patient.surname}"></h:outputText>
+			            </rich:column>
+			            <rich:column filter="#{appointmentFilterBean.acceptFilterImpl}">
+			                <f:facet name="header">
+			                    <h:panelGroup>
+			                        <h:outputText value="Potvrzeno " />
+			 						<h:inputText value="#{appointmentFilterBean.acceptFilter}">
+			 							<f:converter converterId="booleanConverter"></f:converter>
+			                            <a4j:ajax render="apointTable" execute="@this" event="blur" />
+			                        </h:inputText>
+			                    </h:panelGroup>
+			                </f:facet>
+			                <h:outputText value="Potvrzeno" rendered="#{appointment.accepted}"></h:outputText>
+			                <h:outputText value="Nepotvrzeno" rendered="#{appointment.accepted eq false}"></h:outputText>
+			            </rich:column>
+			            <rich:column>
+			                <h:commandLink action="#{appointmentBean.actionAccept}" value="Přijmout" rendered="#{appointment.accepted eq false}"></h:commandLink>
+			                <h:commandLink action="#{appointmentBean.actionReject}" value="Odmítnout" rendered="#{appointment.accepted}"></h:commandLink>
+			            </rich:column>
+			            <rich:column>
+			                <h:commandLink action="#{appointmentBean.actionRemove}" value="Zrušit"></h:commandLink>
+			            </rich:column>
+				</rich:dataTable>
+				
+				<h:panelGrid>
+					<a4j:outputPanel>
+						<rich:calendar styleClass="rf-cal" datePattern="yyyy-MM-dd" cellWidth="24px" cellHeight="22px"
+						style="width:200px" value="#{appointmentBean.date}" >
+							<a4j:ajax event="change" ajaxSingle="true" render="box"/>
+						</rich:calendar>
+					</a4j:outputPanel>
+					<rich:dataTable value="#{appointmentBean.freeAppointments}" var="appointement" binding="#{appointmentBean.freeTable}">
+						<rich:column>
+							<f:facet name="header">
+			                    <h:outputText value="Termín"/>
+			                </f:facet>
+							<h:outputText value="#{appointement}"></h:outputText>
+						</rich:column>
+						<rich:column>
+							<f:facet name="header">
+			                    <h:outputText value="Zapsat"/>
+			                </f:facet>
+							<h:commandLink value="[X]" action="#{appointmentBean.actionSubmit(appointement, cardBean.card.account.user)}" />
+						</rich:column>
+					</rich:dataTable>
+				</h:panelGrid>
+				</h:panelGrid>
+			</rich:collapsiblePanel>
 			
 			</rich:panel>
 			
