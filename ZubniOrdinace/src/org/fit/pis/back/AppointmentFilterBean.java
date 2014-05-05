@@ -3,13 +3,13 @@ package org.fit.pis.back;
 import java.io.Serializable;
 import java.util.Date;
 
+import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 import org.richfaces.model.Filter;
-
 import org.fit.pis.data.Appointment;
 
 @ManagedBean
@@ -19,7 +19,12 @@ public class AppointmentFilterBean implements Serializable {
     private Boolean acceptFilter;
 	@Temporal(TemporalType.DATE)
 	private Date dateFilter;
- 
+	
+	@PostConstruct
+	public void init() {
+		dateFilter = new Date();
+	}
+	
     public Filter<?> getAcceptFilterImpl() {
         return new Filter<Appointment>() {
             public boolean accept(Appointment item) {
