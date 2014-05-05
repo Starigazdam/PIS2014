@@ -20,12 +20,19 @@ public class Tooth {
 	@Id @GeneratedValue(strategy = IDENTITY)
 	private long id;
 	
-	private int state;
+	private String state;
 	private int position;
 	
 	@ManyToOne(fetch=EAGER)
 	private Card patient;
 
+	public Tooth() {
+	}
+	
+	public Tooth(int pos) {
+		this.position = pos;
+	}
+	
 	public long getId() {
 		return id;
 	}
@@ -34,11 +41,11 @@ public class Tooth {
 		this.id = id;
 	}
 
-	public int getState() {
+	public String getState() {
 		return state;
 	}
 
-	public void setState(int state) {
+	public void setState(String state) {
 		this.state = state;
 	}
 

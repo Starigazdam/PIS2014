@@ -172,6 +172,22 @@
 				</h:commandButton>
 				
 				</rich:collapsiblePanel>
+				<rich:collapsiblePanel header="Zuby" switchType="client">
+	            <h:graphicImage value="/images/icons/common/rf.png" style="float:right" alt="rf" />
+	            <center>
+	            <h:panelGrid columns="1">	
+	            	<ui:param name="max" value="16"/>
+	            	<ui:repeat var="i" value="#{cardBean.card.toothChart}" size="#{max}" >
+						<h:inputText value="#{i.state}" size="5" style="text-align:center"></h:inputText>
+					</ui:repeat>
+					<br />
+					<ui:param name="max" value="32"/>
+	            	<ui:repeat var="i" value="#{cardBean.card.toothChart}" offset="16" size="#{max}" >
+						<h:inputText value="#{i.state}" size="5" style="text-align:center"></h:inputText>
+					</ui:repeat>
+					</h:panelGrid>
+					</center>
+				</rich:collapsiblePanel>
 				
 				<rich:collapsiblePanel header="Výkony" switchType="client">
 	            <h:graphicImage value="/images/icons/common/rf.png" style="float:right" alt="rf" />

@@ -61,6 +61,12 @@ public class Card {
 		hazards		= new Vector<Hazard>();
 		meds		= new Vector<Dosage>();
 		treatmentHistory = new Vector<Treatment>();
+		
+		for(int i = 1; i <= 32; i++) {
+			Tooth t = new Tooth(i);
+			t.setPatient(this);
+			toothChart.add(t);
+		}
 	}
 	
 	public Date getbirthDate() {
