@@ -44,15 +44,32 @@
 					
 				<h:outputLabel />
 			</h:panelGrid>
-			<h:panelGrid columns="3">
-				<a4j:commandButton action="#{cardBean.actionProcNew}" value="Přidat zakrok"
-					render="newproccode newproccost"
-					oncomplete="#{rich:component('popupnewproc')}.show()">
+			
+			<a4j:region>
+			<h:panelGrid columns="2">
+				
+				<h:outputLabel value="Typ" rendered="true" />
+				<rich:select  id="newproccode" value="#{cardBean.proc.code}" required="true" enableManualInput="true" defaultLabel="start typing for select">
+                	<f:selectItems value="#{procedureCodeBean.codes}" var="g" 
+    					itemValue="#{g}" itemLabel="#{g.label}"/>
+            	</rich:select>
+				<h:outputLabel value="Cena" rendered="true" />
+				<h:inputText id="newproccost" value="#{cardBean.proc.cost}" required="true" />	
+				<a4j:commandButton action="#{cardBean.actionProcAddNew}" value="Přidat zakrok"
+					render="procTable">
 				</a4j:commandButton>
+				<h:outputLabel />
+
+			</h:panelGrid>
+			</a4j:region>
+			
+
+			<h:panelGrid columns="2">
 				<h:commandButton action="#{cardBean.actionTreatAdd}" value="Vložit"/>
 				<h:commandButton action="cancel" value="Storno" immediate="true"/>				
 
 			</h:panelGrid>
+
 		</h:form>
 		
 		<rich:popupPanel id="popupnewproc" modal="true" resizeable="true">
@@ -64,15 +81,11 @@
 	                X
 	            </h:outputLink>
 	        </f:facet>
+	        <a4j:region>
 	        <h:form id="newprocform">
-				<rich:select  id="newproccode" value="#{cardBean.proc.code}" required="true" enableManualInput="true" defaultLabel="start typing for select">
-                	<f:selectItems value="#{procedureCodeBean.codes}" var="g" 
-    					itemValue="#{g}" itemLabel="#{g.label}"/>
-            	</rich:select>
-				<h:inputText id="newproccost" value="#{cardBean.proc.cost}" required="true">
-				</h:inputText>
+				
 				<a4j:commandButton 	value="Hotovo" execute="@this"  
-                   				   	render="procTable"  
+                   				   	render="procTable typ text"  
                    					action="#{cardBean.actionProcAdd}"
                    					onclick="#{rich:component('popupnewproc')}.hide(); return false;}">  
                	</a4j:commandButton>
@@ -81,6 +94,7 @@
                						onclick="#{rich:component('popupnewproc')}.hide(); return false;}">
                 </a4j:commandButton>
 			</h:form>
+			</a4j:region>
 	    </rich:popupPanel>	
 	    
 	</ui:define>

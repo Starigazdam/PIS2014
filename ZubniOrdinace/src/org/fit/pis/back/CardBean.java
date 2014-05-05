@@ -237,6 +237,14 @@ public class CardBean {
 		card.getTreatmentHistory().remove(selected);
 		return "treatdel";
 	}
+
+	public String actionProcAddNew() {
+		proc.setTreatment(treat);
+		proc.setName(proc.getCode().name());
+		treat.getProcedures().add(proc);
+		proc = new Procedure();
+		return "addproc";
+	}
 	
 	public String actionProcNew() {
 		proc = new Procedure();
