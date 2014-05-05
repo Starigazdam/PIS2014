@@ -20,15 +20,42 @@ public class Tooth {
 	@Id @GeneratedValue(strategy = IDENTITY)
 	private long id;
 	
-	@Temporal(TemporalType.DATE)
-	private Date startDate;
-	@Temporal(TemporalType.DATE)
-	private Date endDate;
-	
 	private int state;
 	private int position;
 	
 	@ManyToOne(fetch=EAGER)
 	private Card patient;
+
+	public long getId() {
+		return id;
+	}
+
+	public void setId(long id) {
+		this.id = id;
+	}
+
+	public int getState() {
+		return state;
+	}
+
+	public void setState(int state) {
+		this.state = state;
+	}
+
+	public int getPosition() {
+		return position;
+	}
+
+	public void setPosition(int position) {
+		this.position = position;
+	}
+
+	public Card getPatient() {
+		return patient;
+	}
+
+	public void setPatient(Card patient) {
+		this.patient = patient;
+	}
 
 }
