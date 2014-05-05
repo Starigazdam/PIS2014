@@ -33,7 +33,35 @@
 				</h:inputText>
 				<h:commandButton value="Generovat" action="#{openDayBean.genDays}"></h:commandButton>
 	    	</h:panelGrid>
-
+			<rich:dataTable value="#{openDayBean.openingDays}" var="day" binding="#{openDayBean.listTable}" id="daytable">
+				<rich:column sortBy="#{day.date}" sortOrder="ascending">
+					<f:facet name="header">
+	                    <h:outputText value="Den"/>
+	                </f:facet>
+					<h:outputText value="#{day.date}">
+					<f:convertDateTime pattern="dd.MM.yyyy"></f:convertDateTime> 
+					</h:outputText>
+				</rich:column>
+				<rich:column>
+					<f:facet name="header">
+	                    <h:outputText value="Od"/>
+	                </f:facet>
+					<h:outputText value="#{day.pubOpenHour.startTime}">
+					<f:convertDateTime pattern="hh:mm"></f:convertDateTime>
+					</h:outputText>
+				</rich:column>
+				<rich:column>
+					<f:facet name="header">
+	                    <h:outputText value="Do"/>
+	                </f:facet>
+					<h:outputText value="#{day.pubOpenHour.endTime}">
+						<f:convertDateTime pattern="hh:mm"></f:convertDateTime>
+					</h:outputText>
+				</rich:column>
+				<rich:column>
+                	<h:commandLink action="#{openDayBean.actionDelete}" value="Zrušit"></h:commandLink>
+            	</rich:column>
+			</rich:dataTable>
 	    </h:form>
 	</ui:define>
 </ui:composition>

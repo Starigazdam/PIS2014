@@ -30,7 +30,7 @@ public class Card {
 	private Date regDate;
 	
 	private boolean	regState;
-	private long phoneNumber;
+	private Long phoneNumber;
 	private String email;
 	private String name;
 	private String surname;
@@ -87,10 +87,10 @@ public class Card {
 	public void setid(long id) {
 		this.id = id;
 	}
-	public long getPhoneNumber() {
+	public Long getPhoneNumber() {
 		return phoneNumber;
 	}
-	public void setPhoneNumber(long phoneNumber) {
+	public void setPhoneNumber(Long phoneNumber) {
 		this.phoneNumber = phoneNumber;
 	}
 	public String getEmail() {

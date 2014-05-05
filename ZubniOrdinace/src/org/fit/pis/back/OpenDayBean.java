@@ -13,6 +13,7 @@ import javax.persistence.TemporalType;
 import org.fit.pis.data.OpeningDay;
 import org.fit.pis.data.PublicOpeningHours;
 import org.fit.pis.service.OpeningDayManager;
+import org.fit.pis.service.PublicOpeningHoursManager;
 import org.richfaces.component.UIDataTable;
 
 @ManagedBean
@@ -24,6 +25,8 @@ public class OpenDayBean {
 	private Date endDay;
     @EJB
     private OpeningDayManager odMgr;
+    @EJB
+    private PublicOpeningHoursManager pohMgr;
     private int startHour;
     private int endHour;
     private UIDataTable listTable;
@@ -82,6 +85,10 @@ public class OpenDayBean {
     	calend.set(Calendar.HOUR_OF_DAY, endHour);
     	while(calst.compareTo(calend) < 0) {
     		OpeningDay day = new OpeningDay();
+    		if(odMgr.find(calst.getTime()) != null) {
+        		calst.add(Calendar.DAY_OF_YEAR, 1);
+    			continue;
+    		}
     		day.setDate(calst.getTime());
     		PublicOpeningHours poh = new PublicOpeningHours();
     		poh.setStartTime(calst.getTime());
@@ -91,5 +98,12 @@ public class OpenDayBean {
     		odMgr.save(day);
     		calst.add(Calendar.DAY_OF_YEAR, 1);
     	}
+    }
+    
+    public void actionDelete() {
+    	OpeningDay d = (OpeningDay) listTable.getRowData();
+    	PublicOpeningHours h = d.getPubOpenHour();
+    	pohMgr.remove(h);
+    	odMgr.remove(d);
     }
 }
