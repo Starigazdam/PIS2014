@@ -49,7 +49,7 @@
 		                    <h:outputText value="Termín"/>
 		                </f:facet>
 						<h:outputText value="#{appointement.date}">
-							
+							<f:convertDateTime pattern="dd.MM.yyyy HH:mm" />
 						</h:outputText>
 					</rich:column>
 					<rich:column>
