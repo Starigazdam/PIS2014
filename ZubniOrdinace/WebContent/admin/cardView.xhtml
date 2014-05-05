@@ -32,7 +32,10 @@
 					<h:outputText/>
 					
 					<h:outputLabel rendered="true" value="Jméno*"></h:outputLabel>
-					<h:inputText id="name" value="#{cardBean.card.name}">
+					<h:inputText id="name" value="#{cardBean.card.name}"
+					requiredMessage="Jmeno neni zadano"
+					validatorMessage="Zle zadane jmeno"
+					converterMessage="Zle zadane jmeno">
 						<f:validateLength minimum="2" maximum="80" />
 						 <f:validateRequired />
 						<rich:validator />
@@ -40,7 +43,10 @@
 					<rich:message for="name"/>
 					
 					<h:outputLabel rendered="true" value="Příjmení*"></h:outputLabel>
-					<h:inputText value="#{cardBean.card.surname}" id="surname">
+					<h:inputText value="#{cardBean.card.surname}" id="surname"
+					requiredMessage="Prijmeni neni zadano"
+					validatorMessage="Zle zadane prijmeni"
+					converterMessage="Zle zadane Prijmeni">
 						<f:validateLength minimum="2" maximum="80" />
 						 <f:validateRequired />
 						<rich:validator />
@@ -48,7 +54,10 @@
 					<rich:message for="surname"/>
 					
 					<h:outputLabel rendered="true" value="Datum narození(dd.mm.yyyy)*"></h:outputLabel>
-					<h:inputText id="birth" value="#{cardBean.card.birthDate}">
+					<h:inputText id="birth" value="#{cardBean.card.birthDate}"
+					requiredMessage="Datum narozeni neni zadan"
+					validatorMessage="Zle zadan datum narozeni"
+					converterMessage="Zle zadan datum narozeni">
 						<f:validateLength minimum="8" />
 						<f:convertDateTime pattern="dd.MM.yyyy"/>
 						<f:validateRequired />
