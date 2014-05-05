@@ -1,0 +1,57 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:rich="http://richfaces.org/rich">
+
+<ui:composition template="../admin_template.xhtml">
+	<ui:define name="content">
+		<h:form>
+			<h:panelGrid columns="3">
+				<h:outputText value="Od "></h:outputText>
+			    	<rich:calendar id="calendar_od" required="true" requiredMessage="Datum od neni zadan" styleClass="rf-cal" datePattern="dd.MM.yyyy" cellWidth="24px" cellHeight="22px"
+						value="#{cardBean.dosage.startDate}" >
+						<rich:validator />
+					</rich:calendar>
+				<rich:message for="calendar_od"/>
+				<h:outputText value="Do "></h:outputText>
+					<rich:calendar id="calendar_do" required="true" requiredMessage="Datum do neni zadan" styleClass="rf-cal" datePattern="dd.MM.yyyy" cellWidth="24px" cellHeight="22px"
+						value="#{cardBean.dosage.endDate}" >
+						<rich:validator />
+					</rich:calendar>	
+				<rich:message for="calendar_do"/>
+				<h:outputLabel rendered="true" value="Lek"></h:outputLabel>
+						<h:inputText id="lek" value="#{cardBean.dosage.med.name}">
+							<f:validateLength minimum="2" maximum="80" />
+						 	<f:validateRequired />
+							<rich:validator />
+						</h:inputText>
+				<rich:message for="lek"/>					
+				<h:outputLabel rendered="true" value="Davkovani"></h:outputLabel>
+				<h:inputText id="davkovani" value="#{cardBean.dosage.dosage}" required="true">
+					<f:validateLongRange minimum="2" maximum="1000"/>
+					<rich:validator/>
+				</h:inputText>
+				<rich:message for="davkovani"/>
+				<h:outputLabel rendered="true" value="Poznamka"></h:outputLabel>
+				<h:inputTextarea id="poznamka" value="#{cardBean.dosage.note}" required="false">
+					<f:validateLength minimum="0" maximum="1000"/>
+					<rich:validator/>
+				</h:inputTextarea>
+				<rich:message for="poznamka"/>
+					
+				<h:commandButton action="#{cardBean.actionDosageAdd}" value="Vložit">
+				</h:commandButton>
+				<h:commandButton action="cancel" value="Storno" immediate="true">
+				</h:commandButton>
+				
+			</h:panelGrid>
+		</h:form>
+	    
+	</ui:define>
+</ui:composition>
+</html>

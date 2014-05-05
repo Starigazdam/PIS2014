@@ -8,8 +8,10 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 
 import org.fit.pis.data.Card;
+import org.fit.pis.data.Dosage;
 import org.fit.pis.data.Examination;
 import org.fit.pis.data.Illness;
+import org.fit.pis.data.Medicine;
 import org.fit.pis.data.Procedure;
 import org.fit.pis.data.Treatment;
 import org.fit.pis.service.CardManager;
@@ -25,12 +27,22 @@ public class CardBean {
 	private Treatment treat;
 	private Procedure proc;
 	private Examination exam;
+	private Dosage dosage;
 
 	private UIDataTable listTable;
 	private UIDataTable proclistTable;
 	private UIDataTable treatlistTable;
 	private UIDataTable illnesslistTable;
 	private UIDataTable examlistTable;
+	private UIDataTable dosagelistTable;
+
+	public Dosage getDosage() {
+		return dosage;
+	}
+
+	public void setDosage(Dosage dosage) {
+		this.dosage = dosage;
+	}
 
 	public CardBean() {
 		card = new Card();
@@ -122,6 +134,14 @@ public class CardBean {
 
 	public void setExamlistTable(UIDataTable examlistTable) {
 		this.examlistTable = examlistTable;
+	}
+	
+	public UIDataTable getdosagelistTable() {
+		return dosagelistTable;
+	}
+
+	public void setdosagelistTable(UIDataTable dosagelistTable) {
+		this.dosagelistTable = dosagelistTable;
 	}
 	
 	// ====================================
@@ -231,5 +251,29 @@ public class CardBean {
         card.getExtExams().add(exam);
         exam = new Examination();
         return "ok";
+	}
+	
+	public String actionDosageNew() {
+		dosage = new Dosage();
+		dosage.setMed(new Medicine());
+		return "newdosage";
+	}
+	
+	public String actionDosageAdd() {
+		dosage.setPatient(card);
+		card.getMeds().add(dosage);
+		return "dosageadd";
+	}
+	
+	public String actionDosageDelete() {
+		Dosage selected = ((Dosage) dosagelistTable.getRowData());
+		card.getMeds().remove(selected);
+		return "dosagedel";
+	}
+
+	public String actionProcDelete() {
+		Procedure selected = ((Procedure) proclistTable.getRowData());
+		selected.getTreatment().getProcedures().remove(selected);
+		return "procdel";
 	}
 }

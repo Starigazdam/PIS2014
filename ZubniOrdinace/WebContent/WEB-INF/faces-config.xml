@@ -201,4 +201,31 @@
 			<to-view-id>/admin/manage_accounts.xhtml</to-view-id>
 		</navigation-case>
 	</navigation-rule>
+	<navigation-rule>
+		<display-name>admin/addDosage.xhtml</display-name>
+		<from-view-id>/admin/addDosage.xhtml</from-view-id>
+		<navigation-case>
+			<from-outcome>dosageadd</from-outcome>
+			<to-view-id>/admin/cardView.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+	</navigation-rule>
+	<navigation-rule>
+		<display-name>admin/cardView.xhtml</display-name>
+		<from-view-id>/admin/cardView.xhtml</from-view-id>
+		<navigation-case>
+			<from-outcome>newdosage</from-outcome>
+			<to-view-id>/admin/addDosage.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+	</navigation-rule>
+	<navigation-rule>
+		<display-name>admin/addDosage.xhtml</display-name>
+		<from-view-id>/admin/addDosage.xhtml</from-view-id>
+		<navigation-case>
+			<from-outcome>cancel</from-outcome>
+			<to-view-id>/admin/cardView.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+	</navigation-rule>
 </faces-config>

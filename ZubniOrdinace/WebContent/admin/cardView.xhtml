@@ -23,6 +23,7 @@
 	                </h:panelGroup>
 	            </f:facet>
 	            
+	            
 				<h:panelGrid columns="3">
 					<h:outputLabel rendered="true" value="RČ"></h:outputLabel>
 					<h:outputText value="#{cardBean.card.id}" required="true"></h:outputText>
@@ -107,6 +108,68 @@
 										render="illTable illdsc"/>
 				</h:panelGrid>
 				
+				</rich:collapsiblePanel>
+		
+				<rich:collapsiblePanel header="Leciva" switchType="client">
+	            <h:graphicImage value="/images/icons/common/rf.png" style="float:right" alt="rf" />
+	            
+				<rich:dataTable value="#{cardBean.card.meds}" 
+								binding="#{cardBean.dosagelistTable}"
+								var="dosage" 
+								id="dosageTable">
+					 <f:facet name="header">
+		                <rich:columnGroup>
+		                    <rich:column colspan="2">
+		                        <h:outputText value="Datum" />
+		                    </rich:column>
+		                    <rich:column rowspan="2">
+		                        <h:outputText value="Davkovani" />
+		                    </rich:column>
+		                    <rich:column rowspan="2">
+		                        <h:outputText value="Lecivo" />
+		                    </rich:column>
+		                    <rich:column rowspan="2">
+		                        <h:outputText value="Poznamka" />
+		                    </rich:column>
+		                     <rich:column rowspan="2">
+		                        <h:outputText/>
+		                    </rich:column>
+		                    <rich:column breakRowBefore="true">
+		                        <h:outputText value="Od" />
+		                    </rich:column>
+		                    <rich:column>
+		                        <h:outputText value="Do" />
+		                    </rich:column>
+		            	</rich:columnGroup>
+		            </f:facet>
+					<rich:column>
+						<h:outputText value="#{dosage.startDate}">
+							<f:convertDateTime pattern="dd.MM.yyyy"/> <!-- TODO: date not correct -->
+						</h:outputText>
+					</rich:column>
+					<rich:column>
+						<h:outputText value="#{dosage.endDate}">
+							<f:convertDateTime pattern="dd.MM.yyyy"/> <!-- TODO: date not correct -->
+						</h:outputText>
+					</rich:column>
+					<rich:column>
+						<h:outputText value="#{dosage.med.name}"></h:outputText>
+					</rich:column>
+					<rich:column>
+						<h:outputText value="#{dosage.dosage}"></h:outputText>
+					</rich:column>
+					<rich:column>
+						<h:outputText value="#{dosage.note}"></h:outputText>
+					</rich:column>	    
+					<rich:column>
+						<h:commandLink action="#{cardBean.actionDosageDelete}">
+							<h:outputText value="Odstranit"></h:outputText>
+						</h:commandLink>
+					</rich:column>
+				</rich:dataTable>
+				
+				<h:commandButton action="#{cardBean.actionDosageNew}" value="Přidat">
+				</h:commandButton>
 				
 				</rich:collapsiblePanel>
 				
@@ -128,7 +191,7 @@
 		                    <rich:column rowspan="2">
 		                        <h:outputText value="Popis" />
 		                    </rich:column>		                    
-		                    <rich:column colspan="2">
+		                    <rich:column colspan="3">
 		                        <h:outputText value="Zakroky" />
 		                    </rich:column>
 		                    <rich:column rowspan="2">
@@ -137,10 +200,10 @@
 		                    <rich:column breakRowBefore="true">
 		                        <h:outputText value="Kod" />
 		                    </rich:column>
-		                    <rich:column>
+		                    <rich:column colspan="2">
 		                        <h:outputText value="cena" />
 		                    </rich:column>
-		                    
+		                    <rich:column/>
 		            	</rich:columnGroup>
 		            </f:facet>
 					<rich:column>
@@ -154,7 +217,7 @@
 					<rich:column>
 						<h:outputText value="#{treat.diagnosis}"></h:outputText>
 					</rich:column>
-					<rich:column colspan="2">
+					<rich:column colspan="3">
 		                
 					<!-- 	<rich:collapsibleSubTableToggler for="sbtbl" />
                 		<h:outputText value="Zobrazit" /> -->
@@ -166,6 +229,11 @@
 			                <rich:column>
 			                    <h:outputText value="#{proc.cost}" />
 			                </rich:column>	
+			                <rich:column>
+								<h:commandLink action="#{cardBean.actionProcDelete}">
+									<h:outputText value="[x]"></h:outputText>
+								</h:commandLink>
+							</rich:column>
 					</h:dataTable>
 						
 					</rich:column>	
