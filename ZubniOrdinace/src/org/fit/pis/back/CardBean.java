@@ -290,21 +290,24 @@ public class CardBean {
 		return "procdel";
 	}
 	
-	public void actionTermRemove() {
+	public String actionTermRemove() {
         Appointment app = ((Appointment) termlistTable.getRowData());
         card.getAppoints().remove(app);
+        return "";
 	}
 	
-	public void actionTermAccept() {		
+	public String actionTermAccept() {		
 		Appointment appoint = ((Appointment) termlistTable.getRowData());
 		appoint.setAccepted(true);
 		appMgr.save(appoint);
+		return "";
 	}
 
-	public void actionTermReject() {
+	public String actionTermReject() {
 		Appointment appoint = ((Appointment) termlistTable.getRowData());
 		appoint.setAccepted(false);
 		appMgr.save(appoint);
+		return "";
 	}
 
 }

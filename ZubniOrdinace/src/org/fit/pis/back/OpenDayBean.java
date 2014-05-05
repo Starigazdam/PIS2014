@@ -76,8 +76,8 @@ public class OpenDayBean {
     	return odMgr.findAll();
     }
     //=======================
-    public void genDays() {
-    	if(startHour >= endHour) return;
+    public String genDays() {
+    	if(startHour >= endHour) return "";
     	
     	Calendar calst = Calendar.getInstance();
     	Calendar calend = Calendar.getInstance();
@@ -88,7 +88,7 @@ public class OpenDayBean {
     	calend.set(Calendar.HOUR_OF_DAY, endHour);
     	calend.set(Calendar.ZONE_OFFSET, -3600000);
     	if (calst.before(Calendar.getInstance()))
-    		return;
+    		return "";
     	while(calst.compareTo(calend) < 0) {
     		OpeningDay day = new OpeningDay();
     		if(odMgr.find(calst.getTime()) != null) {
@@ -105,12 +105,14 @@ public class OpenDayBean {
     		odMgr.save(day);
     		calst.add(Calendar.DAY_OF_YEAR, 1);
     	}
+    	return "";
     }
     
-    public void actionDelete() {
+    public String actionDelete() {
     	OpeningDay d = (OpeningDay) listTable.getRowData();
     	PublicOpeningHours h = d.getPubOpenHour();
     	pohMgr.remove(h);
     	odMgr.remove(d);
+    	return "";
     }
 }
