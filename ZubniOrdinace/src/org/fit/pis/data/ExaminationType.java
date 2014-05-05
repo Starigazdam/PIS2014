@@ -3,8 +3,8 @@ package org.fit.pis.data;
 public enum ExaminationType {
 	// TODO: neco...
 	UNSPEC("nespecif."),
-	USNI("ustni"), 
-	KRCNI("krci"), 
+	USNI("usni"), 
+	KRCNI("krcni"), 
 	UROLOGICKE("urologicke"), 
 	ORNITOLOGICKE("ornitologicke"), 
 	CEVNI("cevni");
