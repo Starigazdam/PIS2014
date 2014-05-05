@@ -26,7 +26,9 @@
 	            
 				<h:panelGrid columns="3">
 					<h:outputLabel rendered="true" value="RČ"></h:outputLabel>
-					<h:outputText value="#{cardBean.card.id}" required="true"></h:outputText>
+					<h:outputText value="#{cardBean.card.id}" required="true">
+						<f:converter converterId="idConverter"/>
+					</h:outputText>
 					<h:outputText/>
 					
 					<h:outputLabel rendered="true" value="Jméno*"></h:outputLabel>
