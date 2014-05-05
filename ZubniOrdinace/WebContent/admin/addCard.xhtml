@@ -4,38 +4,52 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:h="http://java.sun.com/jsf/html"
-	xmlns:f="http://java.sun.com/jsf/core">
+	xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:rich="http://richfaces.org/rich">
 
 <ui:composition template="../admin_template.xhtml">
 	<ui:define name="content">
 		<h:form>
-			<h:messages layout="table"></h:messages>
-			<h:panelGrid columns="2">
+			<rich:messages layout="table"></rich:messages>
+			<h:panelGrid columns="3">
 				<h:outputLabel rendered="true" value="Jméno"></h:outputLabel>
 				<h:inputText value="#{cardBean.card.name}" required="true"
 					requiredMessage="Name is required"
 					validatorMessage="Invalid name">
 					<f:validateLength minimum="2" maximum="80" />
 				</h:inputText>
+				<h:outputLabel rendered="true" value="*" style="color: #FF0000"></h:outputLabel>
 				<h:outputLabel rendered="true" value="Příjmení"></h:outputLabel>
-				<h:inputText value="#{cardBean.card.surname}" required="true">
+				<h:inputText value="#{cardBean.card.surname}" required="true"
+					requiredMessage="Surname is required"
+					validatorMessage="Invalid surname">
 					<f:validateLength minimum="2" maximum="80"/>
 				</h:inputText>
+				<h:outputLabel rendered="true" value="*" style="color: #FF0000"></h:outputLabel>
 				<h:outputLabel rendered="true" value="RČ"></h:outputLabel>
-				<h:inputText value="#{cardBean.card.id}" required="true">
-					<f:converter converterId="idConverter"/>
+				<h:inputText value="#{cardBean.card.id}" required="true"
+					requiredMessage="Birth id is required"
+					validatorMessage="Invalid birth id"
+					converterMessage="Enter birth id in format dddddd/dddd">
+                    <f:converter converterId="idConverter"/>
 				</h:inputText>
-				<h:outputLabel rendered="true" value="Datum narození(dd.mm.yyyy)"></h:outputLabel>
-				<h:inputText value="#{cardBean.card.birthDate}" required="true">
-					<f:validateLength minimum="8" />
+				<h:outputLabel rendered="true" value="*" style="color: #FF0000" />
+				<h:outputLabel rendered="true" value="Datum narození(dd.mm.yyyy)" />
+				<h:inputText value="#{cardBean.card.birthDate}" required="true"
+					requiredMessage="Birth date is required"
+					validatorMessage="Invalid birth date"
+					converterMessage="Enter birth date in format dd.MM.yyyy">
 					<f:convertDateTime pattern="dd.MM.yyyy"/>
 				</h:inputText>
+				<h:outputLabel rendered="true" value="*" style="color: #FF0000"></h:outputLabel>
 				<h:outputLabel rendered="true" value="Telefon"></h:outputLabel>
 				<h:inputText value="#{cardBean.card.phoneNumber}" required="false">
 				</h:inputText>
+				<h:outputLabel rendered="true" value="" style="color: #FF0000"></h:outputLabel>
 				<h:outputLabel rendered="true" value="Email"></h:outputLabel>
 				<h:inputText value="#{cardBean.card.email}" required="false">
 				</h:inputText>
+				<h:outputLabel rendered="true" value="" style="color: #FF0000"></h:outputLabel>
 				<h:commandButton action="#{cardBean.actionInsertNew}" value="Vložit">
 				</h:commandButton>
 			</h:panelGrid>
