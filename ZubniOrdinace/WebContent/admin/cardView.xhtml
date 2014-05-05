@@ -222,7 +222,8 @@
 					<!-- 	<rich:collapsibleSubTableToggler for="sbtbl" />
                 		<h:outputText value="Zobrazit" /> -->
 						
-					<h:dataTable style="padding:0" value="#{treat.procedures}" var="proc">	
+					<rich:dataTable style="padding:0" value="#{treat.procedures}" 
+								binding="#{cardBean.proclistTable}" var="proc">	
 							<rich:column>
 			                    <h:outputText value="#{proc.name}" />
 			                </rich:column>
@@ -234,7 +235,7 @@
 									<h:outputText value="[x]"></h:outputText>
 								</h:commandLink>
 							</rich:column>
-					</h:dataTable>
+					</rich:dataTable>
 						
 					</rich:column>	
 					<rich:column>
