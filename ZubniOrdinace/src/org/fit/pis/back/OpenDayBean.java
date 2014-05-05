@@ -86,8 +86,8 @@ public class OpenDayBean {
     		PublicOpeningHours poh = new PublicOpeningHours();
     		poh.setStartTime(calst.getTime());
     		poh.setEndTime(calend.getTime());
-    		day.getPubOpenHour().add(poh);
-    		poh.setOpeningDay(day);
+    		day.setPubOpenHour(poh);
+    		poh.setDay(day);
     		odMgr.save(day);
     		calst.add(Calendar.DAY_OF_YEAR, 1);
     	}

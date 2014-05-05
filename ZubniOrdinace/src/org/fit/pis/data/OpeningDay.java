@@ -1,12 +1,10 @@
 package org.fit.pis.data;
 
-import java.util.Collection;
-																																																																																								import java.util.Date;
-																																																																																								import java.util.Vector;
-																																																																																																																																																																																																																																																																																																																																																																								
+import java.util.Date;
+																																																																																																																																																																																																																																																																																																																																																																																																																																																											
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -17,11 +15,10 @@ public class OpeningDay {
 	@Id @Temporal(TemporalType.DATE)
 	private Date date;
 	
-	@OneToMany(mappedBy = "day")
-	private Collection<PublicOpeningHours> pubOpenHour;
+	@OneToOne(mappedBy = "day")
+	private PublicOpeningHours pubOpenHour;
 	
 	public OpeningDay() {
-		pubOpenHour = new Vector<PublicOpeningHours>();
 	}
 	
 	public Date getDate() {
@@ -32,7 +29,11 @@ public class OpeningDay {
 		this.date = d;
 	}
 	
-	public Collection<PublicOpeningHours> getPubOpenHour() {
+	public PublicOpeningHours getPubOpenHour() {
 		return this.pubOpenHour;
+	}
+	
+	public void setPubOpenHour(PublicOpeningHours poh) {
+		this.pubOpenHour = poh;
 	}
 }
