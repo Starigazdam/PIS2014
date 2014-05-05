@@ -393,7 +393,7 @@
 							<f:facet name="header">
 			                    <h:outputText value="Zapsat"/>
 			                </f:facet>
-							<h:commandLink value="[X]" action="#{appointmentBean.actionSubmit(appoint, cardBean.card)}" />
+							<h:commandLink value="[X]" action="#{appointmentBean.actionSubmit(appoint, cardBean.card.account.user)}" />
 						</rich:column>
 					</rich:dataTable>
 				</h:panelGrid>
