@@ -3,6 +3,7 @@ package org.fit.pis.back;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
+import java.util.TimeZone;
 
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
@@ -80,9 +81,11 @@ public class OpenDayBean {
     	Calendar calst = Calendar.getInstance();
     	Calendar calend = Calendar.getInstance();
     	calst.setTime(startDay);
-    	calend.setTime(endDay);
+    	calend.setTime(endDay); 
     	calst.set(Calendar.HOUR_OF_DAY, startHour);
+    	calst.set(Calendar.ZONE_OFFSET, -3600000);
     	calend.set(Calendar.HOUR_OF_DAY, endHour);
+    	calend.set(Calendar.ZONE_OFFSET, -3600000);
     	while(calst.compareTo(calend) < 0) {
     		OpeningDay day = new OpeningDay();
     		if(odMgr.find(calst.getTime()) != null) {
@@ -90,6 +93,7 @@ public class OpenDayBean {
     			continue;
     		}
     		day.setDate(calst.getTime());
+        	calst.set(Calendar.ZONE_OFFSET, -3600000);
     		PublicOpeningHours poh = new PublicOpeningHours();
     		poh.setStartTime(calst.getTime());
     		poh.setEndTime(calend.getTime());
