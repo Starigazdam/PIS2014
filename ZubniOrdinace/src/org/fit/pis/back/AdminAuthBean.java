@@ -71,7 +71,7 @@ public class AdminAuthBean {
         }
         else
         {
-            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Invalid login"));
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Zle prihlasovaci udaje"));
             return "failed";
         }
     }

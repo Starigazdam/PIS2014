@@ -78,6 +78,7 @@ public class OpenDayBean {
     //=======================
     public void genDays() {
     	if(startHour >= endHour) return;
+    	
     	Calendar calst = Calendar.getInstance();
     	Calendar calend = Calendar.getInstance();
     	calst.setTime(startDay);
@@ -86,6 +87,8 @@ public class OpenDayBean {
     	calst.set(Calendar.ZONE_OFFSET, -3600000);
     	calend.set(Calendar.HOUR_OF_DAY, endHour);
     	calend.set(Calendar.ZONE_OFFSET, -3600000);
+    	if (calst.before(Calendar.getInstance()))
+    		return;
     	while(calst.compareTo(calend) < 0) {
     		OpeningDay day = new OpeningDay();
     		if(odMgr.find(calst.getTime()) != null) {
