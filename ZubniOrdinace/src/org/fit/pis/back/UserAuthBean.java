@@ -63,8 +63,7 @@ public class UserAuthBean {
     {
     	PatientAccount temp;
     	temp = (PatientAccount) mng.find(login);
-        //if ((temp != null) && temp.getPassword().equals(password))
-        if(login.equals("user") && password.equals("user"))
+        if ((temp != null) && temp.getPassword().equals(password))
     	{
             authorized = true;
             return "login";
