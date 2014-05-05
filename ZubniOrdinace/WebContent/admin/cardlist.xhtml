@@ -17,7 +17,9 @@
 					<f:facet name="header">
 	                    <h:outputText value="RČ"/>
 	                </f:facet>
-					<h:outputText value="#{card.id}"></h:outputText>
+					<h:outputText value="#{card.id}">
+						<f:converter converterId="idConverter"/>
+					</h:outputText>
 				</rich:column>
 				<rich:column>
 					<f:facet name="header">

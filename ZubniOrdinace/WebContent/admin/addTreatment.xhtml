@@ -11,18 +11,19 @@
 <ui:composition template="../admin_template.xhtml">
 	<ui:define name="content">
 		<h:form>
-			<h:messages layout="table"></h:messages>
-			<h:panelGrid columns="2">
+			<h:panelGrid columns="3">
 				<h:outputLabel rendered="true" value="Typ"></h:outputLabel>
 				<h:inputText value="#{cardBean.treat.type}" required="true"
-					requiredMessage="type is required"
-					validatorMessage="Invalid type">
+					requiredMessage="Nevlozeny typ" id="typ"
+					validatorMessage="Zly typ">
 					<f:validateLength minimum="2" maximum="10"/>
-				</h:inputText>
+				</h:inputText><rich:message for="typ"/>
 				<h:outputLabel rendered="true" value="Diagonoza"></h:outputLabel>
-				<h:inputTextarea value="#{cardBean.treat.diagnosis}" required="true">
+				<h:inputTextarea value="#{cardBean.treat.diagnosis}" required="true"
+					requiredMessage="Nevlozena diagnoza" id="text"
+					validatorMessage="Zla diagnoza">
 					<f:validateLength minimum="2" maximum="30"/>
-				</h:inputTextarea>
+				</h:inputTextarea><rich:message for="text"/>
 				<h:outputLabel rendered="true" value="Zakroky"></h:outputLabel>
 				
 				<rich:dataTable value="#{cardBean.treat.procedures}" var="proc" id="procTable">
@@ -41,15 +42,15 @@
 					</rich:column>
 				</rich:dataTable>
 					
-				<h:commandButton action="#{cardBean.actionTreatAdd}" value="Vložit">
-				</h:commandButton>
-				<h:commandButton action="cancel" value="Storno" immediate="true">
-				</h:commandButton>
-				
+				<h:outputLabel />
+			</h:panelGrid>
+			<h:panelGrid columns="3">
 				<a4j:commandButton action="#{cardBean.actionProcNew}" value="Přidat zakrok"
 					render="newproccode newproccost"
 					oncomplete="#{rich:component('popupnewproc')}.show()">
 				</a4j:commandButton>
+				<h:commandButton action="#{cardBean.actionTreatAdd}" value="Vložit"/>
+				<h:commandButton action="cancel" value="Storno" immediate="true"/>				
 
 			</h:panelGrid>
 		</h:form>
