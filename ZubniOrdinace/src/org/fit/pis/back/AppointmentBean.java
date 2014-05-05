@@ -144,8 +144,9 @@ public class AppointmentBean {
 	public String actionSubmit(Integer i, String user) {
 		Card card = paMgr.find(user).getPatient();
 		Appointment newAppoint = new Appointment();
-		date.setHours(i);
-		newAppoint.setDate(this.date);
+		Date newdate = (Date) date.clone();
+		newdate.setHours(i);
+		newAppoint.setDate(newdate);
 		newAppoint.setPatient(card);
 		newAppoint.setAccepted(false);
 		newAppoint.setOpenday(odMgr.find(this.date));
@@ -157,8 +158,9 @@ public class AppointmentBean {
 	public String actionIDSubmit(Integer i, Long user) {
 		Card card = cMgr.find(user);
 		Appointment newAppoint = new Appointment();
-		date.setHours(i);
-		newAppoint.setDate(this.date);
+		Date newdate = (Date) date.clone();
+		newdate.setHours(i);
+		newAppoint.setDate(newdate);
 		newAppoint.setPatient(card);
 		newAppoint.setAccepted(false);
 		newAppoint.setOpenday(odMgr.find(this.date));
