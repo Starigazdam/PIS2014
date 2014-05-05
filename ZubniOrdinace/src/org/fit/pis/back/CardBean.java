@@ -7,6 +7,7 @@ import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 
+import org.fit.pis.data.Appointment;
 import org.fit.pis.data.Card;
 import org.fit.pis.data.Dosage;
 import org.fit.pis.data.Examination;
@@ -14,6 +15,7 @@ import org.fit.pis.data.Illness;
 import org.fit.pis.data.Medicine;
 import org.fit.pis.data.Procedure;
 import org.fit.pis.data.Treatment;
+import org.fit.pis.service.AppointmentManager;
 import org.fit.pis.service.CardManager;
 import org.richfaces.component.UIDataTable;
 
@@ -22,6 +24,8 @@ import org.richfaces.component.UIDataTable;
 public class CardBean {
 	@EJB
 	private CardManager cardMgr;
+	@EJB
+	private AppointmentManager appMgr;
 	private Card card;
 	private Illness illness; 
 	private Treatment treat;
@@ -35,6 +39,7 @@ public class CardBean {
 	private UIDataTable illnesslistTable;
 	private UIDataTable examlistTable;
 	private UIDataTable dosagelistTable;
+	private UIDataTable termlistTable;
 
 	public Dosage getDosage() {
 		return dosage;
@@ -142,6 +147,14 @@ public class CardBean {
 
 	public void setdosagelistTable(UIDataTable dosagelistTable) {
 		this.dosagelistTable = dosagelistTable;
+	}
+	
+	public UIDataTable getTermlistTable() {
+		return this.termlistTable;
+	}
+	
+	public void setTermlistTable(UIDataTable tlt) {
+		this.termlistTable = tlt;
 	}
 	
 	// ====================================
@@ -276,4 +289,22 @@ public class CardBean {
 		selected.getTreatment().getProcedures().remove(selected);
 		return "procdel";
 	}
+	
+	public void actionTermRemove() {
+        Appointment app = ((Appointment) termlistTable.getRowData());
+        card.getAppoints().remove(app);
+	}
+	
+	public void actionTermAccept() {		
+		Appointment appoint = ((Appointment) termlistTable.getRowData());
+		appoint.setAccepted(true);
+		appMgr.save(appoint);
+	}
+
+	public void actionTermReject() {
+		Appointment appoint = ((Appointment) termlistTable.getRowData());
+		appoint.setAccepted(false);
+		appMgr.save(appoint);
+	}
+
 }

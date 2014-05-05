@@ -318,7 +318,7 @@
 	            
 	            <h:panelGrid columns="2">
 				<rich:dataTable value="#{cardBean.card.appoints}" 
-								binding="#{appointmentBean.listTable}"
+								binding="#{cardBean.termlistTable}"
 								var="appointment" id="appointTable">
 						<f:facet name="noData">
 			                Nothing found
@@ -334,7 +334,7 @@
 			                    </h:panelGroup>
 			                </f:facet>
 			                <h:outputText value="#{appointment.date}">
-			                	<f:convertDateTime pattern="dd.MM.yyyy"></f:convertDateTime>
+			                	<f:convertDateTime pattern="dd.MM.yyyy hh:mm"></f:convertDateTime>
 			                </h:outputText>
 			            </rich:column>
 			            <rich:column>
@@ -367,11 +367,11 @@
 			                <h:outputText value="Nepotvrzeno" rendered="#{appointment.accepted eq false}"></h:outputText>
 			            </rich:column>
 			            <rich:column>
-			                <h:commandLink action="#{appointmentBean.actionAccept}" value="Přijmout" rendered="#{appointment.accepted eq false}"></h:commandLink>
-			                <h:commandLink action="#{appointmentBean.actionReject}" value="Odmítnout" rendered="#{appointment.accepted}"></h:commandLink>
+			                <h:commandLink action="#{cardBean.actionTermAccept}" value="Přijmout" rendered="#{appointment.accepted eq false}"></h:commandLink>
+			                <h:commandLink action="#{cardBean.actionTermReject}" value="Odmítnout" rendered="#{appointment.accepted}"></h:commandLink>
 			            </rich:column>
 			            <rich:column>
-			                <h:commandLink action="#{appointmentBean.actionRemove}" value="Zrušit"></h:commandLink>
+			                <h:commandLink action="#{cardBean.actionTermRemove}" value="Zrušit"></h:commandLink>
 			            </rich:column>
 				</rich:dataTable>
 				
@@ -379,21 +379,21 @@
 					<a4j:outputPanel>
 						<rich:calendar styleClass="rf-cal" datePattern="yyyy-MM-dd" cellWidth="24px" cellHeight="22px"
 						style="width:200px" value="#{appointmentBean.date}" >
-							<a4j:ajax event="change" ajaxSingle="true" render="box"/>
+							<a4j:ajax event="change" ajaxSingle="true" render="freetermtable"/>
 						</rich:calendar>
 					</a4j:outputPanel>
-					<rich:dataTable value="#{appointmentBean.freeAppointments}" var="appointement" binding="#{appointmentBean.freeTable}">
+					<rich:dataTable value="#{appointmentBean.freeAppointments}" var="appoint" binding="#{appointmentBean.freeTable}" id="freetermtable">
 						<rich:column>
 							<f:facet name="header">
 			                    <h:outputText value="Termín"/>
 			                </f:facet>
-							<h:outputText value="#{appointement}"></h:outputText>
+							<h:outputText value="#{appoint}"></h:outputText>
 						</rich:column>
 						<rich:column>
 							<f:facet name="header">
 			                    <h:outputText value="Zapsat"/>
 			                </f:facet>
-							<h:commandLink value="[X]" action="#{appointmentBean.actionSubmit(appointement, cardBean.card.account.user)}" />
+							<h:commandLink value="[X]" action="#{appointmentBean.actionSubmit(appoint, cardBean.card)}" />
 						</rich:column>
 					</rich:dataTable>
 				</h:panelGrid>

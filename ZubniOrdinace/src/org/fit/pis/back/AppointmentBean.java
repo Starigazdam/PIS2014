@@ -148,6 +148,7 @@ public class AppointmentBean {
 		return "submit";
 	}
 	
+	
    public void actionRemove() {
                Appointment app = ((Appointment) listTable.getRowData());
                appMgr.remove(app);
