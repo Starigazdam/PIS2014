@@ -1,0 +1,57 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+          "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	  xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+<h:head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+  <title><ui:insert name="title">Zubní ordinace Slunko</ui:insert></title>
+  <h:outputStylesheet name="styles/main.css" />
+</h:head>
+
+<body>
+
+<div id="main">
+<div id="header">
+		<div id="logo">
+	    	<h:graphicImage value="/resources/images/zub.png"></h:graphicImage>
+	    	<h1>Zubní klinika Slunko</h1>
+    	</div>
+    <ui:insert name="header">
+    	<div id="menu" class="left">
+    		<h:outputLink value="#{facesContext.externalContext.requestContextPath}/user/user.xhtml">Domů</h:outputLink>
+    	</div>
+    	<div id="menu" class="right">
+    		<ul>
+	    		<li><h:link outcome='userPswd.xhtml' value="Změnit heslo" /></li>
+	    		<li><h:form><h:commandLink action="#{userAuthBean.actionLogout}" value="Odhlásit se" /></h:form></li>
+    		</ul>
+    	</div>
+    </ui:insert>
+</div>
+
+
+<div id="content">
+  <div id="contentInner">
+  <ui:insert name="content">
+    	Content area.  See comments below this line in the source.
+    	<!--  include your content file or uncomment the include below and create content.xhtml in this directory -->
+	  	<!-- <div> -->
+    	<!-- <ui:include src="content.xhtml"/> -->  
+    	<!-- </div> -->
+  </ui:insert>
+  </div>
+</div>
+
+ 
+<div id="footer">
+  <ui:insert name="footer">
+    	&copy; PIS Team 2014
+    	<!--  include your header file or uncomment the include below and create footer.xhtml in this directory -->
+		<!--<ui:include src="footer.xhtml"/>  -->
+  </ui:insert>
+</div>
+</div>
+</body>
+
+</html>
