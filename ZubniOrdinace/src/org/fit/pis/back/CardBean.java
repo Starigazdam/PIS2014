@@ -8,9 +8,9 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 
 import org.fit.pis.data.Card;
+import org.fit.pis.data.Examination;
 import org.fit.pis.data.Illness;
 import org.fit.pis.data.Procedure;
-import org.fit.pis.data.ProcedureCode;
 import org.fit.pis.data.Treatment;
 import org.fit.pis.service.CardManager;
 import org.richfaces.component.UIDataTable;
@@ -24,16 +24,20 @@ public class CardBean {
 	private Illness illness; 
 	private Treatment treat;
 	private Procedure proc;
+	private Examination exam;
 
 	private UIDataTable listTable;
 	private UIDataTable proclistTable;
 	private UIDataTable treatlistTable;
+	private UIDataTable illnesslistTable;
+	private UIDataTable examlistTable;
 
 	public CardBean() {
 		card = new Card();
 		illness = new Illness();
 		treat = new Treatment();
 		proc = new Procedure();
+		exam = new Examination();
 	}
 
 	public Card getCard() {
@@ -67,6 +71,14 @@ public class CardBean {
 	public void setProc(Procedure proc) {
 		this.proc = proc;
 	}
+	
+	public Examination getExam() {
+		return exam;
+	}
+
+	public void setExam(Examination exam) {
+		this.exam = exam;
+	}
 
 	public List<Card> getCards() {
 		return cardMgr.findAll();
@@ -94,6 +106,22 @@ public class CardBean {
 
 	public void setTreatlistTable(UIDataTable treatlistTable) {
 		this.treatlistTable = treatlistTable;
+	}
+	
+	public UIDataTable getIllnesslistTable() {
+		return illnesslistTable;
+	}
+
+	public void setIllnesslistTable(UIDataTable illnesslistTable) {
+		this.illnesslistTable = illnesslistTable;
+	}
+	
+	public UIDataTable getExamlistTable() {
+		return examlistTable;
+	}
+
+	public void setExamlistTable(UIDataTable examlistTable) {
+		this.examlistTable = examlistTable;
 	}
 	
 	// ====================================
@@ -137,11 +165,26 @@ public class CardBean {
 	}
 	
 	public String actionIllnessAdd() {
-		System.out.print("add");
+		illness.setDescription(illness.getDescription());
 		illness.setFoundDate(new Date());
 		illness.setPatient(card);
         card.getIllnesses().add(illness);
         return "ok";
+	}
+	
+	public String actionIllnessAddNew() {
+		//illness.setDescription(illness.getDescription());
+		illness.setFoundDate(new Date());
+		illness.setPatient(card);
+        card.getIllnesses().add(illness);
+        illness = new Illness();
+        return "ok";
+	}
+	
+	public String actionIllnessDelete() {
+		Illness selected = ((Illness) illnesslistTable.getRowData());
+		card.getIllnesses().remove(selected);
+		return "illdel";
 	}
 	
 	public String actionTreatNew() {
@@ -156,6 +199,12 @@ public class CardBean {
 		return "treatadd";
 	}
 	
+	public String actionTreatDelete() {
+		Treatment selected = ((Treatment) treatlistTable.getRowData());
+		card.getTreatmentHistory().remove(selected);
+		return "treatdel";
+	}
+	
 	public String actionProcNew() {
 		proc = new Procedure();
 		return "newproc";
@@ -168,8 +217,19 @@ public class CardBean {
 		return "addproc";
 	}
 	
-	public ProcedureCode[] getCodes(){
-		System.out.print("PROCBEAN");
-		return ProcedureCode.values();
+	public String actionExamDelete() {
+		System.out.print("EXDEL");
+		Examination selected = ((Examination) examlistTable.getRowData());
+		card.getExtExams().remove(selected);
+		return "examdel";
+	}
+	
+	public String actionExamAddNew() {
+		//illness.setDescription(illness.getDescription());
+		exam.setDate(new Date());
+		exam.setPatient(card);
+        card.getExtExams().add(exam);
+        exam = new Examination();
+        return "ok";
 	}
 }

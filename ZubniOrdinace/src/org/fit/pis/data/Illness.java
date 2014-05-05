@@ -27,6 +27,16 @@ public class Illness {
 	@ManyToOne(fetch=EAGER)
 	private Card patient;
 
+	
+    public boolean equals(Object other)
+    {
+        if (other instanceof Illness)
+            return ((Illness) other).getId() == (id);
+        else
+            return false;
+    }
+    
+        
 	public long getId() {
 		return id;
 	}

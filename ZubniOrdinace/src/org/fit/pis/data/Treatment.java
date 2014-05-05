@@ -38,6 +38,14 @@ public class Treatment {
 	public Treatment() {
 		procedures = new Vector<Procedure>();
 	}
+	
+	public boolean equals(Object other)
+    {
+        if (other instanceof Treatment)
+            return ((Treatment) other).getId() == (id);
+        else
+            return false;
+    }
 
 	public long getId() {
 		return id;

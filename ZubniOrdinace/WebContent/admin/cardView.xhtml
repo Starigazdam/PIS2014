@@ -23,7 +23,6 @@
 	                </h:panelGroup>
 	            </f:facet>
 	            
-				<h:messages layout="table"></h:messages>
 				<h:panelGrid columns="3">
 					<h:outputLabel rendered="true" value="RČ"></h:outputLabel>
 					<h:outputText value="#{cardBean.card.id}" required="true"></h:outputText>
@@ -49,23 +48,24 @@
 					<h:inputText id="birth" value="#{cardBean.card.birthDate}">
 						<f:validateLength minimum="8" />
 						<f:convertDateTime pattern="dd.MM.yyyy"/>
-					<f:validateRequired />
+						<f:validateRequired />
 						<rich:validator />
 					</h:inputText>
 					<rich:message for="birth"/>
 					
-					<h:outputLabel rendered="true" value="Telefon"></h:outputLabel>
-					<h:inputText value="#{cardBean.card.phoneNumber != 0 ? cardBean.card.phoneNumber : '' }" required="false">
+					<h:outputLabel rendered="true" value="Telefon (+420)"></h:outputLabel>
+					<h:inputText value="#{cardBean.card.phoneNumber}" 
+								 id="phone"
+								 validatorMessage="Validation Error: Invalid phone number"
+								 required="false">
+                    	<rich:validator />
 					</h:inputText>
-					<h:outputText/>
+					<rich:message for="phone" />
 					
 					<h:outputLabel rendered="true" value="Email"></h:outputLabel>
 					<h:inputText value="#{cardBean.card.email}" required="false" id ="email" validatorMessage="Validation Error: Invalid email address">
-						<f:validateRegex
-                        	pattern="^(([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5}){1,25})+([;.](([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5}){1,25})+)*$"></f:validateRegex>
-                    	<rich:validator />
-					</h:inputText>
-					<rich:message for="email" />
+                	</h:inputText>
+                	<rich:message for="email" />
 				</h:panelGrid>
 				
 				<!-- ++++++++++++++ Collapsible panels ++++++++++++++ -->
@@ -73,7 +73,9 @@
 				<rich:collapsiblePanel header="Choroby" switchType="client">
 	            <h:graphicImage value="/images/icons/common/rf.png" style="float:right" alt="rf" />
 	            
-				<rich:dataTable value="#{cardBean.card.illnesses}" var="illness" id="illTable">
+				<rich:dataTable value="#{cardBean.card.illnesses}" 
+								binding="#{cardBean.illnesslistTable}"
+								var="illness" id="illTable">
 					<rich:column>
 						<f:facet name="header">
 		                    <h:outputText value="Datum"/>
@@ -88,12 +90,23 @@
 		                </f:facet>
 						<h:outputText value="#{illness.description}"></h:outputText>
 					</rich:column>
+					<rich:column>
+						<h:commandLink action="#{cardBean.actionIllnessDelete}">
+							<h:outputText value="Odstranit"></h:outputText>
+						</h:commandLink>
+					</rich:column>
 				</rich:dataTable>
 				
-				<a4j:commandButton action="#{cardBean.actionIllnessNew}" value="Přidat nemoc"
-					render="newilldesc"
-					oncomplete="#{rich:component('popupill')}.show()">
-				</a4j:commandButton>
+				
+				<h:panelGrid columns="3">
+					<h:outputLabel rendered="true" value="Novy popis:"></h:outputLabel>
+					<h:inputText id="illdsc" value="#{cardBean.illness.description}">
+					</h:inputText>
+					<h:commandButton 	action="#{cardBean.actionIllnessAddNew}" 
+										value="Pridej" 
+										render="illTable illdsc"/>
+				</h:panelGrid>
+				
 				
 				</rich:collapsiblePanel>
 				
@@ -101,6 +114,7 @@
 	            <h:graphicImage value="/images/icons/common/rf.png" style="float:right" alt="rf" />
 	            
 				<rich:dataTable value="#{cardBean.card.treatmentHistory}" 
+								binding="#{cardBean.treatlistTable}"
 								var="treat" 
 								id="treatTable">
 					 <f:facet name="header">
@@ -113,9 +127,12 @@
 		                    </rich:column>
 		                    <rich:column rowspan="2">
 		                        <h:outputText value="Popis" />
-		                    </rich:column>
+		                    </rich:column>		                    
 		                    <rich:column colspan="2">
 		                        <h:outputText value="Zakroky" />
+		                    </rich:column>
+		                    <rich:column rowspan="2">
+		                        <h:outputText/>
 		                    </rich:column>
 		                    <rich:column breakRowBefore="true">
 		                        <h:outputText value="Kod" />
@@ -123,6 +140,7 @@
 		                    <rich:column>
 		                        <h:outputText value="cena" />
 		                    </rich:column>
+		                    
 		            	</rich:columnGroup>
 		            </f:facet>
 					<rich:column>
@@ -138,10 +156,26 @@
 					</rich:column>
 					<rich:column colspan="2">
 		                
-						<rich:collapsibleSubTableToggler for="sbtbl" />
-                		<h:outputText value="Zobrazit" />
+					<!-- 	<rich:collapsibleSubTableToggler for="sbtbl" />
+                		<h:outputText value="Zobrazit" /> -->
 						
-						<rich:collapsibleSubTable value="#{treat.procedures}" var="proc" id="sbtbl" expandMode="client">
+					<h:dataTable style="padding:0" value="#{treat.procedures}" var="proc">	
+							<rich:column>
+			                    <h:outputText value="#{proc.name}" />
+			                </rich:column>
+			                <rich:column>
+			                    <h:outputText value="#{proc.cost}" />
+			                </rich:column>	
+					</h:dataTable>
+						
+					</rich:column>	
+					<rich:column>
+						<h:commandLink action="#{cardBean.actionTreatDelete}">
+							<h:outputText value="Odstranit"></h:outputText>
+						</h:commandLink>
+					</rich:column>
+		                    
+		            <!--     <rich:collapsibleSubTable value="#{treat.procedures}" var="proc" id="sbtbl" expandMode="client">
 			                <rich:column colspan="3" ></rich:column>
 			                <rich:column>
 			                    <h:outputText value="#{proc.name}" />
@@ -149,14 +183,65 @@
 			                <rich:column>
 			                    <h:outputText value="#{proc.cost}" />
 			                </rich:column>
-					    </rich:collapsibleSubTable>
-					
-					</rich:column>
-					
+					    </rich:collapsibleSubTable> -->
+					    
 				</rich:dataTable>
 				
 				<h:commandButton action="#{cardBean.actionTreatNew}" value="Přidat">
 				</h:commandButton>
+				
+				</rich:collapsiblePanel>
+				
+				<rich:collapsiblePanel header="Vysetrenia" switchType="client">
+	            <h:graphicImage value="/images/icons/common/rf.png" style="float:right" alt="rf" />
+	            
+				<rich:dataTable value="#{cardBean.card.extExams}" 
+								binding="#{cardBean.examlistTable}"
+								var="exam" id="examTable">
+					<rich:column>
+						<f:facet name="header">
+		                    <h:outputText value="Datum"/>
+		                </f:facet>
+						<h:outputText value="#{exam.date}">
+							<f:convertDateTime pattern="dd.MM.yyyy"/> <!-- TODO: date not correct -->
+						</h:outputText>
+					</rich:column>
+					<rich:column>
+						<f:facet name="header">
+		                    <h:outputText value="Typ"/>
+		                </f:facet>
+						<h:outputText value="#{exam.type}"></h:outputText>
+					</rich:column>
+					<rich:column>
+						<f:facet name="header">
+		                    <h:outputText value="Popis"/>
+		                </f:facet>
+						<h:outputText value="#{exam.description}"></h:outputText>
+					</rich:column>
+					<rich:column>
+						<h:commandLink action="#{cardBean.actionExamDelete}">
+							<h:outputText value="Odstranit"></h:outputText>
+						</h:commandLink>
+					</rich:column>
+				</rich:dataTable>
+				
+				<a4j:region>
+				<h:panelGrid columns="5">
+					<h:outputLabel rendered="true" value="Nove vysetreni:"></h:outputLabel>
+					<rich:select  	value="#{cardBean.exam.type}" required="true" 
+									enableManualInput="false"
+									id="exam_select">
+                		<f:selectItems value="#{examinationCodeBean.codes}" var="g" 
+    						itemValue="#{g}" itemLabel="#{g.label}"/>
+            		</rich:select>
+					<h:inputText id="examdsc" value="#{cardBean.exam.description}">
+					</h:inputText>
+					<a4j:commandButton 	action="#{cardBean.actionExamAddNew}" 
+										value="Pridej" 
+										render="examTable examdsc"/>
+					<rich:message for="exam_select"/>
+				</h:panelGrid>
+				</a4j:region>
 				
 				</rich:collapsiblePanel>
 			
@@ -169,32 +254,6 @@
 				
 		</h:form>
 			
-			<!--+++++++++++++++++++++++++ POPUPS ++++++++++++++++++++++++++++ -->
-			
-		    <rich:popupPanel id="popupill" modal="true" resizeable="true">
-		        <f:facet name="header">
-		            <h:outputText value="Přidat nemoc" />
-		        </f:facet>
-		        <f:facet name="controls">
-		            <h:outputLink value="#" onclick="#{rich:component('popupill')}.hide(); return false;">
-		                X
-		            </h:outputLink>
-		        </f:facet>
-		        
-				<h:form id="newillform">
-					<h:inputTextarea id="newilldesc" value="#{cardBean.illness.description}" required="true">
-					</h:inputTextarea>
-					<a4j:commandButton 	value="Hotovo" execute="@form"  
-                    				   	render="illTable"  
-                    					action="#{cardBean.actionIllnessAdd}"
-                    					onclick="#{rich:component('popupill')}.hide(); return false;}">  
-                	</a4j:commandButton>
-                	<a4j:commandButton 	value="Cancel" 
-                						immediate="true"
-                						onclick="#{rich:component('popupill')}.hide(); return false;}">
-                    </a4j:commandButton>
-				</h:form>
-		    </rich:popupPanel>	
 	</h:body>
 	</f:view>			
 </ui:define>
