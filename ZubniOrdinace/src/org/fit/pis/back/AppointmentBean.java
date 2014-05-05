@@ -118,6 +118,10 @@ public class AppointmentBean {
     	return appMgr.findAllByCard(paMgr.find(user).getPatient());
     }
 	
+    public List<Appointment> getIDAppHistory(Long user) {
+    	return appMgr.findAllByCard(cMgr.find(user));
+    }
+    
 	public void actionAccept() {		
 		this.appoint = ((Appointment) listTable.getRowData());
 		this.appoint.setAccepted(true);
@@ -137,6 +141,19 @@ public class AppointmentBean {
 	
 	public String actionSubmit(Integer i, String user) {
 		Card card = paMgr.find(user).getPatient();
+		Appointment newAppoint = new Appointment();
+		date.setHours(i);
+		newAppoint.setDate(this.date);
+		newAppoint.setPatient(card);
+		newAppoint.setAccepted(false);
+		newAppoint.setOpenday(odMgr.find(this.date));
+		appMgr.save(newAppoint);
+		System.out.println(user);
+		return "submit";
+	}
+	
+	public String actionIDSubmit(Integer i, Long user) {
+		Card card = cMgr.find(user);
 		Appointment newAppoint = new Appointment();
 		date.setHours(i);
 		newAppoint.setDate(this.date);

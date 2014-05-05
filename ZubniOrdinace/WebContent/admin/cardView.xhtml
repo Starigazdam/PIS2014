@@ -317,7 +317,7 @@
 	            <h:graphicImage value="/images/icons/common/rf.png" style="float:right" alt="rf" />
 	            
 	            <h:panelGrid columns="2">
-				<rich:dataTable value="#{appointmentBean.getAppHistory(cardBean.card.account.user)}" 
+				<rich:dataTable value="#{appointmentBean.getIDAppHistory(cardBean.card.id)}" 
 								binding="#{cardBean.termlistTable}"
 								var="appointment" id="appointTable">
 						<f:facet name="noData">
@@ -389,7 +389,7 @@
 							<f:facet name="header">
 			                    <h:outputText value="Zapsat"/>
 			                </f:facet>
-							<h:commandLink value="[X]" action="#{appointmentBean.actionSubmit(appoint, cardBean.card.account.user)}" />
+							<h:commandLink value="[X]" action="#{appointmentBean.actionIDSubmit(appoint, cardBean.card.id)}" />
 						</rich:column>
 					</rich:dataTable>
 				</h:panelGrid>
