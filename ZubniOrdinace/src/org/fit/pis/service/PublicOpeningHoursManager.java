@@ -39,7 +39,7 @@ public class PublicOpeningHoursManager
     public Object findByDate(Date date)
     {
     	try {
-    		return em.createQuery("SELECT oh FROM PublicOpeningHours oh INNER JOIN OpeningDay od WHERE od.date = :val").setParameter("val", date).getSingleResult();
+    		return em.createQuery("SELECT oh FROM PublicOpeningHours oh, OpeningDay od WHERE (oh.day = od) AND (od.date = :val)").setParameter("val", date).getSingleResult();
     	}
     	catch (javax.persistence.NoResultException e) {
     		return null;	
