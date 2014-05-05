@@ -14,31 +14,31 @@
 			<h:panelGrid columns="3">
 				<h:outputLabel rendered="true" value="Jméno"></h:outputLabel>
 				<h:inputText value="#{cardBean.card.name}" required="true"
-					requiredMessage="Name is required"
-					validatorMessage="Invalid name">
+					requiredMessage="Jmeno neni zadano"
+					validatorMessage="Zle zadane jmeno">
 					<f:validateLength minimum="2" maximum="80" />
 				</h:inputText>
 				<h:outputLabel rendered="true" value="*" style="color: #FF0000"></h:outputLabel>
 				<h:outputLabel rendered="true" value="Příjmení"></h:outputLabel>
 				<h:inputText value="#{cardBean.card.surname}" required="true"
-					requiredMessage="Surname is required"
-					validatorMessage="Invalid surname">
+					requiredMessage="Prijmeni neni zadano"
+					validatorMessage="Zle zadane prijmeni">
 					<f:validateLength minimum="2" maximum="80"/>
 				</h:inputText>
 				<h:outputLabel rendered="true" value="*" style="color: #FF0000"></h:outputLabel>
 				<h:outputLabel rendered="true" value="RČ"></h:outputLabel>
 				<h:inputText value="#{cardBean.card.id}" required="true"
-					requiredMessage="Birth id is required"
-					validatorMessage="Invalid birth id"
-					converterMessage="Enter birth id in format dddddd/dddd">
+					requiredMessage="Datum narozeni neni zadan"
+					validatorMessage="Zle zadani datum narozeni"
+					converterMessage="Zadejte rodni cislo ve formatu dddddd/dddd">
                     <f:converter converterId="idConverter"/>
 				</h:inputText>
 				<h:outputLabel rendered="true" value="*" style="color: #FF0000" />
 				<h:outputLabel rendered="true" value="Datum narození(dd.mm.yyyy)" />
 				<h:inputText value="#{cardBean.card.birthDate}" required="true"
-					requiredMessage="Birth date is required"
-					validatorMessage="Invalid birth date"
-					converterMessage="Enter birth date in format dd.MM.yyyy">
+					requiredMessage="Datum narozeni neni zadan"
+					validatorMessage="Zle zadane datum narozeni"
+					converterMessage="Zadejte datum narozeni ve formatu dd.MM.yyyy">
 					<f:convertDateTime pattern="dd.MM.yyyy"/>
 				</h:inputText>
 				<h:outputLabel rendered="true" value="*" style="color: #FF0000"></h:outputLabel>

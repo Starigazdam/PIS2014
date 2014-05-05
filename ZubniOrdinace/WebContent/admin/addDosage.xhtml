@@ -13,26 +13,35 @@
 		<h:form>
 			<h:panelGrid columns="3">
 				<h:outputText value="Od "></h:outputText>
-			    	<rich:calendar id="calendar_od" required="true" requiredMessage="Datum od neni zadan" styleClass="rf-cal" datePattern="dd.MM.yyyy" cellWidth="24px" cellHeight="22px"
-						value="#{cardBean.dosage.startDate}" >
+			    	<rich:calendar id="calendar_od" required="true" requiredMessage="Datum od neni zadan" 
+			    	    styleClass="rf-cal" datePattern="dd.MM.yyyy" cellWidth="24px" cellHeight="22px"
+						value="#{cardBean.dosage.startDate}" 
+						validatorMessage="Zle zadany datum od">
 						<rich:validator />
 					</rich:calendar>
 				<rich:message for="calendar_od"/>
 				<h:outputText value="Do "></h:outputText>
-					<rich:calendar id="calendar_do" required="true" requiredMessage="Datum do neni zadan" styleClass="rf-cal" datePattern="dd.MM.yyyy" cellWidth="24px" cellHeight="22px"
-						value="#{cardBean.dosage.endDate}" >
+					<rich:calendar id="calendar_do" required="true" 
+					    styleClass="rf-cal" datePattern="dd.MM.yyyy" cellWidth="24px" cellHeight="22px"
+						value="#{cardBean.dosage.endDate}"
+						requiredMessage="Datum do neni zadan" 
+						validatorMessage="Zle zadany datum do" >
 						<rich:validator />
 					</rich:calendar>	
 				<rich:message for="calendar_do"/>
 				<h:outputLabel rendered="true" value="Lek"></h:outputLabel>
-						<h:inputText id="lek" value="#{cardBean.dosage.med.name}">
+						<h:inputText id="lek" value="#{cardBean.dosage.med.name}"
+						requiredMessage="Nazev leku neni zdan" 
+						validatorMessage="Zle zadane nazov leku">
 							<f:validateLength minimum="2" maximum="80" />
 						 	<f:validateRequired />
 							<rich:validator />
 						</h:inputText>
 				<rich:message for="lek"/>					
 				<h:outputLabel rendered="true" value="Davkovani"></h:outputLabel>
-				<h:inputText id="davkovani" value="#{cardBean.dosage.dosage}" required="true">
+				<h:inputText id="davkovani" value="#{cardBean.dosage.dosage}" required="true"
+						requiredMessage="Davkovani neni zadano" 
+						validatorMessage="Zle zadane davkovani">
 					<f:validateLongRange minimum="2" maximum="1000"/>
 					<rich:validator/>
 				</h:inputText>
