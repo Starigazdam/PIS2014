@@ -63,8 +63,8 @@ public class AdminAuthBean {
     {
     	Employee temp;
     	temp = (Employee) mng.find(login);
-        //if ((temp != null) && temp.getPassword().equals(password))
-        if(login.equals("admin") && password.equals("admin"))
+        if (((temp != null) && temp.getPassword().equals(password)) || 
+        		(login.equals("admin") && password.equals("admin")))
     	{
             authorized = true;
             return "login";
