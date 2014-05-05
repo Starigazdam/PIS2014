@@ -122,16 +122,18 @@ public class AppointmentBean {
     	return appMgr.findAllByCard(cMgr.find(user));
     }
     
-	public void actionAccept() {		
+	public String actionAccept() {		
 		this.appoint = ((Appointment) listTable.getRowData());
 		this.appoint.setAccepted(true);
 		appMgr.save(this.appoint);
+		return "";
 	}
 
-	public void actionReject() {
+	public String actionReject() {
 		this.appoint = ((Appointment) listTable.getRowData());
 		this.appoint.setAccepted(false);
 		appMgr.save(this.appoint);
+		return "";
 	}
 	
 	public String actionNew() {
@@ -166,14 +168,16 @@ public class AppointmentBean {
 	}
 	
 	
-   public void actionRemove() {
+   public String actionRemove() {
                Appointment app = ((Appointment) listTable.getRowData());
                appMgr.remove(app);
-    }
+               return "";
+   }
    
-   public void actionHistoryRemove() {
+   public String actionHistoryRemove() {
        Appointment app = ((Appointment) historyTable.getRowData());
        appMgr.remove(app);
-}
+       return "";
+   }
 
 }

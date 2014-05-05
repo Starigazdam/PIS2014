@@ -57,7 +57,7 @@ public class CardAccBean {
         return "update";
     }
 	
-	public void actionNewAcc()
+	public String actionNewAcc()
 	{
 		Card c = (Card) listTable.getRowData();
 
@@ -82,6 +82,8 @@ public class CardAccBean {
 		p.setPatient(c);
 		c.setAccount(p);
 		cardMgr.save(c);
+		
+		return "";
 	}
 	
 	public String actionRemAcc()
