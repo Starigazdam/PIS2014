@@ -56,6 +56,10 @@ table {
 	margin: 1em 1.7em;
 }
 
+table table {
+	margin: 0;
+}
+
 #menu {
 	position: absolute;
 	top: 100%;
