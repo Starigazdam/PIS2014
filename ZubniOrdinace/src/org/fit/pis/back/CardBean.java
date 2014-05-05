@@ -292,7 +292,7 @@ public class CardBean {
 	
 	public String actionTermRemove() {
         Appointment app = ((Appointment) termlistTable.getRowData());
-        card.getAppoints().remove(app);
+        appMgr.remove(app);
         return "";
 	}
 	
