@@ -8,6 +8,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
 import org.fit.pis.data.Appointment;
+import org.fit.pis.data.Card;
 
 @Stateless
 public class AppointmentManager 
@@ -49,6 +50,11 @@ public class AppointmentManager
     @SuppressWarnings("unchecked")
     public List<Appointment> findAllByStatus(boolean status) {
     	return em.createQuery("SELECT ap From Appointment ap WHERE ap.accepted = :val").setParameter("val", status).getResultList();
+    }
+    
+    @SuppressWarnings("unchecked")
+    public List<Appointment> findAllByCard(Card patient) {
+    	return em.createQuery("SELECT ap From Appointment ap WHERE ap.patient = :val ORDER BY ap.date DESC").setParameter("val", patient).getResultList();
     }
 
 }

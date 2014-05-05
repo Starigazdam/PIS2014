@@ -39,7 +39,8 @@ public class AppointmentBean {
 
 	private UIDataTable listTable;
     private UIDataTable freeTable;
-	
+    private UIDataTable historyTable;
+
 	public Date getDate() {
 		return date;
 	}
@@ -69,6 +70,26 @@ public class AppointmentBean {
     	this.appoint = a;
     }
     
+    public UIDataTable getListTable() 
+	{
+		return listTable;
+	}
+	
+	public void setListTable(UIDataTable lt) 
+	{
+		this.listTable = lt;
+	}
+	
+	public UIDataTable getHistoryTable() {
+		return historyTable;
+	}
+
+	public void setHistoryTable(UIDataTable historyTable) {
+		this.historyTable = historyTable;
+	}
+    
+    //=============================
+	
     public List<Appointment> getAppointments() {
     	return appMgr.findAll();
     }
@@ -90,21 +111,12 @@ public class AppointmentBean {
     			appointment = (Appointment)appMgr.findByDate(newdate);
     			if (appointment == null)
     				lol.add(j);
-    			else
-    				System.out.println("wtf");
     		}
     	return lol;
     }
-    //=============================
-	public UIDataTable getListTable() 
-	{
-		return listTable;
-	}
-	
-	public void setListTable(UIDataTable lt) 
-	{
-		this.listTable = lt;
-	}
+    public List<Appointment> getAppHistory(String user) {
+    	return appMgr.findAllByCard(paMgr.find(user).getPatient());
+    }
 	
 	public void actionAccept() {		
 		this.appoint = ((Appointment) listTable.getRowData());
@@ -140,5 +152,10 @@ public class AppointmentBean {
                Appointment app = ((Appointment) listTable.getRowData());
                appMgr.remove(app);
     }
+   
+   public void actionHistoryRemove() {
+       Appointment app = ((Appointment) historyTable.getRowData());
+       appMgr.remove(app);
+}
 
 }

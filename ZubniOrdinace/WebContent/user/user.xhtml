@@ -12,8 +12,9 @@
 	<ui:define name="content">
 		<h:form>
 			<rich:calendar styleClass="rf-cal" datePattern="yyyy-MM-dd" cellWidth="24px" cellHeight="22px"
-				style="width:200px" value="#{appointmentBean.date}" >
+				style="width:200px" value="#{appointmentBean.date}" ondatechanged="@form.submit">
 				<a4j:ajax event="change" ajaxSingle="true" render="box"/>
+				<a4j:ajax event="change" ajaxSingle="true" render="box2"/>
 			</rich:calendar>
 		</h:form>
 		<h:form id="box">
@@ -30,6 +31,46 @@
 		                </f:facet>
 						<h:commandLink value="[X]" action="#{appointmentBean.actionSubmit(appointement, userAuthBean.login)}" />
 					</rich:column>
+				</rich:dataTable>
+		</h:form>
+		<h:form id="box2">
+				<rich:dataTable value="#{appointmentBean.getAppHistory(userAuthBean.login)}" var="appointement" binding="#{appointmentBean.historyTable}">
+					<rich:column>
+						<f:facet name="header">
+		                    <h:outputText value="Termín"/>
+		                </f:facet>
+						<h:outputText value="#{appointement.date}">
+							<f:convertDateTime pattern="dd.MM.yyyy"/>
+						</h:outputText>
+					</rich:column>
+					<rich:column>
+		                <f:facet name="header">
+		                    <h:panelGroup>
+		                        <h:outputText value="Jméno pacienta" />
+		                    </h:panelGroup>
+		                </f:facet>
+		                <h:outputText value="#{appointement.patient.name}"></h:outputText>
+		            </rich:column>
+		            <rich:column>
+		                <f:facet name="header">
+		                    <h:panelGroup>
+		                        <h:outputText value="Příjmení" />
+		                    </h:panelGroup>
+		                </f:facet>
+		                <h:outputText value="#{appointement.patient.surname}"></h:outputText>
+		            </rich:column>
+		            <rich:column filter="#{appointmentFilterBean.acceptFilterImpl}">
+		                <f:facet name="header">
+		                    <h:panelGroup>
+		                        <h:outputText value="Potvrzeno " />
+		                    </h:panelGroup>
+		                </f:facet>
+		                <h:outputText value="Potvrzeno" rendered="#{appointement.accepted}"></h:outputText>
+		                <h:outputText value="Nepotvrzeno" rendered="#{appointement.accepted eq false}"></h:outputText>
+		            </rich:column>
+		            <rich:column>
+		                <h:commandLink action="#{appointmentBean.actionHistoryRemove}" value="Zrušit"></h:commandLink>
+		            </rich:column>
 				</rich:dataTable>
 		</h:form>
 	</ui:define>
