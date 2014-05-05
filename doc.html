@@ -15,26 +15,26 @@
      podle pou¾itého editoru -->
 
 <!-- Nahraïte prosím názvem tématu -->
-<h1>Zubna ordinace</h1>
+<h1>Zubná ordinace</h1>
 
 <!-- Jména autorù a jejich èinnost -->
 <dl>
     <dt>Autoøi</dt>
-    <dd>Mchal Starigazda
-        <a href="mailto:xstari01@stud.fit.vutbr.cz">xstart01@stud.fit.vutbr.cz</a> -
-        DOPLNIT NA COM ROBIL
+    <dd>Michal Starigazda
+        <a href="mailto:xstari01@stud.fit.vutbr.cz">xstari01@stud.fit.vutbr.cz</a> -
+        detail karty pacienta, databázový subsystém, návrh (AIS)
     </dd>
-    <dd>Láznièka Stanislav
+    <dd>Stanislav Láznièka 
         <a href="mailto:xlazni08@stud.fit.vutbr.cz">xlazni08@stud.fit.vutbr.cz</a> -
-        DOPLNIT NA COM ROBIL
+        správa u¾ívateµov, administratívna èas» u¾ívateµského rozhrania
     </dd>
     <dd>Petr Kubát
         <a href="mailto:xkubat11@stud.fit.vutbr.cz">xkubat11@stud.fit.vutbr.cz</a> -
-        DOPLNIT NA COM ROBIL
+        u¾ívateµské rozhranie pacientov (frontend, backend)
     </dd>
     <dd>Luká¹ Svatý
         <a href="mailto:xsvaty00@stud.fit.vutbr.cz">xsvaty00@stud.fit.vutbr.cz</a> -
-        DOPLNIT NA COM ROBIL
+        u¾ívateµské rozhranie, validácia vstupných údajov, korektúra
     </dd>
 </dl>
 <!-- u¾ivatelské úèty -->
@@ -42,13 +42,32 @@
 <table>
 <tbody><tr><th>Login</th><th>Heslo</th><th>Role</th></tr>
 <tr><td>admin</td><td>admin</td><td>Administrátor</td></tr>
-<tr><td>user</td><td>user</td><td>Pacient?!?</td></tr>
-<tr><td>E¹te</td><td>niekto</td><td>???</td></tr>
+<tr><td>Postup ní¾e</td><td></td><td>Pacient</td></tr>
 </tbody></table>
+
+<p>Pro pøihlá¹ení jako pacient je aplikovat následující postup
+<ol>
+    <li>Pøihlásit se jako administrátor (<i>stránka projektu/admlogin.xhtml</i>)</li>
+    <li>Dále kliknutím na <b>Seznam karet</b> vytvoøit novou kartu pacienta</li>
+    <li>Po vytvoøení karty klik na <b>Správa úètù pacientù</b></li>
+    <li>Tlaèítko <b>Vytvoøit nový úèet</b> vygeneruje u¾ivatelské jméno a heslo</li>
+</ol>
+Zvolili jsme, ¾e na stránku pøihlá¹ení administrátora se nelze z u¾ivatelské èásti dostat.
+Dùvod je ryze bezpeènostní.
+</p>
+
 
 <!-- vy¾adované knihovny i s verzemi, pouze pro Java EE -->
 <h2>Vy¾adované knihovny</h2>
-???
+<h4>(Richfaces)</h4>
+cssparser-0.9.5.jar<br/>
+guava-11.0.2.jar<br/>
+richfaces-components-api-4.2.0.Final.jar<br/>
+richfaces-components-ui-4.2.0.Final.jar<br/>
+richfaces-core-api-4.2.0.Final.jar<br/>
+richfaces-core-impl-4.2.0.Final.jar<br/>
+sac-1.3.jar<br/>
+
 
 
 

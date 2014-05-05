@@ -20,8 +20,9 @@
 					</rich:calendar>
 	    		<h:outputText value="Hodina "></h:outputText>
 	    		<h:inputText value="#{openDayBean.startHour}" required="true"
-					requiredMessage="Nutná hodina od">
-					<f:validateLongRange minimum="0" maximum="24"></f:validateLongRange>
+					requiredMessage="Nutná hodina od"
+					validatorMessage="Pracovna doba je cislo od 7 do 17">
+					<f:validateLongRange minimum="7" maximum="17"></f:validateLongRange>
 				</h:inputText>
 				<h:outputText value="Do "></h:outputText>
 					<rich:calendar styleClass="rf-cal" datePattern="dd.MM.yyyy" cellWidth="24px" cellHeight="22px"
@@ -29,8 +30,9 @@
 					</rich:calendar>
 	    		<h:outputText value="Hodina "></h:outputText>
 	    		<h:inputText value="#{openDayBean.endHour}" required="true"
-					requiredMessage="Nutná hodina do">
-					<f:validateLongRange minimum="0" maximum="24"></f:validateLongRange>
+					requiredMessage="Nutná hodina do"
+					validatorMessage="Pracovna doba je cislo od 7 do 17">
+					<f:validateLongRange minimum="7" maximum="17"></f:validateLongRange>
 				</h:inputText>
 				<h:commandButton value="Generovat" action="#{openDayBean.genDays}"></h:commandButton>
 	    	</h:panelGrid>
@@ -51,7 +53,7 @@
 	                    <h:outputText value="Od"/>
 	                </f:facet>
 					<h:outputText value="#{day.pubOpenHour.startTime}">
-					<f:convertDateTime pattern="hh:mm"></f:convertDateTime>
+					<f:convertDateTime pattern="HH:mm"></f:convertDateTime>
 					</h:outputText>
 				</rich:column>
 				<rich:column>
@@ -59,7 +61,7 @@
 	                    <h:outputText value="Do"/>
 	                </f:facet>
 					<h:outputText value="#{day.pubOpenHour.endTime}">
-						<f:convertDateTime pattern="hh:mm"></f:convertDateTime>
+						<f:convertDateTime pattern="HH:mm"></f:convertDateTime>
 					</h:outputText>
 				</rich:column>
 				<rich:column>
